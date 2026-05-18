@@ -19,248 +19,284 @@
   --accent2: #818CF8;
   --green: #22C55E;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-.hero-bg {
-  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
-  width: 800px; height: 600px;
-  background: radial-gradient(ellipse at center, rgba(99,102,241,0.11) 0%, transparent 70%);
-  pointer-events: none; z-index: 0;
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.hero-bg{position:fixed;top:0;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse at center,rgba(99,102,241,0.1) 0%,transparent 70%);pointer-events:none;z-index:0}
 
 /* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 60px; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 32px;
-  background: rgba(9,9,11,0.85); backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.logo { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
-.logo-icon { width: 28px; height: 28px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-.nav-center { display: flex; align-items: center; gap: 4px; }
-.nav-link { padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted2); background: none; border: none; cursor: pointer; transition: all 0.15s; font-family: inherit; }
-.nav-link:hover { background: var(--bg3); color: var(--text); }
-.nav-right { display: flex; align-items: center; gap: 10px; }
-.lang-switcher { display: flex; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 3px; }
-.lang-btn { padding: 4px 10px; background: none; border: none; color: var(--muted); font-family: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; cursor: pointer; border-radius: 5px; transition: all 0.15s; }
-.lang-btn.active { background: var(--accent); color: #fff; }
-.lang-btn:hover:not(.active) { color: var(--text); }
-.btn-nav { padding: 7px 16px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.btn-nav:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-size:17px;font-weight:700;letter-spacing:-0.3px;display:flex;align-items:center;gap:8px}
+.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;color:var(--muted2);background:none;border:none;cursor:pointer;transition:all .15s;font-family:inherit}
+.nav-link:hover{background:var(--bg3);color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-switcher{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:3px}
+.lang-btn{padding:4px 10px;background:none;border:none;color:var(--muted);font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.05em;cursor:pointer;border-radius:5px;transition:all .15s}
+.lang-btn.active{background:var(--accent);color:#fff}
+.lang-btn:hover:not(.active){color:var(--text)}
+.btn-nav{padding:7px 16px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-nav:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 20px rgba(99,102,241,0.4)}
 
-/* HERO — fixed heights to prevent layout jump */
-.hero {
-  position: relative; z-index: 1;
-  min-height: 100vh; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 120px 24px 80px; text-align: center;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 14px 5px 8px;
-  background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-  border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--accent2);
-  margin-bottom: 28px; animation: fadeDown 0.6s ease both;
-}
-.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px 5px 8px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);border-radius:100px;font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:28px;animation:fadeDown .6s ease both}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.h1-wrap{min-height:160px;display:flex;align-items:center;justify-content:center;animation:fadeDown .6s .1s ease both}
+h1{font-size:clamp(40px,6vw,72px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;max-width:820px}
+h1 .gradient{background:linear-gradient(135deg,#fff 0%,var(--accent2) 50%,#c084fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub-wrap{min-height:56px;display:flex;align-items:center;justify-content:center;animation:fadeDown .6s .2s ease both}
+.hero-sub{font-size:17px;font-weight:400;color:var(--muted2);max-width:540px;line-height:1.7;margin-bottom:36px}
+.hero-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;animation:fadeDown .6s .3s ease both}
+.btn-primary{padding:12px 24px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.4)}
+.btn-secondary{padding:12px 24px;background:var(--bg3);color:var(--text);border:1px solid var(--border2);border-radius:10px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2)}
+.hero-stats{display:flex;margin-top:60px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;animation:fadeDown .6s .4s ease both}
+.hero-stat{padding:20px 32px;text-align:center;border-right:1px solid var(--border);flex:1}
+.hero-stat:last-child{border-right:none}
+.stat-val{font-size:24px;font-weight:700;letter-spacing:-.5px}
+.stat-label{font-size:11px;font-weight:500;color:var(--muted);margin-top:2px;letter-spacing:.03em;text-transform:uppercase}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
 
-/* Fixed-height text containers to prevent layout jumps */
-.h1-wrap { min-height: 170px; display: flex; align-items: center; justify-content: center; animation: fadeDown 0.6s 0.1s ease both; }
-h1 {
-  font-size: clamp(40px, 6vw, 72px); font-weight: 800;
-  line-height: 1.1; letter-spacing: -1.5px; max-width: 820px;
-}
-h1 .gradient {
-  background: linear-gradient(135deg, #fff 0%, var(--accent2) 50%, #c084fc 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.hero-sub-wrap { min-height: 60px; display: flex; align-items: center; justify-content: center; animation: fadeDown 0.6s 0.2s ease both; }
-.hero-sub { font-size: 17px; font-weight: 400; color: var(--muted2); max-width: 520px; line-height: 1.7; margin-bottom: 36px; }
-.hero-ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; animation: fadeDown 0.6s 0.3s ease both; }
-.btn-primary { padding: 12px 24px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
-.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.4); }
-.btn-secondary { padding: 12px 24px; background: var(--bg3); color: var(--text); border: 1px solid var(--border2); border-radius: 10px; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-.btn-secondary:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
-
-.hero-stats { display: flex; margin-top: 60px; background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; animation: fadeDown 0.6s 0.4s ease both; }
-.hero-stat { padding: 20px 32px; text-align: center; border-right: 1px solid var(--border); flex: 1; }
-.hero-stat:last-child { border-right: none; }
-.stat-val { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
-.stat-label { font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; }
-
-@keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
-
-/* TRUST BAR */
-section { position: relative; z-index: 1; }
-.trust-bar { padding: 32px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.trust-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 8px; }
-.trust-badge { padding: 6px 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--muted2); display: flex; align-items: center; gap: 6px; }
-.trust-badge svg { opacity: 0.6; }
+/* PLATFORMS */
+section{position:relative;z-index:1}
+.platforms-bar{padding:28px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+.platforms-label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-right:12px}
+.platform-tag{padding:6px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:12px;font-weight:500;color:var(--muted2);display:flex;align-items:center;gap:6px;transition:all .2s}
+.platform-tag:hover{border-color:var(--border2);color:var(--text)}
 
 /* SECTIONS */
-.features-section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
-.section-tag { font-size: 11px; font-weight: 700; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 12px; }
-.section-sub { font-size: 15px; color: var(--muted2); line-height: 1.65; max-width: 480px; margin-bottom: 48px; font-weight: 400; }
+.features-section,.models-section,.integrations-section,.pricing-section,.demo-section,.usecases-section{padding:100px 24px}
+.section-tag{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.8px;line-height:1.15;margin-bottom:12px}
+.section-sub{font-size:15px;color:var(--muted2);line-height:1.65;max-width:520px;margin-bottom:48px;font-weight:400}
+.features-inner,.models-inner,.integrations-inner,.pricing-inner,.demo-inner,.usecases-inner{max-width:1100px;margin:0 auto}
+.pricing-inner{max-width:960px}
 
-.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 16px; overflow: hidden; }
-.feature-card { background: var(--bg2); padding: 28px; transition: background 0.2s; }
-.feature-card:hover { background: var(--bg3); }
-.feature-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-.fi-purple { background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.2); color: var(--accent2); }
-.fi-green { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); color: #22C55E; }
-.fi-blue { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #60A5FA; }
-.fi-orange { background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2); color: #FB923C; }
-.fi-pink { background: rgba(236,72,153,0.1); border: 1px solid rgba(236,72,153,0.2); color: #F472B6; }
-.fi-cyan { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2); color: #22D3EE; }
-.feature-name { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-.feature-desc { font-size: 13px; color: var(--muted2); line-height: 1.65; font-weight: 400; }
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:16px;overflow:hidden}
+.feature-card{background:var(--bg2);padding:28px;transition:background .2s}
+.feature-card:hover{background:var(--bg3)}
+.feature-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.fi-purple{background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2);color:var(--accent2)}
+.fi-green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:#22C55E}
+.fi-blue{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);color:#60A5FA}
+.fi-orange{background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);color:#FB923C}
+.fi-pink{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2);color:#F472B6}
+.fi-cyan{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.2);color:#22D3EE}
+.feature-name{font-size:15px;font-weight:600;margin-bottom:8px}
+.feature-desc{font-size:13px;color:var(--muted2);line-height:1.65;font-weight:400}
+
+/* USE CASES */
+.usecases-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.usecases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.usecase-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;transition:all .2s}
+.usecase-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,0.4)}
+.usecase-industry{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px}
+.usecase-title{font-size:17px;font-weight:700;margin-bottom:10px;letter-spacing:-.3px}
+.usecase-desc{font-size:13px;color:var(--muted2);line-height:1.65;margin-bottom:16px;font-weight:400}
+.usecase-tags{display:flex;flex-wrap:wrap;gap:6px}
+.usecase-tag{padding:3px 10px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);border-radius:100px;font-size:11px;font-weight:500;color:var(--accent2)}
+
+/* AI MODELS */
+.models-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
+.model-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;text-align:center;transition:all .2s}
+.model-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.model-logo{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:18px;font-weight:800}
+.model-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.model-desc{font-size:12px;color:var(--muted2);line-height:1.5;font-weight:400}
+.model-badge{display:inline-block;margin-top:10px;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:600}
+.badge-default{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);color:var(--accent2)}
+.badge-available{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:var(--green)}
+
+/* =====================
+   CAROUSEL SECTION
+   ===================== */
+.demo-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.demo-header{text-align:center;max-width:640px;margin:0 auto 60px}
+.demo-header .section-sub{margin:0 auto}
+
+.carousel-wrap{position:relative;max-width:480px;margin:0 auto}
+.carousel-viewport{overflow:hidden;border-radius:32px}
+.carousel-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.carousel-slide{min-width:100%;display:flex;flex-direction:column;align-items:center;padding:40px 32px 28px}
+
+/* ARROWS */
+.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;z-index:10}
+.carousel-arrow:hover{background:var(--accent);border-color:var(--accent);box-shadow:0 4px 20px rgba(99,102,241,0.4)}
+.carousel-prev{left:-60px}
+.carousel-next{right:-60px}
+
+/* DOTS */
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--border2);border:none;cursor:pointer;transition:all .2s;padding:0}
+.carousel-dot.active{background:var(--accent);width:24px;border-radius:4px}
+
+/* SHARED INPUT */
+.carousel-input-wrap{max-width:480px;margin:20px auto 0;display:flex;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:8px 8px 8px 16px}
+.carousel-input-wrap input{flex:1;background:transparent;border:none;color:var(--text);font-family:inherit;font-size:14px;outline:none;font-weight:400}
+.carousel-input-wrap input::placeholder{color:var(--muted)}
+.carousel-send{width:36px;height:36px;border-radius:8px;background:var(--accent);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0}
+.carousel-send:hover{background:var(--accent2);transform:scale(1.05)}
+.carousel-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* ---- DEVICE: iPHONE ---- */
+.device-iphone{width:260px;height:520px;background:#1A1A1A;border-radius:46px;border:8px solid #2A2A2A;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.08),0 0 0 1px rgba(0,0,0,.6)}
+.iphone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:26px;background:#1A1A1A;border-radius:0 0 18px 18px;z-index:10;display:flex;align-items:center;justify-content:center}
+.iphone-camera{width:10px;height:10px;border-radius:50%;background:#000;border:1px solid rgba(255,255,255,.1)}
+.iphone-screen{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden}
+.iphone-home{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:80px;height:4px;background:rgba(255,255,255,.25);border-radius:2px}
+
+/* ---- TG STYLE inside iPhone ---- */
+.tg-header{padding:28px 14px 10px;background:#212121;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.tg-avatar{width:32px;height:32px;background:#229ED9;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tg-name{font-size:13px;font-weight:600;color:#fff}
+.tg-status{font-size:10px;color:#77A6CF;font-weight:400}
+.tg-msgs{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:#0E0E0E;scrollbar-width:none}
+.tg-msgs::-webkit-scrollbar{display:none}
+.tg-bubble-bot{align-self:flex-start;background:#212121;color:#E8E8E8;padding:7px 10px;border-radius:10px 10px 10px 2px;font-size:11px;line-height:1.5;max-width:85%;font-weight:400;white-space:pre-line}
+.tg-bubble-user{align-self:flex-end;background:#2B5278;color:#fff;padding:7px 10px;border-radius:10px 10px 2px 10px;font-size:11px;line-height:1.5;max-width:85%;font-weight:400;white-space:pre-line}
+.tg-typing{align-self:flex-start;background:#212121;padding:8px 12px;border-radius:10px 10px 10px 2px;display:flex;gap:3px;align-items:center}
+
+/* ---- WA STYLE inside iPhone ---- */
+.wa-header{padding:28px 14px 10px;background:#1F2C34;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.wa-avatar{width:32px;height:32px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-name{font-size:13px;font-weight:600;color:#E9EDEF}
+.wa-status{font-size:10px;color:#8696A0;font-weight:400}
+.wa-msgs{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:#0B141A;scrollbar-width:none}
+.wa-msgs::-webkit-scrollbar{display:none}
+.wa-bubble-bot{align-self:flex-start;background:#1F2C34;color:#E9EDEF;padding:7px 10px;border-radius:8px 8px 8px 2px;font-size:11px;line-height:1.5;max-width:85%;font-weight:400;white-space:pre-line}
+.wa-bubble-user{align-self:flex-end;background:#005C4B;color:#E9EDEF;padding:7px 10px;border-radius:8px 8px 2px 8px;font-size:11px;line-height:1.5;max-width:85%;font-weight:400;white-space:pre-line}
+.wa-typing{align-self:flex-start;background:#1F2C34;padding:8px 12px;border-radius:8px;display:flex;gap:3px;align-items:center}
+
+/* ---- LAPTOP ---- */
+.device-laptop{width:360px;flex-shrink:0}
+.laptop-lid{background:#1C1C1E;border-radius:14px 14px 0 0;border:6px solid #2C2C2E;border-bottom:none;padding:0;position:relative;overflow:hidden;height:280px}
+.laptop-screen-inner{width:100%;height:100%;background:#F0F0F0;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.laptop-browser-bar{background:#E5E5E7;padding:8px 12px;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.lb-dot{width:10px;height:10px;border-radius:50%}
+.lb-dot:nth-child(1){background:#FF5F56} .lb-dot:nth-child(2){background:#FFBD2E} .lb-dot:nth-child(3){background:#27C93F}
+.lb-url{flex:1;background:#fff;border-radius:5px;padding:3px 10px;font-size:9px;color:#888;margin-left:8px;font-family:inherit}
+.laptop-site{flex:1;background:#09090B;overflow:hidden;position:relative}
+.site-header{background:#111;border-bottom:1px solid rgba(255,255,255,.07);padding:8px 14px;font-size:10px;font-weight:700;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.site-hero{padding:14px;text-align:center}
+.site-hero-title{font-size:11px;font-weight:700;color:#fff;margin-bottom:4px}
+.site-hero-sub{font-size:9px;color:#71717A}
+
+/* Floating chat widget */
+.laptop-chat-widget{position:absolute;bottom:8px;right:8px;width:150px;background:#111113;border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.8)}
+.lcw-header{background:#18181B;padding:7px 10px;display:flex;align-items:center;gap:6px}
+.lcw-dot{width:4px;height:4px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.lcw-name{font-size:9px;font-weight:700;color:#fff}
+.lcw-msgs{padding:8px;display:flex;flex-direction:column;gap:4px;min-height:80px;max-height:80px;overflow-y:auto;scrollbar-width:none}
+.lcw-msgs::-webkit-scrollbar{display:none}
+.lcw-bot{align-self:flex-start;background:#18181B;color:#A1A1AA;padding:4px 7px;border-radius:6px 6px 6px 2px;font-size:9px;line-height:1.4;max-width:90%;white-space:pre-line}
+.lcw-user{align-self:flex-end;background:var(--accent);color:#fff;padding:4px 7px;border-radius:6px 6px 2px 6px;font-size:9px;line-height:1.4;max-width:90%;white-space:pre-line}
+.lcw-typing{align-self:flex-start;background:#18181B;padding:5px 8px;border-radius:6px;display:flex;gap:3px;align-items:center}
+.lcw-footer{background:#18181B;border-top:1px solid rgba(255,255,255,.05);padding:5px 7px;display:flex;gap:4px}
+.lcw-inp{flex:1;background:#111;border:none;border-radius:4px;padding:3px 6px;font-size:8px;color:#A1A1AA;font-family:inherit}
+.lcw-send{width:18px;height:18px;background:var(--accent);border:none;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+
+.laptop-base{background:#2C2C2E;height:12px;border-radius:0 0 3px 3px;margin:0 -2px}
+.laptop-foot{background:#3A3A3C;height:6px;width:40%;margin:0 auto;border-radius:0 0 6px 6px}
+
+/* typing dots shared */
+.typing-dot{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:typingBounce 1.2s infinite}
+.typing-dot:nth-child(2){animation-delay:.15s}.typing-dot:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
 
 /* INTEGRATIONS */
-.integrations-section { padding: 100px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg2); }
-.integrations-inner { max-width: 1100px; margin: 0 auto; }
-.integrations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
-.integration-card {
-  background: var(--bg3); border: 1px solid var(--border);
-  border-radius: 12px; padding: 20px;
-  display: flex; align-items: center; gap: 14px;
-  transition: all 0.2s;
-}
-.integration-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
-.int-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.int-name { font-size: 14px; font-weight: 600; }
-.int-desc { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+.integrations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:40px}
+.integration-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;align-items:center;gap:12px;transition:all .2s}
+.integration-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.int-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.int-name{font-size:13px;font-weight:600}
+.int-desc{font-size:11px;color:var(--muted);margin-top:2px;font-weight:400}
 
 /* PRICING */
-.pricing-section { padding: 100px 24px; max-width: 960px; margin: 0 auto; }
-.pricing-section .section-sub { max-width: 100%; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-.pricing-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.25s; position: relative; overflow: hidden; }
-.pricing-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-.pricing-card.featured { border-color: rgba(99,102,241,0.35); background: linear-gradient(145deg, rgba(99,102,241,0.07) 0%, var(--bg2) 100%); }
-.pricing-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-.pricing-pill { display: inline-block; padding: 3px 10px; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.25); border-radius: 100px; font-size: 10px; font-weight: 700; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
-.pricing-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-.pricing-desc { font-size: 13px; color: var(--muted2); line-height: 1.55; margin-bottom: 24px; font-weight: 400; }
-.pricing-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
-.price-amount { font-size: 40px; font-weight: 700; letter-spacing: -1px; }
-.price-period { font-size: 13px; color: var(--muted); }
-.price-setup { font-size: 12px; color: var(--muted); margin-bottom: 24px; font-weight: 400; }
-.pricing-divider { height: 1px; background: var(--border); margin: 20px 0; }
-.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.pricing-features li { font-size: 13px; color: var(--muted2); display: flex; align-items: flex-start; gap: 8px; font-weight: 400; }
-.check-icon { width: 16px; height: 16px; border-radius: 50%; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; color: var(--green); }
-.pricing-btn { width: 100%; margin-top: 24px; padding: 11px; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.pricing-btn-default { background: var(--bg3); color: var(--text); border: 1px solid var(--border2); }
-.pricing-btn-default:hover { background: rgba(255,255,255,0.07); }
-.pricing-btn-accent { background: var(--accent); color: #fff; border: none; }
-.pricing-btn-accent:hover { background: var(--accent2); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
-
-/* DEMO */
-.demo-section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
-.demo-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.demo-title { font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 14px; }
-.demo-desc { font-size: 15px; color: var(--muted2); line-height: 1.7; margin-bottom: 24px; font-weight: 400; }
-.demo-points { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-.demo-point { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted2); font-weight: 400; }
-.demo-point-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
-/* CHAT */
-.chat-widget { background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
-.chat-header { padding: 14px 18px; background: var(--bg3); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-.chat-header-left { display: flex; align-items: center; gap: 10px; }
-.chat-avatar { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #c084fc); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-.chat-name { font-size: 13px; font-weight: 600; }
-.chat-status { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 4px; font-weight: 500; }
-.status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
-.chat-dots { display: flex; gap: 5px; }
-.chat-dot { width: 10px; height: 10px; border-radius: 50%; }
-.chat-dot:nth-child(1){background:#FF5F56} .chat-dot:nth-child(2){background:#FFBD2E} .chat-dot:nth-child(3){background:#27C93F}
-.chat-body-widget { padding: 16px; display: flex; flex-direction: column; gap: 10px; min-height: 230px; max-height: 230px; overflow-y: auto; scrollbar-width: none; }
-.chat-body-widget::-webkit-scrollbar { display: none; }
-.chat-bubble { max-width: 82%; padding: 9px 13px; border-radius: 12px; font-size: 13px; line-height: 1.55; font-weight: 400; }
-.bubble-bot { background: var(--bg3); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 4px; }
-.bubble-user { background: var(--accent); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-.chat-footer-widget { padding: 10px 12px; background: var(--bg3); border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; }
-.chat-input-widget { flex: 1; background: var(--bg2); border: 1px solid var(--border2); border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: inherit; font-size: 13px; outline: none; transition: border-color 0.2s; font-weight: 400; }
-.chat-input-widget:focus { border-color: var(--accent); }
-.chat-input-widget::placeholder { color: var(--muted); }
-.chat-send-btn { width: 34px; height: 34px; border-radius: 8px; background: var(--accent); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex-shrink: 0; }
-.chat-send-btn:hover { background: var(--accent2); transform: scale(1.05); }
-.chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-/* TYPING */
-.typing-indicator { display: flex; align-items: center; gap: 4px; padding: 9px 13px; background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; border-bottom-left-radius: 4px; max-width: 60px; align-self: flex-start; }
-.typing-indicator span { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); animation: typingBounce 1.2s infinite; }
-.typing-indicator span:nth-child(2){animation-delay:0.15s} .typing-indicator span:nth-child(3){animation-delay:0.3s}
-@keyframes typingBounce { 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-5px);opacity:1} }
-
-/* MODAL */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; display: none; align-items: flex-end; justify-content: flex-end; padding: 80px 24px 24px; }
-.modal-overlay.open { display: flex; }
-.modal-box { width: 380px; height: 560px; background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 40px 80px rgba(0,0,0,0.6); animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1); }
-@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-.modal-header { padding: 14px 18px; background: var(--bg3); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-.modal-close { background: none; border: 1px solid var(--border2); color: var(--muted); width: 28px; height: 28px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.15s; font-family: inherit; }
-.modal-close:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
-.modal-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
-.msg { max-width: 82%; padding: 9px 13px; border-radius: 12px; font-size: 13px; line-height: 1.55; animation: msgFade 0.2s ease both; font-weight: 400; }
-@keyframes msgFade { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
-.msg-bot { background: var(--bg3); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 4px; }
-.msg-user { background: var(--accent); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-.modal-footer { padding: 10px 12px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; flex-shrink: 0; background: var(--bg2); }
-#chatInput { flex: 1; background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: inherit; font-size: 13px; outline: none; transition: border-color 0.2s; font-weight: 400; }
-#chatInput:focus { border-color: var(--accent); }
-#chatInput::placeholder { color: var(--muted); }
-#chatSend { width: 34px; height: 34px; border-radius: 8px; background: var(--accent); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex-shrink: 0; }
-#chatSend:hover { background: var(--accent2); transform: scale(1.05); }
-#chatSend:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-/* FAB */
-.fab { position: fixed; bottom: 24px; right: 24px; z-index: 998; width: 52px; height: 52px; border-radius: 14px; background: var(--accent); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 8px 30px rgba(99,102,241,0.5); }
-.fab:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(99,102,241,0.6); }
+.pricing-section{background:var(--bg2);border-top:1px solid var(--border)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.pricing-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.pricing-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.pricing-card.featured{border-color:rgba(99,102,241,.35);background:linear-gradient(145deg,rgba(99,102,241,.07) 0%,var(--bg) 100%)}
+.pricing-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.pricing-pill{display:inline-block;padding:3px 10px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);border-radius:100px;font-size:10px;font-weight:700;color:var(--accent2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.pricing-name{font-size:18px;font-weight:700;margin-bottom:6px}
+.pricing-desc{font-size:13px;color:var(--muted2);line-height:1.55;margin-bottom:24px;font-weight:400}
+.pricing-price{display:flex;align-items:baseline;gap:4px;margin-bottom:4px}
+.price-amount{font-size:40px;font-weight:700;letter-spacing:-1px}
+.price-setup{font-size:12px;color:var(--muted);margin-bottom:24px;font-weight:400}
+.pricing-divider{height:1px;background:var(--border);margin:20px 0}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:10px}
+.pricing-features li{font-size:13px;color:var(--muted2);display:flex;align-items:flex-start;gap:8px;font-weight:400}
+.check-icon{width:16px;height:16px;border-radius:50%;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--green)}
+.pricing-btn{width:100%;margin-top:24px;padding:11px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.pricing-btn-default{background:var(--bg3);color:var(--text);border:1px solid var(--border2)}
+.pricing-btn-default:hover{background:rgba(255,255,255,.07)}
+.pricing-btn-accent{background:var(--accent);color:#fff;border:none}
+.pricing-btn-accent:hover{background:var(--accent2);box-shadow:0 4px 20px rgba(99,102,241,.4)}
 
 /* FOOTER */
-footer { border-top: 1px solid var(--border); padding: 40px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; position: relative; z-index: 1; }
-.footer-logo { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-.footer-center { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.7; font-weight: 400; }
-.footer-right { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.7; font-weight: 400; }
+footer{border-top:1px solid var(--border);padding:40px 32px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;position:relative;z-index:1}
+.footer-logo{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.footer-center{font-size:12px;color:var(--muted);text-align:center;line-height:1.7;font-weight:400}
+.footer-right{font-size:12px;color:var(--muted);text-align:right;line-height:1.7;font-weight:400}
+
+/* FAB */
+.fab{position:fixed;bottom:24px;right:24px;z-index:998;width:52px;height:52px;border-radius:14px;background:var(--accent);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 8px 30px rgba(99,102,241,.5)}
+.fab:hover{transform:scale(1.08);box-shadow:0 12px 40px rgba(99,102,241,.6)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:1000;display:none;align-items:center;justify-content:center;padding:80px 24px 24px}
+.modal-overlay.open{display:flex}
+.modal-box{width:420px;max-height:600px;height:600px;background:var(--bg2);border:1px solid var(--border2);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 40px 80px rgba(0,0,0,.6);animation:slideUp .4s cubic-bezier(.16,1,.3,1)}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{padding:14px 18px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-header-left{display:flex;align-items:center;gap:10px}
+.modal-avatar{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),#c084fc);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.modal-name{font-size:13px;font-weight:600}
+.modal-status{font-size:11px;color:var(--green);display:flex;align-items:center;gap:4px;font-weight:500}
+.modal-status-dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
+.modal-close{background:none;border:1px solid var(--border2);color:var(--muted);width:28px;height:28px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s;font-family:inherit}
+.modal-close:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+.modal-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.msg{max-width:82%;padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.55;animation:msgFade .2s ease both;font-weight:400;white-space:pre-line}
+@keyframes msgFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.msg-bot{background:var(--bg3);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px}
+.msg-user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.modal-footer{padding:10px 12px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-shrink:0;background:var(--bg2)}
+#chatInput{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;color:var(--text);font-family:inherit;font-size:13px;outline:none;transition:border-color .2s;font-weight:400}
+#chatInput:focus{border-color:var(--accent)}
+#chatInput::placeholder{color:var(--muted)}
+#chatSend{width:34px;height:34px;border-radius:8px;background:var(--accent);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0}
+#chatSend:hover{background:var(--accent2);transform:scale(1.05)}
+#chatSend:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.modal-typing{display:flex;align-items:center;gap:4px;padding:9px 13px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;border-bottom-left-radius:4px;max-width:60px;align-self:flex-start}
+.modal-typing span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:typingBounce 1.2s infinite}
+.modal-typing span:nth-child(2){animation-delay:.15s}.modal-typing span:nth-child(3){animation-delay:.3s}
 
 /* SCROLL REVEAL */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-d1 { transition-delay: 0.08s; }
-.reveal-d2 { transition-delay: 0.16s; }
-.reveal-d3 { transition-delay: 0.24s; }
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
 
 /* RESPONSIVE */
-@media (max-width: 900px) {
-  .features-grid { grid-template-columns: 1fr 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
-  .integrations-grid { grid-template-columns: 1fr 1fr; }
-  .demo-wrapper { grid-template-columns: 1fr; }
-  .nav-center { display: none; }
-  .hero-stats { flex-wrap: wrap; }
-  .hero-stat { border-right: none; border-bottom: 1px solid var(--border); min-width: 50%; }
+@media(max-width:900px){
+  .features-grid{grid-template-columns:1fr 1fr}
+  .pricing-grid,.usecases-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+  .integrations-grid,.models-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .carousel-prev{left:-16px}.carousel-next{right:-16px}
 }
-@media (max-width: 600px) {
-  nav { padding: 0 16px; }
-  .features-grid { grid-template-columns: 1fr; }
-  .integrations-grid { grid-template-columns: 1fr 1fr; }
-  footer { flex-direction: column; text-align: center; }
-  .footer-right { text-align: center; }
-  .modal-box { width: 100%; border-radius: 16px 16px 0 0; }
-  .modal-overlay { padding: 0; align-items: flex-end; }
-  .h1-wrap { min-height: 200px; }
+@media(max-width:600px){
+  nav{padding:0 16px}
+  .features-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center;padding-bottom:80px}
+  .footer-right{text-align:center}
+  .modal-box{width:100%;border-radius:16px 16px 0 0;max-height:90vh}
+  .modal-overlay{padding:0;align-items:flex-end}
 }
 </style>
 </head>
@@ -270,15 +306,13 @@ footer { border-top: 1px solid var(--border); padding: 40px 32px; display: flex;
 
 <nav>
   <div class="logo">
-    <div class="logo-icon">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 5L11 6.75V10.25L8 12L5 10.25V6.75L8 5Z" fill="white"/></svg>
-    </div>
+    <div class="logo-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 5L11 6.75V10.25L8 12L5 10.25V6.75L8 5Z" fill="white"/></svg></div>
     AgentFlow
   </div>
-  <div class="nav-center">
-    <button class="nav-link" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" data-i18n="nav-features">Features</button>
-    <button class="nav-link" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" data-i18n="nav-pricing">Pricing</button>
-    <button class="nav-link" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})" data-i18n="nav-demo">Demo</button>
+  <div class="nav-links">
+    <button class="nav-link" onclick="sc('features')" data-i18n="nav-features">Features</button>
+    <button class="nav-link" onclick="sc('demo')" data-i18n="nav-demo">Demo</button>
+    <button class="nav-link" onclick="sc('pricing')" data-i18n="nav-pricing">Pricing</button>
   </div>
   <div class="nav-right">
     <div class="lang-switcher">
@@ -286,524 +320,614 @@ footer { border-top: 1px solid var(--border); padding: 40px 32px; display: flex;
       <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
       <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
     </div>
-    <button class="btn-nav" onclick="openChat()" data-i18n="nav-cta">Talk to AI</button>
+    <button class="btn-nav" onclick="openModal()" data-i18n="nav-cta">Talk to AI</button>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
-    <div class="badge-dot"></div>
-    <span data-i18n="badge">GDPR Compliant · Powered by Claude</span>
-  </div>
-  <div class="h1-wrap">
-    <h1><span class="gradient" data-i18n-html="h1">Automate your business<br>with AI Agents</span></h1>
-  </div>
-  <div class="hero-sub-wrap">
-    <p class="hero-sub" data-i18n="hero-sub">Custom AI chatbots, workflow automation, and intelligent systems for businesses. Deployed in days, not months.</p>
-  </div>
+  <div class="hero-badge"><div class="badge-dot"></div><span data-i18n="badge">GDPR Compliant · Powered by Claude AI</span></div>
+  <div class="h1-wrap"><h1><span class="gradient" data-i18n-html="h1">Automate your business<br>with AI Agents</span></h1></div>
+  <div class="hero-sub-wrap"><p class="hero-sub" data-i18n="hero-sub">Custom AI agents for sales, support, and lead generation. Website, WhatsApp, Telegram — deployed in days, not months.</p></div>
   <div class="hero-ctas">
-    <button class="btn-primary" onclick="openChat()">
-      <span data-i18n="hero-cta1">Talk to AI Agent</span>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-    </button>
-    <button class="btn-secondary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" data-i18n="hero-cta2">View Pricing</button>
+    <button class="btn-primary" onclick="openModal()"><span data-i18n="hero-cta1">Talk to AI Agent</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg></button>
+    <button class="btn-secondary" onclick="sc('pricing')" data-i18n="hero-cta2">View Pricing</button>
   </div>
   <div class="hero-stats">
     <div class="hero-stat"><div class="stat-val">24/7</div><div class="stat-label" data-i18n="stat1">Availability</div></div>
     <div class="hero-stat"><div class="stat-val">&lt;2s</div><div class="stat-label" data-i18n="stat2">Response Time</div></div>
-    <div class="hero-stat"><div class="stat-val">3</div><div class="stat-label" data-i18n="stat3">Languages</div></div>
+    <div class="hero-stat"><div class="stat-val">∞</div><div class="stat-label" data-i18n="stat3">Languages</div></div>
     <div class="hero-stat"><div class="stat-val">✓</div><div class="stat-label">GDPR / DSGVO</div></div>
   </div>
 </section>
 
-<div class="trust-bar">
-  <span class="trust-label" data-i18n="trust-label">Built with</span>
-  <div class="trust-badge">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    n8n
-  </div>
-  <div class="trust-badge">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-    Claude AI
-  </div>
-  <div class="trust-badge">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-    Hetzner
-  </div>
-  <div class="trust-badge">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    GDPR / DSGVO
-  </div>
+<!-- PLATFORMS -->
+<div class="platforms-bar">
+  <span class="platforms-label" data-i18n="platforms-label">Available on</span>
+  <div class="platform-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Website</div>
+  <div class="platform-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>WhatsApp Business</div>
+  <div class="platform-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#229ED9" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>Telegram</div>
+  <div class="platform-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</div>
+  <div class="platform-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>Slack</div>
 </div>
 
+<!-- FEATURES -->
 <section class="features-section" id="features">
-  <div class="reveal"><div class="section-tag" data-i18n="features-tag">Capabilities</div></div>
-  <div class="reveal reveal-d1"><div class="section-title" data-i18n="features-title">Everything your business needs</div></div>
-  <div class="reveal reveal-d2"><p class="section-sub" data-i18n="features-sub">From simple chatbots to complex multi-agent systems — built, deployed, and supported.</p></div>
-  <div class="features-grid reveal reveal-d1">
-    <div class="feature-card">
-      <div class="feature-icon fi-purple">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      </div>
-      <div class="feature-name" data-i18n="f1-name">AI Chatbot</div>
-      <p class="feature-desc" data-i18n="f1-desc">Custom AI assistant for your website. Answers questions, collects leads, works 24/7 in any language.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon fi-green">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
-      <div class="feature-name" data-i18n="f2-name">Workflow Automation</div>
-      <p class="feature-desc" data-i18n="f2-desc">Automate repetitive tasks. Email workflows, CRM sync, notifications — all connected and running.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon fi-blue">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-      </div>
-      <div class="feature-name" data-i18n="f3-name">RAG Knowledge Base</div>
-      <p class="feature-desc" data-i18n="f3-desc">Your AI learns from your documents and website. Accurate answers every time, no hallucinations.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon fi-orange">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-      </div>
-      <div class="feature-name" data-i18n="f4-name">Multi-channel</div>
-      <p class="feature-desc" data-i18n="f4-desc">Website, Telegram, WhatsApp — one AI agent, all channels. Customers reach you wherever they are.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon fi-pink">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="feature-name" data-i18n="f5-name">GDPR Compliant</div>
-      <p class="feature-desc" data-i18n="f5-desc">Hosted on German servers. All data stays in Germany. Full DSGVO compliance, no exceptions.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon fi-cyan">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49"/></svg>
-      </div>
-      <div class="feature-name" data-i18n="f6-name">CRM Integration</div>
-      <p class="feature-desc" data-i18n="f6-desc">Connect to your existing stack. HubSpot, Salesforce, Pipedrive, Notion — all synchronized.</p>
+  <div class="features-inner">
+    <div class="reveal"><div class="section-tag" data-i18n="features-tag">Capabilities</div></div>
+    <div class="reveal reveal-d1"><div class="section-title" data-i18n="features-title">Everything your business needs</div></div>
+    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="features-sub">From simple chatbots to complex multi-agent systems — built, deployed, and supported for you.</p></div>
+    <div class="features-grid reveal reveal-d1">
+      <div class="feature-card"><div class="feature-icon fi-purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="feature-name" data-i18n="f1-name">AI Sales Agent</div><p class="feature-desc" data-i18n="f1-desc">Qualifies leads, answers pricing questions, collects contact info, and books discovery calls — automatically, around the clock.</p></div>
+      <div class="feature-card"><div class="feature-icon fi-green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="feature-name" data-i18n="f2-name">Workflow Automation</div><p class="feature-desc" data-i18n="f2-desc">Every lead, order, or support request automatically routed, logged, and followed up. No manual work, no missed opportunities.</p></div>
+      <div class="feature-card"><div class="feature-icon fi-blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><div class="feature-name" data-i18n="f3-name">RAG Knowledge Base</div><p class="feature-desc" data-i18n="f3-desc">Upload your FAQ, product catalogue, or documentation. The AI answers precisely from your content — no hallucinations.</p></div>
+      <div class="feature-card"><div class="feature-icon fi-orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><div class="feature-name" data-i18n="f4-name">Multi-channel Presence</div><p class="feature-desc" data-i18n="f4-desc">One agent, every channel. Website widget, WhatsApp Business, Telegram bot — all trained on the same data, same personality.</p></div>
+      <div class="feature-card"><div class="feature-icon fi-pink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="feature-name" data-i18n="f5-name">GDPR Compliant</div><p class="feature-desc" data-i18n="f5-desc">Hosted on German Hetzner servers. All data stays in Germany. Full DSGVO compliance — not an afterthought.</p></div>
+      <div class="feature-card"><div class="feature-icon fi-cyan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49"/></svg></div><div class="feature-name" data-i18n="f6-name">CRM & Tool Integration</div><p class="feature-desc" data-i18n="f6-desc">Every conversation synced to HubSpot, Salesforce, or your spreadsheet. Leads never fall through the cracks.</p></div>
     </div>
   </div>
 </section>
 
+<!-- USE CASES -->
+<section class="usecases-section">
+  <div class="usecases-inner">
+    <div class="reveal"><div class="section-tag" data-i18n="uc-tag">Use Cases</div></div>
+    <div class="reveal reveal-d1"><div class="section-title" data-i18n="uc-title">Built for every industry</div></div>
+    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="uc-sub">Whatever your business, there's a workflow we can automate.</p></div>
+    <div class="usecases-grid">
+      <div class="usecase-card reveal"><div class="usecase-industry" data-i18n="uc1-ind">E-Commerce</div><div class="usecase-title" data-i18n="uc1-title">24/7 Customer Support</div><p class="usecase-desc" data-i18n="uc1-desc">Answer order status, returns, and product questions instantly. Reduce support tickets by 60–80% while customers get answers at 3am.</p><div class="usecase-tags"><span class="usecase-tag">Shopify</span><span class="usecase-tag">WooCommerce</span><span class="usecase-tag">WhatsApp</span></div></div>
+      <div class="usecase-card reveal reveal-d1"><div class="usecase-industry" data-i18n="uc2-ind">Professional Services</div><div class="usecase-title" data-i18n="uc2-title">Lead Qualification & Booking</div><p class="usecase-desc" data-i18n="uc2-desc">The AI asks the right questions, qualifies prospects, and books discovery calls — so you only spend time on serious clients.</p><div class="usecase-tags"><span class="usecase-tag">Cal.com</span><span class="usecase-tag">HubSpot</span><span class="usecase-tag">Website</span></div></div>
+      <div class="usecase-card reveal reveal-d2"><div class="usecase-industry" data-i18n="uc3-ind">Real Estate & Automotive</div><div class="usecase-title" data-i18n="uc3-title">Instant Property & Product Info</div><p class="usecase-desc" data-i18n="uc3-desc">Visitors get immediate answers about listings, prices, and availability. The agent collects requirements and notifies your team.</p><div class="usecase-tags"><span class="usecase-tag">Telegram</span><span class="usecase-tag">CRM Sync</span><span class="usecase-tag">Email alerts</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI MODELS -->
+<section class="models-section">
+  <div class="models-inner">
+    <div class="reveal"><div class="section-tag" data-i18n="models-tag">AI Engine</div></div>
+    <div class="reveal reveal-d1"><div class="section-title" data-i18n="models-title">Powered by the world's best AI</div></div>
+    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="models-sub">We integrate with all major providers. You choose the model that fits your use case and budget.</p></div>
+    <div class="models-grid reveal reveal-d1">
+      <div class="model-card">
+        <div class="model-logo" style="background:linear-gradient(135deg,#D97757,#C96442)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg></div>
+        <div class="model-name">Claude</div>
+        <p class="model-desc" data-i18n="m1-desc">Best reasoning, safe, GDPR-friendly. Our default choice.</p>
+        <span class="model-badge badge-default" data-i18n="m-default">Default</span>
+      </div>
+      <div class="model-card">
+        <div class="model-logo" style="background:linear-gradient(135deg,#10a37f,#0d8a6c)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg></div>
+        <div class="model-name">GPT</div>
+        <p class="model-desc" data-i18n="m2-desc">OpenAI's models. Great for complex tasks and code generation.</p>
+        <span class="model-badge badge-available" data-i18n="m-available">Available</span>
+      </div>
+      <div class="model-card">
+        <div class="model-logo" style="background:linear-gradient(135deg,#4285F4,#34A853)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="12,2 22,20 2,20"/></svg></div>
+        <div class="model-name">Gemini</div>
+        <p class="model-desc" data-i18n="m3-desc">Google's model. Strong at multilingual tasks and Google integrations.</p>
+        <span class="model-badge badge-available" data-i18n="m-available">Available</span>
+      </div>
+      <div class="model-card">
+        <div class="model-logo" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="model-name" data-i18n="m4-name">Self-hosted</div>
+        <p class="model-desc" data-i18n="m4-desc">Open source models on your own server. Maximum privacy, zero API costs.</p>
+        <span class="model-badge badge-available" data-i18n="m-available">Available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAROUSEL DEMO -->
+<section class="demo-section" id="demo">
+  <div class="demo-inner">
+    <div class="demo-header reveal">
+      <div class="section-tag" data-i18n="demo-tag">Live Demo</div>
+      <div class="section-title" data-i18n="demo-title">Your agent, on every channel</div>
+      <p class="section-sub" data-i18n="demo-sub">Write a message below and see the AI respond — the same conversation appears on all channels. Use the arrows to switch between Website, WhatsApp, and Telegram.</p>
+    </div>
+
+    <div class="carousel-wrap reveal reveal-d1">
+      <button class="carousel-arrow carousel-prev" onclick="moveCarousel(-1)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel-arrow carousel-next" onclick="moveCarousel(1)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+
+          <!-- SLIDE 0: TELEGRAM on iPhone -->
+          <div class="carousel-slide">
+            <div class="device-iphone">
+              <div class="iphone-notch"><div class="iphone-camera"></div></div>
+              <div class="iphone-screen">
+                <div class="tg-header">
+                  <div class="tg-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                  <div><div class="tg-name">AgentFlow Bot</div><div class="tg-status" data-i18n="ch-online-status">online</div></div>
+                </div>
+                <div class="tg-msgs" id="msgs-tg"></div>
+              </div>
+              <div class="iphone-home"></div>
+            </div>
+          </div>
+
+          <!-- SLIDE 1: WHATSAPP on iPhone -->
+          <div class="carousel-slide">
+            <div class="device-iphone">
+              <div class="iphone-notch"><div class="iphone-camera"></div></div>
+              <div class="iphone-screen">
+                <div class="wa-header">
+                  <div class="wa-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+                  <div><div class="wa-name">AgentFlow</div><div class="wa-status" data-i18n="ch-online-status">online</div></div>
+                </div>
+                <div class="wa-msgs" id="msgs-wa"></div>
+              </div>
+              <div class="iphone-home"></div>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: WEBSITE on Laptop -->
+          <div class="carousel-slide">
+            <div class="device-laptop">
+              <div class="laptop-lid">
+                <div class="laptop-screen-inner">
+                  <div class="laptop-browser-bar">
+                    <div class="lb-dot"></div><div class="lb-dot"></div><div class="lb-dot"></div>
+                    <div class="lb-url" data-i18n="ch-url">yourcompany.de</div>
+                  </div>
+                  <div class="laptop-site">
+                    <div class="site-header">
+                      <span style="font-size:9px;font-weight:700;letter-spacing:-.2px">AgentFlow</span>
+                      <span style="font-size:8px;color:#6366F1;font-weight:600" data-i18n="nav-pricing">Pricing</span>
+                    </div>
+                    <div class="site-hero">
+                      <div class="site-hero-title" data-i18n="site-h1">Automate your business</div>
+                      <div class="site-hero-sub" data-i18n="site-sub">AI Agents · Website · WhatsApp · Telegram</div>
+                    </div>
+                    <!-- Floating chat widget -->
+                    <div class="laptop-chat-widget">
+                      <div class="lcw-header">
+                        <div class="lcw-dot"></div>
+                        <div class="lcw-name">AgentFlow AI</div>
+                      </div>
+                      <div class="lcw-msgs" id="msgs-web"></div>
+                      <div class="lcw-footer">
+                        <input class="lcw-inp" data-i18n-ph="ch-ph" placeholder="Type a message..." readonly onclick="document.getElementById('carouselInputField').focus()"/>
+                        <div class="lcw-send"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="laptop-base"></div>
+              <div class="laptop-foot"></div>
+            </div>
+          </div>
+
+        </div><!-- /track -->
+      </div><!-- /viewport -->
+
+      <div class="carousel-dots">
+        <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+        <button class="carousel-dot" onclick="goToSlide(1)"></button>
+        <button class="carousel-dot" onclick="goToSlide(2)"></button>
+      </div>
+    </div><!-- /wrap -->
+
+    <!-- SHARED INPUT -->
+    <div class="carousel-input-wrap reveal reveal-d2">
+      <input id="carouselInputField" data-i18n-ph="ch-input-ph" placeholder="Write something and see the AI respond on all channels..." onkeydown="if(event.key==='Enter')carouselSend()"/>
+      <button class="carousel-send" id="carouselSendBtn" onclick="carouselSend()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
 <section class="integrations-section">
   <div class="integrations-inner">
     <div class="reveal"><div class="section-tag" data-i18n="int-tag">Integrations</div></div>
-    <div class="reveal reveal-d1"><div class="section-title" data-i18n="int-title">Works with the tools you already use</div></div>
-    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="int-sub">Connect your existing business tools in minutes. No migration, no friction.</p></div>
+    <div class="reveal reveal-d1"><div class="section-title" data-i18n="int-title">Connects to your existing tools</div></div>
     <div class="integrations-grid reveal reveal-d1">
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-        </div>
-        <div><div class="int-name">WhatsApp Business</div><div class="int-desc" data-i18n="i1">Customer support & lead gen</div></div>
-      </div>
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(74,144,226,0.1);border:1px solid rgba(74,144,226,0.2)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A90E2" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </div>
-        <div><div class="int-name">Telegram</div><div class="int-desc" data-i18n="i2">Bot automation & notifications</div></div>
-      </div>
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(255,115,0,0.1);border:1px solid rgba(255,115,0,0.2)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7300" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <div><div class="int-name">HubSpot</div><div class="int-desc" data-i18n="i3">CRM sync & lead pipeline</div></div>
-      </div>
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(234,67,53,0.1);border:1px solid rgba(234,67,53,0.2)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div><div class="int-name">Gmail / Outlook</div><div class="int-desc" data-i18n="i4">Email automation workflows</div></div>
-      </div>
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 17h7M17.5 14v7"/></svg>
-        </div>
-        <div><div class="int-name">Notion</div><div class="int-desc" data-i18n="i5">Knowledge base & task sync</div></div>
-      </div>
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(0,167,94,0.1);border:1px solid rgba(0,167,94,0.2)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00A75E" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <div><div class="int-name">Google Sheets</div><div class="int-desc" data-i18n="i6">Data logging & reporting</div></div>
-      </div>
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.25)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.8"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5zM20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5zM3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14zM14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5zM15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5zM8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
-        </div>
-        <div><div class="int-name">Slack</div><div class="int-desc" data-i18n="i7">Team alerts & internal bots</div></div>
-      </div>
-
-      <div class="integration-card">
-        <div class="int-icon" style="background:rgba(99,179,237,0.1);border:1px solid rgba(99,179,237,0.2)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#63B3ED" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <div><div class="int-name">Stripe</div><div class="int-desc" data-i18n="i8">Payment events & billing</div></div>
-      </div>
-
+      <div class="integration-card"><div class="int-icon" style="background:rgba(255,115,0,.1);border:1px solid rgba(255,115,0,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF7300" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="int-name">HubSpot</div><div class="int-desc" data-i18n="i1">CRM & lead pipeline</div></div></div>
+      <div class="integration-card"><div class="int-icon" style="background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div><div class="int-name">WhatsApp</div><div class="int-desc" data-i18n="i2">Business messaging</div></div></div>
+      <div class="integration-card"><div class="int-icon" style="background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="int-name">Gmail / Outlook</div><div class="int-desc" data-i18n="i3">Email automation</div></div></div>
+      <div class="integration-card"><div class="int-icon" style="background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.8"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg></div><div><div class="int-name">Slack</div><div class="int-desc" data-i18n="i4">Team notifications</div></div></div>
+      <div class="integration-card"><div class="int-icon" style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 17h7M17.5 14v7"/></svg></div><div><div class="int-name">Notion</div><div class="int-desc" data-i18n="i5">Knowledge base sync</div></div></div>
+      <div class="integration-card"><div class="int-icon" style="background:rgba(0,167,94,.1);border:1px solid rgba(0,167,94,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A75E" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="int-name">Google Sheets</div><div class="int-desc" data-i18n="i6">Data & reporting</div></div></div>
+      <div class="integration-card"><div class="int-icon" style="background:rgba(99,179,237,.1);border:1px solid rgba(99,179,237,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#63B3ED" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div><div class="int-name">Stripe</div><div class="int-desc" data-i18n="i7">Payments & billing</div></div></div>
+      <div class="integration-card"><div class="int-icon" style="background:rgba(0,112,243,.1);border:1px solid rgba(0,112,243,.2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0070F3" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div><div class="int-name">Salesforce / Pipedrive</div><div class="int-desc" data-i18n="i8">Enterprise CRM</div></div></div>
     </div>
   </div>
 </section>
 
+<!-- PRICING -->
 <section class="pricing-section" id="pricing">
-  <div class="reveal"><div class="section-tag" data-i18n="pricing-tag">Pricing</div></div>
-  <div class="reveal reveal-d1"><div class="section-title" data-i18n="pricing-title">Simple, transparent pricing</div></div>
-  <div class="reveal reveal-d2"><p class="section-sub" data-i18n="pricing-sub">One-time setup fee. Predictable monthly support. No surprises.</p></div>
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <div class="pricing-name">Chatbot</div>
-      <p class="pricing-desc" data-i18n="p1-desc">AI assistant for your website. Lead collection, 24/7 availability.</p>
-      <div class="pricing-price"><span class="price-amount">€400</span></div>
-      <div class="price-setup" data-i18n="p1-setup">one-time · + €60 / month</div>
-      <div class="pricing-divider"></div>
-      <ul class="pricing-features">
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f1">Custom AI personality</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f2">Lead collection</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f3">DE / EN / RU</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f4">Website embed</span></li>
-      </ul>
-      <button class="pricing-btn pricing-btn-default" onclick="openChat()" data-i18n="p-cta">Get Started</button>
-    </div>
-    <div class="pricing-card featured reveal reveal-d1">
-      <div class="pricing-pill" data-i18n="popular">Most Popular</div>
-      <div class="pricing-name">Automate</div>
-      <p class="pricing-desc" data-i18n="p2-desc">Full workflow automation. CRM, email, integrations — all connected.</p>
-      <div class="pricing-price"><span class="price-amount">€800</span></div>
-      <div class="price-setup" data-i18n="p2-setup">one-time · + €100 / month</div>
-      <div class="pricing-divider"></div>
-      <ul class="pricing-features">
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f1">Everything in Chatbot</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f2">CRM integration</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f3">Email automation</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f4">Custom workflows</span></li>
-      </ul>
-      <button class="pricing-btn pricing-btn-accent" onclick="openChat()" data-i18n="p-cta">Get Started</button>
-    </div>
-    <div class="pricing-card reveal reveal-d2">
-      <div class="pricing-name">Transform</div>
-      <p class="pricing-desc" data-i18n="p3-desc">Complete AI system. RAG, multi-agent, full business transformation.</p>
-      <div class="pricing-price"><span class="price-amount">€1,500</span></div>
-      <div class="price-setup" data-i18n="p3-setup">one-time · + €150 / month</div>
-      <div class="pricing-divider"></div>
-      <ul class="pricing-features">
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f1">Everything in Automate</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f2">RAG knowledge base</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f3">Multi-agent system</span></li>
-        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f4">Priority support</span></li>
-      </ul>
-      <button class="pricing-btn pricing-btn-default" onclick="openChat()" data-i18n="p-cta">Get Started</button>
-    </div>
-  </div>
-</section>
-
-<section class="demo-section" id="demo">
-  <div class="demo-wrapper">
-    <div>
-      <div class="section-tag reveal" data-i18n="demo-tag">Live Demo</div>
-      <h2 class="demo-title reveal reveal-d1" data-i18n-html="demo-title">Try to break it.<br>You won't.</h2>
-      <p class="demo-desc reveal reveal-d2" data-i18n="demo-desc">This AI agent is live right now. Test its security, response quality, and multilingual capabilities.</p>
-      <div class="demo-points reveal reveal-d2">
-        <div class="demo-point"><div class="demo-point-dot"></div><span data-i18n="dp1">Responds in German, English, Russian</span></div>
-        <div class="demo-point"><div class="demo-point-dot"></div><span data-i18n="dp2">Protected against prompt injection</span></div>
-        <div class="demo-point"><div class="demo-point-dot"></div><span data-i18n="dp3">Collects leads automatically</span></div>
-      </div>
-      <button class="btn-primary reveal reveal-d3" onclick="openChat()">
-        <span data-i18n="demo-cta">Open Live Agent</span>
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-      </button>
-    </div>
-    <div class="chat-widget reveal reveal-d1">
-      <div class="chat-header">
-        <div class="chat-header-left">
-          <div class="chat-avatar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          </div>
-          <div>
-            <div class="chat-name">AgentFlow AI</div>
-            <div class="chat-status"><div class="status-dot"></div><span data-i18n="demo-online">Online · Powered by Claude</span></div>
-          </div>
-        </div>
-        <div class="chat-dots"><div class="chat-dot"></div><div class="chat-dot"></div><div class="chat-dot"></div></div>
-      </div>
-      <div class="chat-body-widget">
-        <div class="chat-bubble bubble-bot" data-i18n="demo-m1">Hi! I'm the AgentFlow AI assistant. I can tell you about our services and pricing.</div>
-        <div class="chat-bubble bubble-user" data-i18n="demo-m2">What can you do for my online shop?</div>
-        <div class="chat-bubble bubble-bot" data-i18n="demo-m3">For an online shop we automate customer support 24/7, qualify leads, and sync orders to your CRM. Our Automate package at €800 setup + €100/month is the best fit.</div>
-      </div>
-      <div class="chat-footer-widget">
-        <input class="chat-input-widget" type="text" data-i18n-ph="demo-ph" placeholder="Try it yourself..." onclick="openChat()" readonly />
-        <button class="chat-send-btn" onclick="openChat()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
-      </div>
+  <div class="pricing-inner">
+    <div class="reveal"><div class="section-tag" data-i18n="pricing-tag">Pricing</div></div>
+    <div class="reveal reveal-d1"><div class="section-title" data-i18n="pricing-title">Simple, transparent pricing</div></div>
+    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="pricing-sub">One-time setup. Predictable monthly support. No hidden fees, no lock-in.</p></div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal"><div class="pricing-name">Chatbot</div><p class="pricing-desc" data-i18n="p1-desc">AI assistant for any channel. Answers questions, collects leads 24/7.</p><div class="pricing-price"><span class="price-amount">€400</span></div><div class="price-setup" data-i18n="p1-setup">one-time setup · + €60 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f1">Custom AI personality</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f2">Lead collection & qualification</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f3">Any language supported</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f4">Website chat widget</span></li></ul><button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
+      <div class="pricing-card featured reveal reveal-d1"><div class="pricing-pill" data-i18n="popular">Most Popular</div><div class="pricing-name">Automate</div><p class="pricing-desc" data-i18n="p2-desc">Full automation across all channels. CRM, email, WhatsApp, Telegram.</p><div class="pricing-price"><span class="price-amount">€800</span></div><div class="price-setup" data-i18n="p2-setup">one-time setup · + €100 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f1">Everything in Chatbot</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f2">WhatsApp + Telegram deploy</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f3">CRM & email integration</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f4">Custom n8n workflows</span></li></ul><button class="pricing-btn pricing-btn-accent" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
+      <div class="pricing-card reveal reveal-d2"><div class="pricing-name">Transform</div><p class="pricing-desc" data-i18n="p3-desc">Complete AI system. RAG knowledge base, multi-agent, full transformation.</p><div class="pricing-price"><span class="price-amount">€1,500</span></div><div class="price-setup" data-i18n="p3-setup">one-time setup · + €150 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f1">Everything in Automate</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f2">RAG knowledge base</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f3">Multi-agent system</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f4">Priority support</span></li></ul><button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">
-    <div class="logo-icon" style="width:22px;height:22px;border-radius:6px;">
-      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 5L11 6.75V10.25L8 12L5 10.25V6.75L8 5Z" fill="white"/></svg>
-    </div>
-    AgentFlow
-  </div>
+  <div class="footer-logo"><div class="logo-icon" style="width:22px;height:22px;border-radius:6px"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 5L11 6.75V10.25L8 12L5 10.25V6.75L8 5Z" fill="white"/></svg></div>AgentFlow</div>
   <div class="footer-center" data-i18n-html="footer-mid">AI Automation · Düsseldorf, Germany<br>GDPR / DSGVO Compliant</div>
-  <div class="footer-right">ai.agents.de@gmail.com<br><span style="opacity:0.4" data-i18n="footer-copy">© 2025 AgentFlow</span></div>
+  <div class="footer-right">ai.agents.de@gmail.com<br><span style="opacity:.4" data-i18n="footer-copy">© 2026 AgentFlow</span></div>
 </footer>
 
-<button class="fab" onclick="openChat()">
+<button class="fab" onclick="openModal()">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </button>
 
-<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeChat()">
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="chat-header-left">
-        <div class="chat-avatar">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        </div>
-        <div>
-          <div class="chat-name">AgentFlow AI</div>
-          <div class="chat-status"><div class="status-dot"></div><span data-i18n="demo-online">Online · Powered by Claude</span></div>
-        </div>
+      <div class="modal-header-left">
+        <div class="modal-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div><div class="modal-name">AgentFlow AI</div><div class="modal-status"><div class="modal-status-dot"></div><span data-i18n="modal-online">Online · Powered by Claude</span></div></div>
       </div>
-      <button class="modal-close" onclick="closeChat()">✕</button>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body" id="chatBody"></div>
+    <div class="modal-body" id="modalBody"></div>
     <div class="modal-footer">
-      <input type="text" id="chatInput" data-i18n-ph="chat-ph" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()" />
-      <button id="chatSend" onclick="sendMessage()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </button>
+      <input type="text" id="chatInput" data-i18n-ph="chat-ph" placeholder="Type a message..." onkeydown="if(event.key==='Enter')modalSend()"/>
+      <button id="chatSend" onclick="modalSend()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
     </div>
   </div>
 </div>
 
 <script>
 const CHAT_URL = 'https://n8n.aiagents.pp.ua/webhook/affacb8d-803e-4903-b27b-8f41ffc476a1/chat';
-let sessionId = 'sess-' + Math.random().toString(36).substr(2,9);
-let chatInit = false;
+const SESSION = 'sess-' + Math.random().toString(36).substr(2,9);
 
+// ─── SHARED CHAT STATE ────────────────────────────────────────
+const sharedMessages = []; // {text, isUser}
+let carouselBusy = false;
+let modalInit = false;
+let modalSession = 'modal-' + Math.random().toString(36).substr(2,9);
+
+// Greeting per lang
+const GREETINGS = {
+  en: "Hi! I'm the AgentFlow AI assistant 👋\n\nI help businesses automate sales, support, and lead generation.\n\nTo find the right solution for you, could you tell me:\n• What type of business do you run?\n• What would you like to automate first?\n• Any specific wishes or requirements?",
+  de: "Hallo! Ich bin der AgentFlow KI-Assistent 👋\n\nIch helfe Unternehmen dabei, Vertrieb, Support und Lead-Generierung zu automatisieren.\n\nUm die richtige Lösung zu finden:\n• Was für ein Business betreibst du?\n• Was möchtest du als erstes automatisieren?\n• Gibt es besondere Wünsche oder Anforderungen?",
+  ru: "Привет! Я AI ассистент AgentFlow 👋\n\nПомогаю бизнесу автоматизировать продажи, поддержку и лидогенерацию.\n\nЧтобы подобрать решение:\n• Какой у тебя бизнес?\n• Что хочешь автоматизировать в первую очередь?\n• Есть особые пожелания или требования?"
+};
+
+function getLang(){ return localStorage.getItem('af-lang') || 'en'; }
+
+// Initialize carousel with greeting
+function initCarouselGreeting() {
+  const lang = getLang();
+  sharedMessages.push({ text: GREETINGS[lang], isUser: false });
+  renderAllSlides();
+}
+
+// Render all 3 slide chat areas
+function renderAllSlides() {
+  renderSlide('msgs-tg', 'tg');
+  renderSlide('msgs-wa', 'wa');
+  renderSlide('msgs-web', 'web');
+}
+
+function renderSlide(containerId, style) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  sharedMessages.forEach(m => {
+    const bubble = document.createElement('div');
+    bubble.style.whiteSpace = 'pre-line';
+    bubble.textContent = m.text;
+    if (style === 'tg') bubble.className = m.isUser ? 'tg-bubble-user' : 'tg-bubble-bot';
+    else if (style === 'wa') bubble.className = m.isUser ? 'wa-bubble-user' : 'wa-bubble-bot';
+    else bubble.className = m.isUser ? 'lcw-user' : 'lcw-bot';
+    el.appendChild(bubble);
+  });
+  el.scrollTop = el.scrollHeight;
+}
+
+function addTypingToSlide(containerId, style) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const t = document.createElement('div');
+  t.id = containerId + '-typing';
+  if (style === 'tg') t.className = 'tg-typing';
+  else if (style === 'wa') t.className = 'wa-typing';
+  else t.className = 'lcw-typing';
+  t.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  el.appendChild(t);
+  el.scrollTop = el.scrollHeight;
+}
+
+function removeTypingFromSlide(containerId) {
+  const t = document.getElementById(containerId + '-typing');
+  if (t) t.remove();
+}
+
+async function carouselSend() {
+  const inp = document.getElementById('carouselInputField');
+  const txt = inp.value.trim();
+  if (!txt || carouselBusy) return;
+  inp.value = '';
+  carouselBusy = true;
+  document.getElementById('carouselSendBtn').disabled = true;
+
+  sharedMessages.push({ text: txt, isUser: true });
+  renderAllSlides();
+
+  // Show typing in all slides
+  addTypingToSlide('msgs-tg', 'tg');
+  addTypingToSlide('msgs-wa', 'wa');
+  addTypingToSlide('msgs-web', 'web');
+
+  try {
+    const r = await fetch(CHAT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chatInput: txt, sessionId: SESSION })
+    });
+    const d = await r.json();
+    const reply = d.output || d.text || d.message || d.response || JSON.stringify(d);
+    removeTypingFromSlide('msgs-tg');
+    removeTypingFromSlide('msgs-wa');
+    removeTypingFromSlide('msgs-web');
+    sharedMessages.push({ text: reply, isUser: false });
+    renderAllSlides();
+  } catch(e) {
+    removeTypingFromSlide('msgs-tg');
+    removeTypingFromSlide('msgs-wa');
+    removeTypingFromSlide('msgs-web');
+    sharedMessages.push({ text: 'Connection error. Please try again.', isUser: false });
+    renderAllSlides();
+  }
+
+  carouselBusy = false;
+  document.getElementById('carouselSendBtn').disabled = false;
+  inp.focus();
+}
+
+// ─── CAROUSEL NAV ─────────────────────────────────────────────
+let currentSlide = 0;
+function goToSlide(n) {
+  currentSlide = Math.max(0, Math.min(2, n));
+  document.getElementById('carouselTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
+  document.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i === currentSlide));
+}
+function moveCarousel(dir) { goToSlide(currentSlide + dir); }
+
+// ─── MODAL CHAT ───────────────────────────────────────────────
+function appendModalMsg(text, isUser) {
+  const b = document.getElementById('modalBody');
+  const m = document.createElement('div');
+  m.className = 'msg ' + (isUser ? 'msg-user' : 'msg-bot');
+  m.style.whiteSpace = 'pre-line';
+  m.textContent = text;
+  b.appendChild(m);
+  b.scrollTop = b.scrollHeight;
+}
+function showModalTyping() {
+  const b = document.getElementById('modalBody');
+  const t = document.createElement('div');
+  t.className = 'modal-typing'; t.id = 'modalTyping';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  b.appendChild(t); b.scrollTop = b.scrollHeight;
+}
+function hideModalTyping() { const t = document.getElementById('modalTyping'); if(t) t.remove(); }
+
+async function modalSend() {
+  const inp = document.getElementById('chatInput');
+  const txt = inp.value.trim(); if (!txt) return;
+  inp.value = ''; document.getElementById('chatSend').disabled = true;
+  appendModalMsg(txt, true); showModalTyping();
+  try {
+    const r = await fetch(CHAT_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ chatInput: txt, sessionId: modalSession }) });
+    const d = await r.json(); hideModalTyping();
+    appendModalMsg(d.output || d.text || d.message || d.response || JSON.stringify(d), false);
+  } catch(e) { hideModalTyping(); appendModalMsg('Connection error. Please try again.', false); }
+  document.getElementById('chatSend').disabled = false;
+  document.getElementById('chatInput').focus();
+}
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (!modalInit) {
+    modalInit = true;
+    setTimeout(() => appendModalMsg(GREETINGS[getLang()], false), 300);
+  }
+  setTimeout(() => document.getElementById('chatInput').focus(), 350);
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+// ─── TRANSLATIONS ─────────────────────────────────────────────
 const T = {
   en: {
-    'nav-features':'Features','nav-pricing':'Pricing','nav-demo':'Demo','nav-cta':'Talk to AI',
-    'badge':'GDPR Compliant · Powered by Claude',
+    'nav-features':'Features','nav-demo':'Demo','nav-pricing':'Pricing','nav-cta':'Talk to AI',
+    'badge':'GDPR Compliant · Powered by Claude AI',
     'h1':'Automate your business<br>with AI Agents',
-    'hero-sub':'Custom AI chatbots, workflow automation, and intelligent systems for businesses. Deployed in days, not months.',
+    'hero-sub':'Custom AI agents for sales, support, and lead generation. Website, WhatsApp, Telegram — deployed in days, not months.',
     'hero-cta1':'Talk to AI Agent','hero-cta2':'View Pricing',
     'stat1':'Availability','stat2':'Response Time','stat3':'Languages',
-    'trust-label':'Built with',
+    'platforms-label':'Available on',
     'features-tag':'Capabilities','features-title':'Everything your business needs',
-    'features-sub':'From simple chatbots to complex multi-agent systems — built, deployed, and supported.',
-    'f1-name':'AI Chatbot','f1-desc':'Custom AI assistant for your website. Answers questions, collects leads, works 24/7 in any language.',
-    'f2-name':'Workflow Automation','f2-desc':'Automate repetitive tasks. Email workflows, CRM sync, notifications — all connected and running.',
-    'f3-name':'RAG Knowledge Base','f3-desc':'Your AI learns from your documents and website. Accurate answers every time, no hallucinations.',
-    'f4-name':'Multi-channel','f4-desc':'Website, Telegram, WhatsApp — one AI agent, all channels. Customers reach you wherever they are.',
-    'f5-name':'GDPR Compliant','f5-desc':'Hosted on German servers. All data stays in Germany. Full DSGVO compliance, no exceptions.',
-    'f6-name':'CRM Integration','f6-desc':'Connect to your existing stack. HubSpot, Salesforce, Pipedrive, Notion — all synchronized.',
-    'int-tag':'Integrations','int-title':'Works with the tools you already use',
-    'int-sub':'Connect your existing business tools in minutes. No migration, no friction.',
-    'i1':'Customer support & lead gen','i2':'Bot automation & notifications',
-    'i3':'CRM sync & lead pipeline','i4':'Email automation workflows',
-    'i5':'Knowledge base & task sync','i6':'Data logging & reporting',
-    'i7':'Team alerts & internal bots','i8':'Payment events & billing',
+    'features-sub':'From simple chatbots to complex multi-agent systems — built, deployed, and supported for you.',
+    'f1-name':'AI Sales Agent','f1-desc':'Qualifies leads, answers pricing questions, collects contact info, and books discovery calls — automatically, around the clock.',
+    'f2-name':'Workflow Automation','f2-desc':'Every lead, order, or support request automatically routed, logged, and followed up. No manual work, no missed opportunities.',
+    'f3-name':'RAG Knowledge Base','f3-desc':'Upload your FAQ, product catalogue, or documentation. The AI answers precisely from your content — no hallucinations.',
+    'f4-name':'Multi-channel Presence','f4-desc':'One agent, every channel. Website widget, WhatsApp Business, Telegram bot — all trained on the same data, same personality.',
+    'f5-name':'GDPR Compliant','f5-desc':'Hosted on German Hetzner servers. All data stays in Germany. Full DSGVO compliance — not an afterthought.',
+    'f6-name':'CRM & Tool Integration','f6-desc':'Every conversation synced to HubSpot, Salesforce, or your spreadsheet. Leads never fall through the cracks.',
+    'uc-tag':'Use Cases','uc-title':'Built for every industry','uc-sub':'Whatever your business, there\'s a workflow we can automate.',
+    'uc1-ind':'E-Commerce','uc1-title':'24/7 Customer Support','uc1-desc':'Answer order status, returns, and product questions instantly. Reduce support tickets by 60–80%.',
+    'uc2-ind':'Professional Services','uc2-title':'Lead Qualification & Booking','uc2-desc':'The AI asks the right questions, qualifies prospects, and books discovery calls — you only spend time on serious clients.',
+    'uc3-ind':'Real Estate & Automotive','uc3-title':'Instant Product & Property Info','uc3-desc':'Visitors get immediate answers about listings, prices, and availability. The agent collects requirements and notifies your team.',
+    'models-tag':'AI Engine','models-title':'Powered by the world\'s best AI',
+    'models-sub':'We integrate with all major providers. You choose the model that fits your use case and budget.',
+    'm1-desc':'Best reasoning, safe, GDPR-friendly. Our default choice.',
+    'm2-desc':'OpenAI\'s models. Great for complex tasks and code generation.',
+    'm3-desc':'Google\'s model. Strong at multilingual tasks and Google integrations.',
+    'm4-name':'Self-hosted','m4-desc':'Open source models on your own server. Maximum privacy, zero API costs.',
+    'm-default':'Default','m-available':'Available',
+    'demo-tag':'Live Demo','demo-title':'Your agent, on every channel',
+    'demo-sub':'Write a message below and see the AI respond — the same conversation appears on all channels. Use the arrows to switch between Website, WhatsApp, and Telegram.',
+    'ch-online-status':'online','ch-url':'yourcompany.de',
+    'site-h1':'Automate your business','site-sub':'AI Agents · Website · WhatsApp · Telegram',
+    'ch-ph':'Type...','ch-input-ph':'Write something and see the AI respond on all channels...',
+    'int-tag':'Integrations','int-title':'Connects to your existing tools',
+    'i1':'CRM & lead pipeline','i2':'Business messaging','i3':'Email automation','i4':'Team notifications',
+    'i5':'Knowledge base sync','i6':'Data & reporting','i7':'Payments & billing','i8':'Enterprise CRM',
     'pricing-tag':'Pricing','pricing-title':'Simple, transparent pricing',
-    'pricing-sub':'One-time setup fee. Predictable monthly support. No surprises.',
+    'pricing-sub':'One-time setup. Predictable monthly support. No hidden fees, no lock-in.',
     'popular':'Most Popular',
-    'p1-desc':'AI assistant for your website. Lead collection, 24/7 availability.',
-    'p1-setup':'one-time · + €60 / month',
-    'p1-f1':'Custom AI personality','p1-f2':'Lead collection','p1-f3':'DE / EN / RU','p1-f4':'Website embed',
-    'p2-desc':'Full workflow automation. CRM, email, integrations — all connected.',
-    'p2-setup':'one-time · + €100 / month',
-    'p2-f1':'Everything in Chatbot','p2-f2':'CRM integration','p2-f3':'Email automation','p2-f4':'Custom workflows',
-    'p3-desc':'Complete AI system. RAG, multi-agent, full business transformation.',
-    'p3-setup':'one-time · + €150 / month',
+    'p1-desc':'AI assistant for any channel. Answers questions, collects leads 24/7.',
+    'p1-setup':'one-time setup · + €60 / month',
+    'p1-f1':'Custom AI personality','p1-f2':'Lead collection & qualification','p1-f3':'Any language supported','p1-f4':'Website chat widget',
+    'p2-desc':'Full automation across all channels. CRM, email, WhatsApp, Telegram.',
+    'p2-setup':'one-time setup · + €100 / month',
+    'p2-f1':'Everything in Chatbot','p2-f2':'WhatsApp + Telegram deploy','p2-f3':'CRM & email integration','p2-f4':'Custom n8n workflows',
+    'p3-desc':'Complete AI system. RAG knowledge base, multi-agent, full transformation.',
+    'p3-setup':'one-time setup · + €150 / month',
     'p3-f1':'Everything in Automate','p3-f2':'RAG knowledge base','p3-f3':'Multi-agent system','p3-f4':'Priority support',
     'p-cta':'Get Started',
-    'demo-tag':'Live Demo','demo-title':'Try to break it.<br>You won\'t.',
-    'demo-desc':'This AI agent is live right now. Test its security, response quality, and multilingual capabilities.',
-    'dp1':'Responds in German, English, Russian','dp2':'Protected against prompt injection','dp3':'Collects leads automatically',
-    'demo-cta':'Open Live Agent','demo-online':'Online · Powered by Claude',
-    'demo-m1':'Hi! I\'m the AgentFlow AI assistant. I can tell you about our services and pricing.',
-    'demo-m2':'What can you do for my online shop?',
-    'demo-m3':'For an online shop we automate customer support 24/7, qualify leads, and sync orders to your CRM. Our Automate package at €800 setup + €100/month is the best fit.',
-    'demo-ph':'Try it yourself...','chat-ph':'Type a message...',
-    'footer-mid':'AI Automation · Düsseldorf, Germany<br>GDPR / DSGVO Compliant','footer-copy':'© 2025 AgentFlow',
-    'chat-hi':'Hi! I\'m the AgentFlow AI assistant. How can I help you today?'
+    'footer-mid':'AI Automation · Düsseldorf, Germany<br>GDPR / DSGVO Compliant','footer-copy':'© 2026 AgentFlow',
+    'modal-online':'Online · Powered by Claude','chat-ph':'Type a message...'
   },
   de: {
-    'nav-features':'Features','nav-pricing':'Preise','nav-demo':'Demo','nav-cta':'KI starten',
-    'badge':'DSGVO-konform · Powered by Claude',
+    'nav-features':'Features','nav-demo':'Demo','nav-pricing':'Preise','nav-cta':'KI starten',
+    'badge':'DSGVO-konform · Powered by Claude AI',
     'h1':'Automatisiere dein Business<br>mit KI-Agenten',
-    'hero-sub':'Maßgeschneiderte KI-Chatbots und Workflow-Automatisierung. In Tagen einsatzbereit, nicht in Monaten.',
+    'hero-sub':'KI-Agenten für Vertrieb, Support und Lead-Generierung. Website, WhatsApp, Telegram — in Tagen einsatzbereit.',
     'hero-cta1':'Mit KI sprechen','hero-cta2':'Preise ansehen',
     'stat1':'Verfügbarkeit','stat2':'Antwortzeit','stat3':'Sprachen',
-    'trust-label':'Betrieben mit',
+    'platforms-label':'Verfügbar auf',
     'features-tag':'Funktionen','features-title':'Alles was dein Business braucht',
-    'features-sub':'Von einfachen Chatbots bis zu komplexen Multi-Agenten-Systemen — gebaut, deployed, supported.',
-    'f1-name':'KI-Chatbot','f1-desc':'Individueller KI-Assistent für deine Website. Beantwortet Fragen, sammelt Leads, arbeitet 24/7.',
-    'f2-name':'Workflow-Automatisierung','f2-desc':'Automatisiere Routineaufgaben. E-Mail, CRM-Sync, Benachrichtigungen — alles verbunden.',
-    'f3-name':'RAG-Wissensbasis','f3-desc':'Dein KI-Agent lernt aus deinen Dokumenten. Präzise Antworten, keine Halluzinationen.',
-    'f4-name':'Multi-Channel','f4-desc':'Website, Telegram, WhatsApp — ein KI-Agent, alle Kanäle. Kunden erreichen dich überall.',
-    'f5-name':'DSGVO-konform','f5-desc':'Gehostet auf deutschen Servern. Alle Daten in Deutschland. Vollständige DSGVO-Compliance.',
-    'f6-name':'CRM-Integration','f6-desc':'Verbinde deinen bestehenden Stack. HubSpot, Salesforce, Pipedrive, Notion — alles synchronisiert.',
-    'int-tag':'Integrationen','int-title':'Funktioniert mit deinen bestehenden Tools',
-    'int-sub':'Verbinde deine Business-Tools in Minuten. Keine Migration, keine Reibung.',
-    'i1':'Kundensupport & Lead-Generierung','i2':'Bot-Automatisierung & Benachrichtigungen',
-    'i3':'CRM-Sync & Lead-Pipeline','i4':'E-Mail-Automatisierungs-Workflows',
-    'i5':'Wissensbasis & Aufgaben-Sync','i6':'Daten-Logging & Reporting',
-    'i7':'Team-Alerts & interne Bots','i8':'Zahlungsereignisse & Abrechnung',
+    'features-sub':'Von einfachen Chatbots bis zu komplexen Multi-Agenten-Systemen — wir bauen, deployen und supporten.',
+    'f1-name':'KI-Verkaufsagent','f1-desc':'Qualifiziert Leads, beantwortet Preisfragen, sammelt Kontakte und bucht Erstgespräche — automatisch, rund um die Uhr.',
+    'f2-name':'Workflow-Automatisierung','f2-desc':'Jeder Lead, jede Bestellung automatisch weitergeleitet und nachverfolgt. Keine manuelle Arbeit, keine verpassten Chancen.',
+    'f3-name':'RAG-Wissensbasis','f3-desc':'Lade deine FAQ, deinen Produktkatalog oder Dokumentation hoch. Die KI antwortet präzise — ohne Halluzinationen.',
+    'f4-name':'Multi-Channel-Präsenz','f4-desc':'Ein Agent, alle Kanäle. Website-Widget, WhatsApp Business, Telegram-Bot — alle mit denselben Daten trainiert.',
+    'f5-name':'DSGVO-konform','f5-desc':'Gehostet auf deutschen Hetzner-Servern. Alle Daten bleiben in Deutschland. Vollständige DSGVO-Compliance.',
+    'f6-name':'CRM & Tool-Integration','f6-desc':'Jedes Gespräch wird in HubSpot, Salesforce oder deiner Tabelle gespeichert. Kein Lead fällt durchs Raster.',
+    'uc-tag':'Anwendungsfälle','uc-title':'Für jede Branche gebaut','uc-sub':'Egal welches Business — es gibt einen Workflow den wir automatisieren können.',
+    'uc1-ind':'E-Commerce','uc1-title':'24/7 Kundensupport','uc1-desc':'Beantworte Fragen zu Bestellungen, Rückgaben und Produkten sofort. Reduziere Support-Tickets um 60–80%.',
+    'uc2-ind':'Freiberufler & Agenturen','uc2-title':'Lead-Qualifizierung & Buchung','uc2-desc':'Die KI stellt die richtigen Fragen, qualifiziert Interessenten und bucht Erstgespräche — du sprichst nur mit ernsthaften Kunden.',
+    'uc3-ind':'Immobilien & Automotive','uc3-title':'Sofortige Produkt-Infos','uc3-desc':'Besucher erhalten sofort Antworten zu Objekten, Preisen und Verfügbarkeit. Der Agent sammelt Anforderungen und benachrichtigt dein Team.',
+    'models-tag':'KI-Engine','models-title':'Powered by den besten KI-Modellen',
+    'models-sub':'Wir integrieren alle großen KI-Anbieter. Du wählst das Modell das zu deinem Anwendungsfall passt.',
+    'm1-desc':'Bestes Reasoning, sicher, DSGVO-freundlich. Unsere Standardwahl.',
+    'm2-desc':'OpenAIs Modelle. Ideal für komplexe Aufgaben und Code-Generierung.',
+    'm3-desc':'Googles Modell. Stark bei mehrsprachigen Aufgaben und Google-Integrationen.',
+    'm4-name':'Self-hosted','m4-desc':'Open-Source-Modelle auf deinem Server. Maximale Privatsphäre, keine API-Kosten.',
+    'm-default':'Standard','m-available':'Verfügbar',
+    'demo-tag':'Live-Demo','demo-title':'Dein Agent auf jedem Kanal',
+    'demo-sub':'Schreib eine Nachricht und sieh wie die KI antwortet — dasselbe Gespräch erscheint auf allen Kanälen. Nutze die Pfeile um zwischen Website, WhatsApp und Telegram zu wechseln.',
+    'ch-online-status':'online','ch-url':'deinunternehmen.de',
+    'site-h1':'Automatisiere dein Business','site-sub':'KI-Agenten · Website · WhatsApp · Telegram',
+    'ch-ph':'Schreiben...','ch-input-ph':'Schreib etwas und sieh wie die KI auf allen Kanälen antwortet...',
+    'int-tag':'Integrationen','int-title':'Verbindet sich mit deinen bestehenden Tools',
+    'i1':'CRM & Lead-Pipeline','i2':'Business-Messaging','i3':'E-Mail-Automatisierung','i4':'Team-Benachrichtigungen',
+    'i5':'Wissensbasis-Sync','i6':'Daten & Reporting','i7':'Zahlungen & Abrechnung','i8':'Enterprise-CRM',
     'pricing-tag':'Preise','pricing-title':'Einfache, transparente Preise',
-    'pricing-sub':'Einmaliges Setup. Vorhersehbarer monatlicher Support. Keine Überraschungen.',
+    'pricing-sub':'Einmaliges Setup. Vorhersehbarer monatlicher Support. Keine versteckten Kosten.',
     'popular':'Beliebteste',
-    'p1-desc':'KI-Assistent für deine Website. Lead-Erfassung, 24/7 Verfügbarkeit.',
-    'p1-setup':'einmalig · + €60 / Monat',
-    'p1-f1':'Individuelle KI-Persönlichkeit','p1-f2':'Lead-Erfassung','p1-f3':'DE / EN / RU','p1-f4':'Website-Einbettung',
-    'p2-desc':'Vollständige Workflow-Automatisierung. CRM, E-Mail, Integrationen — alles verbunden.',
-    'p2-setup':'einmalig · + €100 / Monat',
-    'p2-f1':'Alles aus Chatbot','p2-f2':'CRM-Integration','p2-f3':'E-Mail-Automatisierung','p2-f4':'Individuelle Workflows',
-    'p3-desc':'Komplettes KI-System. RAG, Multi-Agenten, vollständige Transformation.',
-    'p3-setup':'einmalig · + €150 / Monat',
+    'p1-desc':'KI-Assistent für jeden Kanal. Beantwortet Fragen, sammelt Leads 24/7.',
+    'p1-setup':'einmaliges Setup · + €60 / Monat',
+    'p1-f1':'Individuelle KI-Persönlichkeit','p1-f2':'Lead-Erfassung & Qualifizierung','p1-f3':'Jede Sprache unterstützt','p1-f4':'Website-Chat-Widget',
+    'p2-desc':'Vollständige Automatisierung. CRM, E-Mail, WhatsApp, Telegram.',
+    'p2-setup':'einmaliges Setup · + €100 / Monat',
+    'p2-f1':'Alles aus Chatbot','p2-f2':'WhatsApp + Telegram Deploy','p2-f3':'CRM & E-Mail-Integration','p2-f4':'Individuelle n8n Workflows',
+    'p3-desc':'Komplettes KI-System. RAG-Wissensbasis, Multi-Agenten, vollständige Transformation.',
+    'p3-setup':'einmaliges Setup · + €150 / Monat',
     'p3-f1':'Alles aus Automate','p3-f2':'RAG-Wissensbasis','p3-f3':'Multi-Agenten-System','p3-f4':'Priorisierter Support',
     'p-cta':'Loslegen',
-    'demo-tag':'Live-Demo','demo-title':'Versuche ihn zu knacken.<br>Du wirst nicht.',
-    'demo-desc':'Dieser KI-Agent läuft live. Teste Sicherheit, Antwortqualität und Mehrsprachigkeit.',
-    'dp1':'Antwortet auf Deutsch, Englisch, Russisch','dp2':'Geschützt gegen Prompt-Injection','dp3':'Erfasst Leads automatisch',
-    'demo-cta':'Live-Agent öffnen','demo-online':'Online · Powered by Claude',
-    'demo-m1':'Hallo! Ich bin der AgentFlow KI-Assistent. Ich erzähle dir über unsere Dienste.',
-    'demo-m2':'Was könnt ihr für meinen Online-Shop tun?',
-    'demo-m3':'Für einen Online-Shop automatisieren wir Support 24/7, qualifizieren Leads und synchronisieren Bestellungen mit deinem CRM. Das Automate-Paket (€800 + €100/Monat) passt am besten.',
-    'demo-ph':'Teste es selbst...','chat-ph':'Nachricht schreiben...',
-    'footer-mid':'KI-Automatisierung · Düsseldorf<br>GDPR / DSGVO-konform','footer-copy':'© 2025 AgentFlow',
-    'chat-hi':'Hallo! Ich bin der AgentFlow KI-Assistent. Wie kann ich dir helfen?'
+    'footer-mid':'KI-Automatisierung · Düsseldorf, Deutschland<br>GDPR / DSGVO-konform','footer-copy':'© 2026 AgentFlow',
+    'modal-online':'Online · Powered by Claude','chat-ph':'Nachricht schreiben...'
   },
   ru: {
-    'nav-features':'Функции','nav-pricing':'Цены','nav-demo':'Демо','nav-cta':'Написать AI',
-    'badge':'GDPR · Powered by Claude',
+    'nav-features':'Функции','nav-demo':'Демо','nav-pricing':'Цены','nav-cta':'Написать AI',
+    'badge':'GDPR · Powered by Claude AI',
     'h1':'Автоматизируй бизнес<br>с AI Агентами',
-    'hero-sub':'Кастомные AI чатботы и автоматизация процессов. Запуск за дни, а не месяцы.',
+    'hero-sub':'AI агенты для продаж, поддержки и лидогенерации. Сайт, WhatsApp, Telegram — запуск за дни.',
     'hero-cta1':'Поговорить с AI','hero-cta2':'Посмотреть цены',
-    'stat1':'Доступность','stat2':'Время ответа','stat3':'Языка',
-    'trust-label':'Работает на',
+    'stat1':'Доступность','stat2':'Время ответа','stat3':'Языки',
+    'platforms-label':'Доступно на',
     'features-tag':'Возможности','features-title':'Всё что нужно твоему бизнесу',
     'features-sub':'От простых чатботов до сложных мульти-агентных систем — строим, запускаем, поддерживаем.',
-    'f1-name':'AI Чатбот','f1-desc':'Кастомный AI ассистент для сайта. Отвечает на вопросы, собирает лиды, работает 24/7.',
-    'f2-name':'Автоматизация','f2-desc':'Автоматизируй рутину. Email, CRM синхронизация, уведомления — всё связано и работает.',
-    'f3-name':'RAG База знаний','f3-desc':'AI учится из твоих документов и сайта. Точные ответы всегда, без галлюцинаций.',
-    'f4-name':'Мульти-канал','f4-desc':'Сайт, Telegram, WhatsApp — один AI агент, все каналы. Клиенты найдут тебя где угодно.',
-    'f5-name':'GDPR','f5-desc':'Хостинг на немецких серверах. Все данные в Германии. Полное соответствие GDPR.',
-    'f6-name':'CRM Интеграция','f6-desc':'Подключи существующий стек. HubSpot, Salesforce, Pipedrive, Notion — всё синхронизировано.',
-    'int-tag':'Интеграции','int-title':'Работает с инструментами которые уже используешь',
-    'int-sub':'Подключи бизнес-инструменты за минуты. Никакой миграции, никаких сложностей.',
-    'i1':'Поддержка клиентов и лидогенерация','i2':'Автоматизация бота и уведомления',
-    'i3':'CRM синхронизация и лиды','i4':'Email автоматизация',
-    'i5':'База знаний и задачи','i6':'Логирование данных и отчёты',
-    'i7':'Алерты для команды и внутренние боты','i8':'Платёжные события и биллинг',
+    'f1-name':'AI Агент продаж','f1-desc':'Квалифицирует лиды, отвечает на вопросы о ценах, собирает контакты и записывает на звонки — автоматически, круглосуточно.',
+    'f2-name':'Автоматизация процессов','f2-desc':'Каждый лид, заказ или запрос автоматически направляется и обрабатывается. Никакой ручной работы.',
+    'f3-name':'RAG База знаний','f3-desc':'Загрузи FAQ, каталог товаров или документацию. AI отвечает точно из твоего контента — без галлюцинаций.',
+    'f4-name':'Мульти-канал','f4-desc':'Один агент, все каналы. Виджет на сайте, WhatsApp Business, Telegram бот — все обучены на одних данных.',
+    'f5-name':'GDPR','f5-desc':'Хостинг на немецких серверах Hetzner. Все данные в Германии. Полное соответствие GDPR.',
+    'f6-name':'CRM и интеграции','f6-desc':'Каждый диалог синхронизируется с HubSpot, Salesforce или твоей таблицей. Ни один лид не потеряется.',
+    'uc-tag':'Применение','uc-title':'Для любой отрасли','uc-sub':'Какой бы бизнес у тебя ни был — есть workflow который мы можем автоматизировать.',
+    'uc1-ind':'E-Commerce','uc1-title':'Поддержка клиентов 24/7','uc1-desc':'Отвечай на вопросы о заказах, возвратах и товарах мгновенно. Сократи количество обращений на 60–80%.',
+    'uc2-ind':'Услуги и агентства','uc2-title':'Квалификация лидов и запись','uc2-desc':'AI задаёт правильные вопросы, квалифицирует клиентов и записывает на консультацию — ты общаешься только с серьёзными.',
+    'uc3-ind':'Недвижимость и авто','uc3-title':'Мгновенная информация','uc3-desc':'Посетители сразу получают ответы об объектах, ценах и наличии. Агент собирает пожелания и уведомляет команду.',
+    'models-tag':'AI Движок','models-title':'Powered by лучшими AI моделями',
+    'models-sub':'Интегрируем все major AI провайдеры. Ты выбираешь модель под свой кейс и бюджет.',
+    'm1-desc':'Лучший reasoning, безопасный, GDPR. Наш выбор по умолчанию.',
+    'm2-desc':'Модели OpenAI. Отлично для сложных задач и генерации кода.',
+    'm3-desc':'Модель Google. Сильный в многоязычных задачах и интеграциях Google.',
+    'm4-name':'Self-hosted','m4-desc':'Open source модели на твоём сервере. Максимальная приватность, без API расходов.',
+    'm-default':'По умолчанию','m-available':'Доступно',
+    'demo-tag':'Live Demo','demo-title':'Твой агент на каждом канале',
+    'demo-sub':'Напиши сообщение и посмотри как AI отвечает — одна беседа отображается на всех каналах. Используй стрелки для переключения между сайтом, WhatsApp и Telegram.',
+    'ch-online-status':'онлайн','ch-url':'твойсайт.de',
+    'site-h1':'Автоматизируй бизнес','site-sub':'AI Агенты · Сайт · WhatsApp · Telegram',
+    'ch-ph':'Написать...','ch-input-ph':'Напиши что-нибудь и увидишь как AI отвечает на всех каналах...',
+    'int-tag':'Интеграции','int-title':'Подключается к существующим инструментам',
+    'i1':'CRM и лид-пайплайн','i2':'Бизнес-мессенджер','i3':'Email автоматизация','i4':'Уведомления команды',
+    'i5':'Синхронизация базы знаний','i6':'Данные и отчёты','i7':'Платежи и биллинг','i8':'Enterprise CRM',
     'pricing-tag':'Цены','pricing-title':'Простые, прозрачные цены',
-    'pricing-sub':'Единоразовый setup. Предсказуемый ежемесячный саппорт. Никаких сюрпризов.',
+    'pricing-sub':'Единоразовый setup. Предсказуемый ежемесячный саппорт. Никаких скрытых платежей.',
     'popular':'Популярный',
-    'p1-desc':'AI ассистент для сайта. Сбор лидов, доступность 24/7.',
+    'p1-desc':'AI ассистент для любого канала. Отвечает на вопросы, собирает лиды 24/7.',
     'p1-setup':'единоразово · + €60 / мес',
-    'p1-f1':'Кастомная личность AI','p1-f2':'Сбор лидов','p1-f3':'DE / EN / RU','p1-f4':'Виджет для сайта',
-    'p2-desc':'Полная автоматизация. CRM, email, интеграции — всё подключено.',
+    'p1-f1':'Кастомная личность AI','p1-f2':'Сбор и квалификация лидов','p1-f3':'Любой язык','p1-f4':'Чат виджет на сайте',
+    'p2-desc':'Полная автоматизация по всем каналам. CRM, email, WhatsApp, Telegram.',
     'p2-setup':'единоразово · + €100 / мес',
-    'p2-f1':'Всё из Chatbot','p2-f2':'CRM интеграция','p2-f3':'Email автоматизация','p2-f4':'Кастомные workflows',
-    'p3-desc':'Полная AI система. RAG, мульти-агент, полная трансформация бизнеса.',
+    'p2-f1':'Всё из Chatbot','p2-f2':'WhatsApp + Telegram','p2-f3':'CRM и email интеграция','p2-f4':'Кастомные n8n workflows',
+    'p3-desc':'Полная AI система. RAG база знаний, мульти-агент, полная трансформация.',
     'p3-setup':'единоразово · + €150 / мес',
     'p3-f1':'Всё из Automate','p3-f2':'RAG база знаний','p3-f3':'Мульти-агент','p3-f4':'Приоритетный саппорт',
     'p-cta':'Начать',
-    'demo-tag':'Live Demo','demo-title':'Попробуй сломать.<br>Не сможешь.',
-    'demo-desc':'Этот AI агент работает прямо сейчас. Проверь безопасность, качество и многоязычность.',
-    'dp1':'Отвечает на немецком, английском, русском','dp2':'Защищён от prompt injection','dp3':'Автоматически собирает лиды',
-    'demo-cta':'Открыть Live Agent','demo-online':'Онлайн · Powered by Claude',
-    'demo-m1':'Привет! Я AI ассистент AgentFlow. Расскажу о наших услугах.',
-    'demo-m2':'Что вы можете для онлайн-магазина?',
-    'demo-m3':'Для магазина — автоматизация поддержки 24/7, квалификация лидов и синхронизация заказов с CRM. Пакет Automate (€800 + €100/мес) — лучший вариант.',
-    'demo-ph':'Попробуй сам...','chat-ph':'Написать сообщение...',
-    'footer-mid':'AI Автоматизация · Дюссельдорф<br>GDPR / DSGVO',
-    'footer-copy':'© 2025 AgentFlow',
-    'chat-hi':'Привет! Я AI ассистент AgentFlow. Чем могу помочь?'
+    'footer-mid':'AI Автоматизация · Дюссельдорф, Германия<br>GDPR / DSGVO',
+    'footer-copy':'© 2026 AgentFlow',
+    'modal-online':'Онлайн · Powered by Claude','chat-ph':'Написать сообщение...'
   }
 };
 
 function setLang(l) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`[data-lang="${l}"]`).classList.add('active');
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const k = el.getAttribute('data-i18n');
-    if (T[l][k] !== undefined) el.textContent = T[l][k];
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const k = el.getAttribute('data-i18n-html');
-    if (T[l][k] !== undefined) el.innerHTML = T[l][k];
-  });
-  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-    const k = el.getAttribute('data-i18n-ph');
-    if (T[l][k] !== undefined) el.placeholder = T[l][k];
-  });
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k=el.getAttribute('data-i18n'); if(T[l][k]!==undefined) el.textContent=T[l][k]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const k=el.getAttribute('data-i18n-html'); if(T[l][k]!==undefined) el.innerHTML=T[l][k]; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => { const k=el.getAttribute('data-i18n-ph'); if(T[l][k]!==undefined) el.placeholder=T[l][k]; });
   localStorage.setItem('af-lang', l);
   document.documentElement.lang = l;
 }
 
-function appendMsg(text, isUser) {
-  const b = document.getElementById('chatBody');
-  const m = document.createElement('div');
-  m.className = 'msg ' + (isUser ? 'msg-user' : 'msg-bot');
-  m.textContent = text;
-  b.appendChild(m);
-  b.scrollTop = b.scrollHeight;
-}
-function showTyping() {
-  const b = document.getElementById('chatBody');
-  const t = document.createElement('div');
-  t.className = 'typing-indicator'; t.id = 'typing';
-  t.innerHTML = '<span></span><span></span><span></span>';
-  b.appendChild(t); b.scrollTop = b.scrollHeight;
-}
-function hideTyping() { const t = document.getElementById('typing'); if(t) t.remove(); }
+function sc(id) { document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
 
-async function sendMessage() {
-  const inp = document.getElementById('chatInput');
-  const txt = inp.value.trim(); if (!txt) return;
-  inp.value = ''; document.getElementById('chatSend').disabled = true;
-  appendMsg(txt, true); showTyping();
-  try {
-    const r = await fetch(CHAT_URL, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({chatInput: txt, sessionId}) });
-    const d = await r.json(); hideTyping();
-    appendMsg(d.output || d.text || d.message || d.response || JSON.stringify(d), false);
-  } catch(e) { hideTyping(); appendMsg('Connection error. Please try again.', false); }
-  document.getElementById('chatSend').disabled = false;
-  document.getElementById('chatInput').focus();
-}
-
-function openChat() {
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  if (!chatInit) {
-    chatInit = true;
-    const l = localStorage.getItem('af-lang') || 'en';
-    setTimeout(() => appendMsg(T[l]['chat-hi'], false), 300);
-  }
-  setTimeout(() => document.getElementById('chatInput').focus(), 350);
-}
-function closeChat() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeChat(); });
-
-// Scroll reveal
+// SCROLL REVEAL
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08 });
+}, { threshold: 0.07 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+// INIT
 setLang(localStorage.getItem('af-lang') || 'en');
+initCarouselGreeting();
 </script>
 </body>
 </html>
