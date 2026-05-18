@@ -4,642 +4,281 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AgentFlow — AI Automation</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0A0E14;
-  --surface: #11161E;
-  --surface2: #181F2A;
-  --border: rgba(255,255,255,0.08);
-  --accent: #00E5FF;
-  --accent2: #7B61FF;
-  --text: #F0F4F8;
-  --muted: #7A8699;
-  --green: #00FFA3;
+  --bg: #09090B;
+  --bg2: #111113;
+  --bg3: #18181B;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #FAFAFA;
+  --muted: #71717A;
+  --muted2: #A1A1AA;
+  --accent: #6366F1;
+  --accent2: #818CF8;
+  --green: #22C55E;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
-  font-weight: 400;
-  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
-  background-size: 80px 80px;
-  pointer-events: none;
-  z-index: 0;
+.hero-bg {
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse at center, rgba(99,102,241,0.11) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
 }
-.orb { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; }
-.orb-1 { width: 600px; height: 600px; background: rgba(0,229,255,0.05); top: -200px; left: -200px; }
-.orb-2 { width: 500px; height: 500px; background: rgba(123,97,255,0.06); bottom: 10%; right: -100px; }
+
+/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 18px 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  backdrop-filter: blur(20px);
-  background: rgba(10,14,20,0.7);
+  height: 60px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  background: rgba(9,9,11,0.85); backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
-.logo {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700; font-size: 20px;
-  letter-spacing: -0.5px;
-  display: flex; align-items: center; gap: 10px;
-}
-.logo-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.7); }
-}
-.nav-right { display: flex; align-items: center; gap: 16px; }
-.lang-switcher {
-  display: flex; gap: 2px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 3px;
-}
-.lang-btn {
-  padding: 5px 12px;
-  background: transparent;
-  border: none;
-  color: var(--muted);
-  font-family: 'Inter', sans-serif;
-  font-size: 12px; font-weight: 500;
-  cursor: pointer; border-radius: 5px;
-  transition: all 0.2s;
-}
-.lang-btn:hover { color: var(--text); }
-.lang-btn.active { background: var(--accent); color: #000; }
-.nav-badge {
-  font-size: 11px; padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid rgba(0,229,255,0.25);
-  color: var(--accent);
-  background: rgba(0,229,255,0.05);
-  font-weight: 500;
-}
+.logo { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 28px; height: 28px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.nav-center { display: flex; align-items: center; gap: 4px; }
+.nav-link { padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted2); background: none; border: none; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+.nav-link:hover { background: var(--bg3); color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.lang-switcher { display: flex; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 3px; }
+.lang-btn { padding: 4px 10px; background: none; border: none; color: var(--muted); font-family: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; cursor: pointer; border-radius: 5px; transition: all 0.15s; }
+.lang-btn.active { background: var(--accent); color: #fff; }
+.lang-btn:hover:not(.active) { color: var(--text); }
+.btn-nav { padding: 7px 16px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-nav:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+
+/* HERO — fixed heights to prevent layout jump */
 .hero {
-  position: relative; z-index: 1; min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 140px 40px 80px;
-  max-width: 1280px; margin: 0 auto;
-  gap: 80px;
-}
-.hero-left { flex: 1.1; max-width: 620px; }
-.hero-right { flex: 1; display: flex; justify-content: center; }
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 28px;
-  padding: 6px 14px; border-radius: 4px;
-  background: rgba(0,229,255,0.07);
-  border: 1px solid rgba(0,229,255,0.15);
-}
-.hero-tag::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--green); box-shadow: 0 0 8px var(--green);
-  animation: pulse 1.5s infinite;
-}
-h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(40px, 4.5vw, 60px);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -1.5px;
-  margin-bottom: 24px;
-}
-h1 .accent { color: var(--accent); }
-.hero-desc {
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--muted);
-  max-width: 520px;
-  margin-bottom: 36px;
-  font-weight: 300;
-}
-.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-.btn-primary {
-  padding: 13px 26px;
-  background: var(--accent);
-  color: #000; border: none;
-  border-radius: 8px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer; transition: all 0.2s;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-primary:hover {
-  background: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0,229,255,0.3);
-}
-.btn-secondary {
-  padding: 13px 26px;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer; transition: all 0.2s;
-}
-.btn-secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-2px);
-}
-.demo-chat {
-  width: 380px; height: 500px;
-  background: var(--surface);
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,229,255,0.04);
-  display: flex; flex-direction: column;
-  animation: floatUp 0.8s ease both;
-}
-@keyframes floatUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.demo-header {
-  padding: 18px 20px;
-  background: var(--surface2);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 12px;
-}
-.demo-avatar {
-  width: 36px; height: 36px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-}
-.demo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; }
-.demo-status { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 4px; }
-.demo-status::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--green); box-shadow: 0 0 6px var(--green);
-}
-.demo-messages {
-  flex: 1; overflow-y: auto; padding: 20px;
-  display: flex; flex-direction: column; gap: 10px;
-  scrollbar-width: none;
-}
-.demo-messages::-webkit-scrollbar { display: none; }
-.msg {
-  max-width: 85%;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 13px; line-height: 1.5;
-  animation: msgIn 0.3s ease both;
-}
-@keyframes msgIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.msg-bot {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-bottom-left-radius: 4px;
-  align-self: flex-start;
-}
-.msg-user {
-  background: linear-gradient(135deg, var(--accent2), #5B41FF);
-  border-bottom-right-radius: 4px;
-  align-self: flex-end;
-  color: #fff;
-}
-.demo-cta {
-  padding: 14px 20px;
-  background: var(--surface2);
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-.demo-cta button {
-  width: 100%; padding: 10px;
-  background: var(--accent); color: #000;
-  border: none; border-radius: 8px;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: all 0.2s;
-}
-.demo-cta button:hover { background: #fff; }
-.stats-bar {
   position: relative; z-index: 1;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 40px;
-  display: flex; justify-content: center;
-  gap: 80px;
-  background: rgba(17,22,30,0.5);
-  flex-wrap: wrap;
-}
-.stat { text-align: center; }
-.stat-num {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 40px; font-weight: 600;
-  line-height: 1; margin-bottom: 6px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.stat-label {
-  font-size: 12px; color: var(--muted);
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.section {
-  position: relative; z-index: 1;
-  padding: 100px 40px;
-  max-width: 1200px; margin: 0 auto;
-}
-.section-tag {
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
-}
-.section-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(32px, 3.5vw, 44px);
-  font-weight: 600;
-  letter-spacing: -1px;
-  margin-bottom: 56px;
-  line-height: 1.15;
-}
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.service-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.service-card:hover {
-  border-color: rgba(0,229,255,0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-}
-.service-card:hover::before { opacity: 1; }
-.service-icon { font-size: 28px; margin-bottom: 18px; display: block; }
-.service-name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px; font-weight: 600;
-  margin-bottom: 8px;
-}
-.service-desc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 24px;
-  font-weight: 300;
-}
-.service-price {
-  display: flex; align-items: baseline; gap: 6px;
-  margin-bottom: 4px;
-}
-.price-amount {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 30px; font-weight: 600;
-  color: var(--accent);
-  letter-spacing: -1px;
-}
-.price-label { font-size: 12px; color: var(--muted); }
-.price-monthly { font-size: 12px; color: var(--muted); margin-bottom: 22px; }
-.service-features {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 9px;
-}
-.service-features li {
-  font-size: 13px; color: var(--text);
-  display: flex; align-items: center; gap: 10px;
-  font-weight: 300;
-}
-.service-features li::before {
-  content: '';
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: rgba(0,255,163,0.15);
-  border: 1px solid var(--green);
-  flex-shrink: 0;
-}
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-.step {
-  padding: 32px 24px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  transition: all 0.3s;
-}
-.step:hover { border-color: rgba(0,229,255,0.2); transform: translateY(-4px); }
-.step-num {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 16px;
-  letter-spacing: 0.1em;
-}
-.step-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 17px; font-weight: 600;
-  margin-bottom: 10px;
-}
-.step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
-.test-section {
-  position: relative; z-index: 1;
-  padding: 100px 40px;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-.test-tag {
-  display: inline-block;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 18px;
-  padding: 5px 14px;
-  border-radius: 4px;
-  background: rgba(0,255,163,0.07);
-  border: 1px solid rgba(0,255,163,0.2);
-}
-.test-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(32px, 3.5vw, 44px);
-  font-weight: 600;
-  letter-spacing: -1px;
-  margin-bottom: 18px;
-  line-height: 1.15;
-}
-.test-desc {
-  font-size: 16px;
-  color: var(--muted);
-  max-width: 580px;
-  margin: 0 auto 36px;
-  line-height: 1.65;
-  font-weight: 300;
-}
-.test-note {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 24px;
-  opacity: 0.7;
-  font-weight: 300;
-}
-footer {
-  position: relative; z-index: 1;
-  padding: 50px 40px;
-  text-align: center;
-  border-top: 1px solid var(--border);
-}
-footer .footer-logo {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700; font-size: 18px;
-  margin-bottom: 14px;
-  color: var(--accent);
-}
-footer p {
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 300;
-}
-.chat-fab {
-  position: fixed;
-  bottom: 24px; right: 24px;
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 8px 30px rgba(0,229,255,0.4);
-  transition: all 0.3s;
-  z-index: 999;
-}
-.chat-fab:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(0,229,255,0.5); }
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
-  display: none;
+  min-height: 100vh; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  padding: 20px;
-  animation: fadeIn 0.3s;
+  padding: 120px 24px 80px; text-align: center;
 }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px 5px 8px;
+  background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--accent2);
+  margin-bottom: 28px; animation: fadeDown 0.6s ease both;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+
+/* Fixed-height text containers to prevent layout jumps */
+.h1-wrap { min-height: 170px; display: flex; align-items: center; justify-content: center; animation: fadeDown 0.6s 0.1s ease both; }
+h1 {
+  font-size: clamp(40px, 6vw, 72px); font-weight: 800;
+  line-height: 1.1; letter-spacing: -1.5px; max-width: 820px;
+}
+h1 .gradient {
+  background: linear-gradient(135deg, #fff 0%, var(--accent2) 50%, #c084fc 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub-wrap { min-height: 60px; display: flex; align-items: center; justify-content: center; animation: fadeDown 0.6s 0.2s ease both; }
+.hero-sub { font-size: 17px; font-weight: 400; color: var(--muted2); max-width: 520px; line-height: 1.7; margin-bottom: 36px; }
+.hero-ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; animation: fadeDown 0.6s 0.3s ease both; }
+.btn-primary { padding: 12px 24px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.4); }
+.btn-secondary { padding: 12px 24px; background: var(--bg3); color: var(--text); border: 1px solid var(--border2); border-radius: 10px; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.btn-secondary:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
+
+.hero-stats { display: flex; margin-top: 60px; background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; animation: fadeDown 0.6s 0.4s ease both; }
+.hero-stat { padding: 20px 32px; text-align: center; border-right: 1px solid var(--border); flex: 1; }
+.hero-stat:last-child { border-right: none; }
+.stat-val { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+.stat-label { font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; }
+
+@keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+
+/* TRUST BAR */
+section { position: relative; z-index: 1; }
+.trust-bar { padding: 32px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.trust-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 8px; }
+.trust-badge { padding: 6px 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--muted2); display: flex; align-items: center; gap: 6px; }
+.trust-badge svg { opacity: 0.6; }
+
+/* SECTIONS */
+.features-section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+.section-tag { font-size: 11px; font-weight: 700; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 12px; }
+.section-sub { font-size: 15px; color: var(--muted2); line-height: 1.65; max-width: 480px; margin-bottom: 48px; font-weight: 400; }
+
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 16px; overflow: hidden; }
+.feature-card { background: var(--bg2); padding: 28px; transition: background 0.2s; }
+.feature-card:hover { background: var(--bg3); }
+.feature-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.fi-purple { background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.2); color: var(--accent2); }
+.fi-green { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); color: #22C55E; }
+.fi-blue { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #60A5FA; }
+.fi-orange { background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2); color: #FB923C; }
+.fi-pink { background: rgba(236,72,153,0.1); border: 1px solid rgba(236,72,153,0.2); color: #F472B6; }
+.fi-cyan { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2); color: #22D3EE; }
+.feature-name { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.feature-desc { font-size: 13px; color: var(--muted2); line-height: 1.65; font-weight: 400; }
+
+/* INTEGRATIONS */
+.integrations-section { padding: 100px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg2); }
+.integrations-inner { max-width: 1100px; margin: 0 auto; }
+.integrations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
+.integration-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  display: flex; align-items: center; gap: 14px;
+  transition: all 0.2s;
+}
+.integration-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+.int-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.int-name { font-size: 14px; font-weight: 600; }
+.int-desc { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+
+/* PRICING */
+.pricing-section { padding: 100px 24px; max-width: 960px; margin: 0 auto; }
+.pricing-section .section-sub { max-width: 100%; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.pricing-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.25s; position: relative; overflow: hidden; }
+.pricing-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.pricing-card.featured { border-color: rgba(99,102,241,0.35); background: linear-gradient(145deg, rgba(99,102,241,0.07) 0%, var(--bg2) 100%); }
+.pricing-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.pricing-pill { display: inline-block; padding: 3px 10px; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.25); border-radius: 100px; font-size: 10px; font-weight: 700; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.pricing-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.pricing-desc { font-size: 13px; color: var(--muted2); line-height: 1.55; margin-bottom: 24px; font-weight: 400; }
+.pricing-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
+.price-amount { font-size: 40px; font-weight: 700; letter-spacing: -1px; }
+.price-period { font-size: 13px; color: var(--muted); }
+.price-setup { font-size: 12px; color: var(--muted); margin-bottom: 24px; font-weight: 400; }
+.pricing-divider { height: 1px; background: var(--border); margin: 20px 0; }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.pricing-features li { font-size: 13px; color: var(--muted2); display: flex; align-items: flex-start; gap: 8px; font-weight: 400; }
+.check-icon { width: 16px; height: 16px; border-radius: 50%; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; color: var(--green); }
+.pricing-btn { width: 100%; margin-top: 24px; padding: 11px; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.pricing-btn-default { background: var(--bg3); color: var(--text); border: 1px solid var(--border2); }
+.pricing-btn-default:hover { background: rgba(255,255,255,0.07); }
+.pricing-btn-accent { background: var(--accent); color: #fff; border: none; }
+.pricing-btn-accent:hover { background: var(--accent2); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+
+/* DEMO */
+.demo-section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+.demo-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.demo-title { font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 14px; }
+.demo-desc { font-size: 15px; color: var(--muted2); line-height: 1.7; margin-bottom: 24px; font-weight: 400; }
+.demo-points { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.demo-point { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted2); font-weight: 400; }
+.demo-point-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* CHAT */
+.chat-widget { background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+.chat-header { padding: 14px 18px; background: var(--bg3); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.chat-header-left { display: flex; align-items: center; gap: 10px; }
+.chat-avatar { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #c084fc); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.chat-name { font-size: 13px; font-weight: 600; }
+.chat-status { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 4px; font-weight: 500; }
+.status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
+.chat-dots { display: flex; gap: 5px; }
+.chat-dot { width: 10px; height: 10px; border-radius: 50%; }
+.chat-dot:nth-child(1){background:#FF5F56} .chat-dot:nth-child(2){background:#FFBD2E} .chat-dot:nth-child(3){background:#27C93F}
+.chat-body-widget { padding: 16px; display: flex; flex-direction: column; gap: 10px; min-height: 230px; max-height: 230px; overflow-y: auto; scrollbar-width: none; }
+.chat-body-widget::-webkit-scrollbar { display: none; }
+.chat-bubble { max-width: 82%; padding: 9px 13px; border-radius: 12px; font-size: 13px; line-height: 1.55; font-weight: 400; }
+.bubble-bot { background: var(--bg3); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 4px; }
+.bubble-user { background: var(--accent); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-footer-widget { padding: 10px 12px; background: var(--bg3); border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; }
+.chat-input-widget { flex: 1; background: var(--bg2); border: 1px solid var(--border2); border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: inherit; font-size: 13px; outline: none; transition: border-color 0.2s; font-weight: 400; }
+.chat-input-widget:focus { border-color: var(--accent); }
+.chat-input-widget::placeholder { color: var(--muted); }
+.chat-send-btn { width: 34px; height: 34px; border-radius: 8px; background: var(--accent); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex-shrink: 0; }
+.chat-send-btn:hover { background: var(--accent2); transform: scale(1.05); }
+.chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* TYPING */
+.typing-indicator { display: flex; align-items: center; gap: 4px; padding: 9px 13px; background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; border-bottom-left-radius: 4px; max-width: 60px; align-self: flex-start; }
+.typing-indicator span { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); animation: typingBounce 1.2s infinite; }
+.typing-indicator span:nth-child(2){animation-delay:0.15s} .typing-indicator span:nth-child(3){animation-delay:0.3s}
+@keyframes typingBounce { 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-5px);opacity:1} }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; display: none; align-items: flex-end; justify-content: flex-end; padding: 80px 24px 24px; }
 .modal-overlay.open { display: flex; }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.modal-content {
-  width: 100%; max-width: 500px;
-  height: 90vh; max-height: 720px;
-  background: var(--surface);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-  display: flex; flex-direction: column;
-  animation: modalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-@keyframes modalIn {
-  from { opacity: 0; transform: scale(0.92) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-.modal-header {
-  padding: 16px 20px;
-  background: var(--surface2);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  flex-shrink: 0;
-}
-.modal-title { display: flex; align-items: center; gap: 12px; }
-.modal-title-avatar {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px;
-}
-.modal-title-text .name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600; font-size: 14px;
-}
-.modal-title-text .status {
-  font-size: 11px; color: var(--green);
-  display: flex; align-items: center; gap: 4px;
-}
-.modal-title-text .status::before {
-  content: ''; width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--green); box-shadow: 0 0 6px var(--green);
-}
-.modal-close {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 18px;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-.modal-close:hover { background: var(--surface); color: var(--text); }
-.chat-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: var(--bg);
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
-}
-.chat-msg {
-  max-width: 80%;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 14px;
-  line-height: 1.55;
-  animation: msgIn 0.25s ease both;
-}
-.chat-msg-bot {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-bottom-left-radius: 4px;
-  align-self: flex-start;
-  color: var(--text);
-}
-.chat-msg-user {
-  background: linear-gradient(135deg, var(--accent2), #5B41FF);
-  border-bottom-right-radius: 4px;
-  align-self: flex-end;
-  color: #fff;
-}
-.chat-typing {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 12px 16px;
-}
-.chat-typing span {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--muted);
-  animation: typingBounce 1.2s infinite;
-}
-.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
-.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes typingBounce {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-6px); opacity: 1; }
-}
-.chat-input-area {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
-  background: var(--surface2);
-  border-top: 1px solid var(--border);
-  flex-shrink: 0;
-}
-.chat-input-area input {
-  flex: 1;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 14px;
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.chat-input-area input:focus { border-color: var(--accent); }
-.chat-input-area input::placeholder { color: var(--muted); }
-#chatSend {
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  background: var(--accent);
-  border: none;
-  color: #000;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-  flex-shrink: 0;
-}
-#chatSend:hover { background: #fff; transform: scale(1.05); }
+.modal-box { width: 380px; height: 560px; background: var(--bg2); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 40px 80px rgba(0,0,0,0.6); animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1); }
+@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.modal-header { padding: 14px 18px; background: var(--bg3); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.modal-close { background: none; border: 1px solid var(--border2); color: var(--muted); width: 28px; height: 28px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.15s; font-family: inherit; }
+.modal-close:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+.modal-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+.msg { max-width: 82%; padding: 9px 13px; border-radius: 12px; font-size: 13px; line-height: 1.55; animation: msgFade 0.2s ease both; font-weight: 400; }
+@keyframes msgFade { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+.msg-bot { background: var(--bg3); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg-user { background: var(--accent); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.modal-footer { padding: 10px 12px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; flex-shrink: 0; background: var(--bg2); }
+#chatInput { flex: 1; background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: inherit; font-size: 13px; outline: none; transition: border-color 0.2s; font-weight: 400; }
+#chatInput:focus { border-color: var(--accent); }
+#chatInput::placeholder { color: var(--muted); }
+#chatSend { width: 34px; height: 34px; border-radius: 8px; background: var(--accent); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex-shrink: 0; }
+#chatSend:hover { background: var(--accent2); transform: scale(1.05); }
 #chatSend:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-@media (max-width: 968px) {
-  .hero { flex-direction: column; padding: 120px 24px 60px; gap: 50px; }
-  .hero-right { width: 100%; }
-  .demo-chat { width: 100%; max-width: 400px; }
-  .services-grid { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: repeat(2, 1fr); }
-  .stats-bar { gap: 40px; padding: 32px 20px; }
-  .stat-num { font-size: 32px; }
-  nav { padding: 14px 20px; }
-  .section { padding: 70px 24px; }
-  .test-section { padding: 70px 24px; }
+
+/* FAB */
+.fab { position: fixed; bottom: 24px; right: 24px; z-index: 998; width: 52px; height: 52px; border-radius: 14px; background: var(--accent); border: none; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 8px 30px rgba(99,102,241,0.5); }
+.fab:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(99,102,241,0.6); }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 40px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; position: relative; z-index: 1; }
+.footer-logo { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.footer-center { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.7; font-weight: 400; }
+.footer-right { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.7; font-weight: 400; }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .integrations-grid { grid-template-columns: 1fr 1fr; }
+  .demo-wrapper { grid-template-columns: 1fr; }
+  .nav-center { display: none; }
+  .hero-stats { flex-wrap: wrap; }
+  .hero-stat { border-right: none; border-bottom: 1px solid var(--border); min-width: 50%; }
 }
-@media (max-width: 500px) {
-  .nav-badge { display: none; }
-  .stats-bar { gap: 28px; }
-  h1 { font-size: 36px; }
+@media (max-width: 600px) {
+  nav { padding: 0 16px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .integrations-grid { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; text-align: center; }
+  .footer-right { text-align: center; }
+  .modal-box { width: 100%; border-radius: 16px 16px 0 0; }
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .h1-wrap { min-height: 200px; }
 }
 </style>
 </head>
 <body>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
+<div class="hero-bg"></div>
 
 <nav>
   <div class="logo">
-    <div class="logo-dot"></div>
+    <div class="logo-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 5L11 6.75V10.25L8 12L5 10.25V6.75L8 5Z" fill="white"/></svg>
+    </div>
     AgentFlow
+  </div>
+  <div class="nav-center">
+    <button class="nav-link" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" data-i18n="nav-features">Features</button>
+    <button class="nav-link" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" data-i18n="nav-pricing">Pricing</button>
+    <button class="nav-link" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})" data-i18n="nav-demo">Demo</button>
   </div>
   <div class="nav-right">
     <div class="lang-switcher">
@@ -647,142 +286,302 @@ footer p {
       <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
       <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
     </div>
-    <span class="nav-badge" data-i18n="badge">🇩🇪 Based in Germany</span>
+    <button class="btn-nav" onclick="openChat()" data-i18n="nav-cta">Talk to AI</button>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag" data-i18n="hero-tag">AI Automation · Available Now</div>
-    <h1 data-i18n="hero-title">Automate your business with <span class="accent">AI Agents</span></h1>
-    <p class="hero-desc" data-i18n="hero-desc">Custom AI chatbots, workflow automation, and intelligent systems for German businesses. GDPR-compliant. Deployed in days, not months.</p>
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="openChat()">
-        <span>💬</span><span data-i18n="hero-cta-1">Talk to AI Agent</span>
-      </button>
-      <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})" data-i18n="hero-cta-2">View Services</button>
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    <span data-i18n="badge">GDPR Compliant · Powered by Claude</span>
+  </div>
+  <div class="h1-wrap">
+    <h1><span class="gradient" data-i18n-html="h1">Automate your business<br>with AI Agents</span></h1>
+  </div>
+  <div class="hero-sub-wrap">
+    <p class="hero-sub" data-i18n="hero-sub">Custom AI chatbots, workflow automation, and intelligent systems for businesses. Deployed in days, not months.</p>
+  </div>
+  <div class="hero-ctas">
+    <button class="btn-primary" onclick="openChat()">
+      <span data-i18n="hero-cta1">Talk to AI Agent</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+    </button>
+    <button class="btn-secondary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" data-i18n="hero-cta2">View Pricing</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="stat-val">24/7</div><div class="stat-label" data-i18n="stat1">Availability</div></div>
+    <div class="hero-stat"><div class="stat-val">&lt;2s</div><div class="stat-label" data-i18n="stat2">Response Time</div></div>
+    <div class="hero-stat"><div class="stat-val">3</div><div class="stat-label" data-i18n="stat3">Languages</div></div>
+    <div class="hero-stat"><div class="stat-val">✓</div><div class="stat-label">GDPR / DSGVO</div></div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <span class="trust-label" data-i18n="trust-label">Built with</span>
+  <div class="trust-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    n8n
+  </div>
+  <div class="trust-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Claude AI
+  </div>
+  <div class="trust-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    Hetzner
+  </div>
+  <div class="trust-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    GDPR / DSGVO
+  </div>
+</div>
+
+<section class="features-section" id="features">
+  <div class="reveal"><div class="section-tag" data-i18n="features-tag">Capabilities</div></div>
+  <div class="reveal reveal-d1"><div class="section-title" data-i18n="features-title">Everything your business needs</div></div>
+  <div class="reveal reveal-d2"><p class="section-sub" data-i18n="features-sub">From simple chatbots to complex multi-agent systems — built, deployed, and supported.</p></div>
+  <div class="features-grid reveal reveal-d1">
+    <div class="feature-card">
+      <div class="feature-icon fi-purple">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div class="feature-name" data-i18n="f1-name">AI Chatbot</div>
+      <p class="feature-desc" data-i18n="f1-desc">Custom AI assistant for your website. Answers questions, collects leads, works 24/7 in any language.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon fi-green">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="feature-name" data-i18n="f2-name">Workflow Automation</div>
+      <p class="feature-desc" data-i18n="f2-desc">Automate repetitive tasks. Email workflows, CRM sync, notifications — all connected and running.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon fi-blue">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      </div>
+      <div class="feature-name" data-i18n="f3-name">RAG Knowledge Base</div>
+      <p class="feature-desc" data-i18n="f3-desc">Your AI learns from your documents and website. Accurate answers every time, no hallucinations.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon fi-orange">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div class="feature-name" data-i18n="f4-name">Multi-channel</div>
+      <p class="feature-desc" data-i18n="f4-desc">Website, Telegram, WhatsApp — one AI agent, all channels. Customers reach you wherever they are.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon fi-pink">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="feature-name" data-i18n="f5-name">GDPR Compliant</div>
+      <p class="feature-desc" data-i18n="f5-desc">Hosted on German servers. All data stays in Germany. Full DSGVO compliance, no exceptions.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon fi-cyan">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51L8.59 10.49"/></svg>
+      </div>
+      <div class="feature-name" data-i18n="f6-name">CRM Integration</div>
+      <p class="feature-desc" data-i18n="f6-desc">Connect to your existing stack. HubSpot, Salesforce, Pipedrive, Notion — all synchronized.</p>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="demo-chat">
-      <div class="demo-header">
-        <div class="demo-avatar">🤖</div>
-        <div>
-          <div class="demo-name">AgentFlow Assistant</div>
-          <div class="demo-status" data-i18n="demo-status">Online — ready to help</div>
+</section>
+
+<section class="integrations-section">
+  <div class="integrations-inner">
+    <div class="reveal"><div class="section-tag" data-i18n="int-tag">Integrations</div></div>
+    <div class="reveal reveal-d1"><div class="section-title" data-i18n="int-title">Works with the tools you already use</div></div>
+    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="int-sub">Connect your existing business tools in minutes. No migration, no friction.</p></div>
+    <div class="integrations-grid reveal reveal-d1">
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
         </div>
+        <div><div class="int-name">WhatsApp Business</div><div class="int-desc" data-i18n="i1">Customer support & lead gen</div></div>
       </div>
-      <div class="demo-messages">
-        <div class="msg msg-bot" data-i18n="demo-msg-1">Hi! I'm the AgentFlow AI assistant 👋 I can tell you about our services and how we can automate your business.</div>
-        <div class="msg msg-user" data-i18n="demo-msg-2">What can you do for my online shop?</div>
-        <div class="msg msg-bot" data-i18n="demo-msg-3">For an online shop, we can automate customer support 24/7 and qualify leads automatically. Our <strong>Automate</strong> package (€800 setup + €100/month) is perfect for this. 🚀</div>
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(74,144,226,0.1);border:1px solid rgba(74,144,226,0.2)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A90E2" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div><div class="int-name">Telegram</div><div class="int-desc" data-i18n="i2">Bot automation & notifications</div></div>
       </div>
-      <div class="demo-cta">
-        <button onclick="openChat()" data-i18n="demo-cta">Start your conversation →</button>
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(255,115,0,0.1);border:1px solid rgba(255,115,0,0.2)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7300" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div><div class="int-name">HubSpot</div><div class="int-desc" data-i18n="i3">CRM sync & lead pipeline</div></div>
       </div>
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(234,67,53,0.1);border:1px solid rgba(234,67,53,0.2)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div><div class="int-name">Gmail / Outlook</div><div class="int-desc" data-i18n="i4">Email automation workflows</div></div>
+      </div>
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 17h7M17.5 14v7"/></svg>
+        </div>
+        <div><div class="int-name">Notion</div><div class="int-desc" data-i18n="i5">Knowledge base & task sync</div></div>
+      </div>
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(0,167,94,0.1);border:1px solid rgba(0,167,94,0.2)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00A75E" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div><div class="int-name">Google Sheets</div><div class="int-desc" data-i18n="i6">Data logging & reporting</div></div>
+      </div>
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.25)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.8"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5zM20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5zM3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14zM14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5zM15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5zM8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+        </div>
+        <div><div class="int-name">Slack</div><div class="int-desc" data-i18n="i7">Team alerts & internal bots</div></div>
+      </div>
+
+      <div class="integration-card">
+        <div class="int-icon" style="background:rgba(99,179,237,0.1);border:1px solid rgba(99,179,237,0.2)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#63B3ED" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div><div class="int-name">Stripe</div><div class="int-desc" data-i18n="i8">Payment events & billing</div></div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label" data-i18n="stat-1">AI availability</div></div>
-  <div class="stat"><div class="stat-num">&lt;1h</div><div class="stat-label" data-i18n="stat-2">Response time</div></div>
-  <div class="stat"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat-3">Languages</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat-4">GDPR compliant</div></div>
-</div>
-
-<section class="section" id="services">
-  <div class="section-tag" data-i18n="services-tag">What we offer</div>
-  <div class="section-title" data-i18n="services-title">Simple, transparent pricing</div>
-  <div class="services-grid">
-    <div class="service-card">
-      <span class="service-icon">🤖</span>
-      <div class="service-name">Chatbot</div>
-      <div class="service-desc" data-i18n="srv-1-desc">AI assistant for your website. Answers customer questions, collects leads, works 24/7.</div>
-      <div class="service-price"><span class="price-amount">€400</span><span class="price-label" data-i18n="srv-setup">setup</span></div>
-      <div class="price-monthly" data-i18n="srv-1-monthly">+ €60 / month support</div>
-      <ul class="service-features">
-        <li data-i18n="srv-1-f1">Custom AI personality</li>
-        <li data-i18n="srv-1-f2">Lead collection</li>
-        <li data-i18n="srv-1-f3">DE / EN / RU support</li>
-        <li data-i18n="srv-1-f4">Chat widget for website</li>
+<section class="pricing-section" id="pricing">
+  <div class="reveal"><div class="section-tag" data-i18n="pricing-tag">Pricing</div></div>
+  <div class="reveal reveal-d1"><div class="section-title" data-i18n="pricing-title">Simple, transparent pricing</div></div>
+  <div class="reveal reveal-d2"><p class="section-sub" data-i18n="pricing-sub">One-time setup fee. Predictable monthly support. No surprises.</p></div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="pricing-name">Chatbot</div>
+      <p class="pricing-desc" data-i18n="p1-desc">AI assistant for your website. Lead collection, 24/7 availability.</p>
+      <div class="pricing-price"><span class="price-amount">€400</span></div>
+      <div class="price-setup" data-i18n="p1-setup">one-time · + €60 / month</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f1">Custom AI personality</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f2">Lead collection</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f3">DE / EN / RU</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f4">Website embed</span></li>
       </ul>
+      <button class="pricing-btn pricing-btn-default" onclick="openChat()" data-i18n="p-cta">Get Started</button>
     </div>
-    <div class="service-card">
-      <span class="service-icon">⚡</span>
-      <div class="service-name">Automate</div>
-      <div class="service-desc" data-i18n="srv-2-desc">Business process automation. Email workflows, CRM integration, notifications, data sync.</div>
-      <div class="service-price"><span class="price-amount">€800</span><span class="price-label" data-i18n="srv-setup-2">setup</span></div>
-      <div class="price-monthly" data-i18n="srv-2-monthly">+ €100 / month support</div>
-      <ul class="service-features">
-        <li data-i18n="srv-2-f1">Everything in Chatbot</li>
-        <li data-i18n="srv-2-f2">CRM integration</li>
-        <li data-i18n="srv-2-f3">Email automation</li>
-        <li data-i18n="srv-2-f4">Custom workflows</li>
+    <div class="pricing-card featured reveal reveal-d1">
+      <div class="pricing-pill" data-i18n="popular">Most Popular</div>
+      <div class="pricing-name">Automate</div>
+      <p class="pricing-desc" data-i18n="p2-desc">Full workflow automation. CRM, email, integrations — all connected.</p>
+      <div class="pricing-price"><span class="price-amount">€800</span></div>
+      <div class="price-setup" data-i18n="p2-setup">one-time · + €100 / month</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f1">Everything in Chatbot</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f2">CRM integration</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f3">Email automation</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f4">Custom workflows</span></li>
       </ul>
+      <button class="pricing-btn pricing-btn-accent" onclick="openChat()" data-i18n="p-cta">Get Started</button>
     </div>
-    <div class="service-card">
-      <span class="service-icon">🚀</span>
-      <div class="service-name">Transform</div>
-      <div class="service-desc" data-i18n="srv-3-desc">Full AI system. RAG knowledge base, intelligent agents, complete business transformation.</div>
-      <div class="service-price"><span class="price-amount">€1500</span><span class="price-label" data-i18n="srv-setup-3">setup</span></div>
-      <div class="price-monthly" data-i18n="srv-3-monthly">+ €150 / month support</div>
-      <ul class="service-features">
-        <li data-i18n="srv-3-f1">Everything in Automate</li>
-        <li data-i18n="srv-3-f2">RAG knowledge base</li>
-        <li data-i18n="srv-3-f3">Multi-agent system</li>
-        <li data-i18n="srv-3-f4">Priority support</li>
+    <div class="pricing-card reveal reveal-d2">
+      <div class="pricing-name">Transform</div>
+      <p class="pricing-desc" data-i18n="p3-desc">Complete AI system. RAG, multi-agent, full business transformation.</p>
+      <div class="pricing-price"><span class="price-amount">€1,500</span></div>
+      <div class="price-setup" data-i18n="p3-setup">one-time · + €150 / month</div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f1">Everything in Automate</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f2">RAG knowledge base</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f3">Multi-agent system</span></li>
+        <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f4">Priority support</span></li>
       </ul>
+      <button class="pricing-btn pricing-btn-default" onclick="openChat()" data-i18n="p-cta">Get Started</button>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="section-tag" data-i18n="how-tag">Process</div>
-  <div class="section-title" data-i18n="how-title">From idea to live in days</div>
-  <div class="steps">
-    <div class="step"><div class="step-num">01</div><div class="step-title" data-i18n="step-1-title">Discovery Call</div><div class="step-desc" data-i18n="step-1-desc">We discuss your business needs and find the right automation strategy.</div></div>
-    <div class="step"><div class="step-num">02</div><div class="step-title" data-i18n="step-2-title">Design</div><div class="step-desc" data-i18n="step-2-desc">We design the AI agent and automation workflow tailored to your business.</div></div>
-    <div class="step"><div class="step-num">03</div><div class="step-title" data-i18n="step-3-title">Build & Test</div><div class="step-desc" data-i18n="step-3-desc">We build, test, and refine until everything works perfectly.</div></div>
-    <div class="step"><div class="step-num">04</div><div class="step-title" data-i18n="step-4-title">Deploy & Support</div><div class="step-desc" data-i18n="step-4-desc">We deploy on GDPR-compliant German servers and provide ongoing support.</div></div>
+<section class="demo-section" id="demo">
+  <div class="demo-wrapper">
+    <div>
+      <div class="section-tag reveal" data-i18n="demo-tag">Live Demo</div>
+      <h2 class="demo-title reveal reveal-d1" data-i18n-html="demo-title">Try to break it.<br>You won't.</h2>
+      <p class="demo-desc reveal reveal-d2" data-i18n="demo-desc">This AI agent is live right now. Test its security, response quality, and multilingual capabilities.</p>
+      <div class="demo-points reveal reveal-d2">
+        <div class="demo-point"><div class="demo-point-dot"></div><span data-i18n="dp1">Responds in German, English, Russian</span></div>
+        <div class="demo-point"><div class="demo-point-dot"></div><span data-i18n="dp2">Protected against prompt injection</span></div>
+        <div class="demo-point"><div class="demo-point-dot"></div><span data-i18n="dp3">Collects leads automatically</span></div>
+      </div>
+      <button class="btn-primary reveal reveal-d3" onclick="openChat()">
+        <span data-i18n="demo-cta">Open Live Agent</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </button>
+    </div>
+    <div class="chat-widget reveal reveal-d1">
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <div class="chat-avatar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div>
+            <div class="chat-name">AgentFlow AI</div>
+            <div class="chat-status"><div class="status-dot"></div><span data-i18n="demo-online">Online · Powered by Claude</span></div>
+          </div>
+        </div>
+        <div class="chat-dots"><div class="chat-dot"></div><div class="chat-dot"></div><div class="chat-dot"></div></div>
+      </div>
+      <div class="chat-body-widget">
+        <div class="chat-bubble bubble-bot" data-i18n="demo-m1">Hi! I'm the AgentFlow AI assistant. I can tell you about our services and pricing.</div>
+        <div class="chat-bubble bubble-user" data-i18n="demo-m2">What can you do for my online shop?</div>
+        <div class="chat-bubble bubble-bot" data-i18n="demo-m3">For an online shop we automate customer support 24/7, qualify leads, and sync orders to your CRM. Our Automate package at €800 setup + €100/month is the best fit.</div>
+      </div>
+      <div class="chat-footer-widget">
+        <input class="chat-input-widget" type="text" data-i18n-ph="demo-ph" placeholder="Try it yourself..." onclick="openChat()" readonly />
+        <button class="chat-send-btn" onclick="openChat()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
-
-<div class="test-section">
-  <div class="test-tag" data-i18n="test-tag">🛡️ Live Demo · Security Tested</div>
-  <div class="test-title" data-i18n="test-title">Try to break it.<br>You won't.</div>
-  <div class="test-desc" data-i18n="test-desc">This AI agent is live and running right now. Test its security, response quality, and multilingual capabilities. Try to manipulate it — it's designed to stay focused.</div>
-  <button class="btn-primary" style="margin: 0 auto;" onclick="openChat()">
-    <span>🤖</span><span data-i18n="test-cta">Open Live Agent</span>
-  </button>
-  <div class="test-note" data-i18n="test-note">Speaks German, English, Russian · Secured against prompt injection · GDPR compliant</div>
-</div>
 
 <footer>
-  <div class="footer-logo">AgentFlow</div>
-  <p data-i18n="footer-1">AI Automation for German businesses · Düsseldorf, Germany</p>
-  <p style="margin-top: 8px;">ai.agents.de@gmail.com</p>
+  <div class="footer-logo">
+    <div class="logo-icon" style="width:22px;height:22px;border-radius:6px;">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 4.5V11.5L8 15L2 11.5V4.5L8 1Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 5L11 6.75V10.25L8 12L5 10.25V6.75L8 5Z" fill="white"/></svg>
+    </div>
+    AgentFlow
+  </div>
+  <div class="footer-center" data-i18n-html="footer-mid">AI Automation · Düsseldorf, Germany<br>GDPR / DSGVO Compliant</div>
+  <div class="footer-right">ai.agents.de@gmail.com<br><span style="opacity:0.4" data-i18n="footer-copy">© 2025 AgentFlow</span></div>
 </footer>
 
-<button class="chat-fab" onclick="openChat()">💬</button>
+<button class="fab" onclick="openChat()">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+</button>
 
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeChat()">
-  <div class="modal-content">
+  <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title">
-        <div class="modal-title-avatar">🤖</div>
-        <div class="modal-title-text">
-          <div class="name">AgentFlow AI</div>
-          <div class="status" data-i18n="modal-status">Online · Powered by Claude</div>
+      <div class="chat-header-left">
+        <div class="chat-avatar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div>
+          <div class="chat-name">AgentFlow AI</div>
+          <div class="chat-status"><div class="status-dot"></div><span data-i18n="demo-online">Online · Powered by Claude</span></div>
         </div>
       </div>
       <button class="modal-close" onclick="closeChat()">✕</button>
     </div>
-    <div class="chat-body" id="chatBody"></div>
-    <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()" />
+    <div class="modal-body" id="chatBody"></div>
+    <div class="modal-footer">
+      <input type="text" id="chatInput" data-i18n-ph="chat-ph" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()" />
       <button id="chatSend" onclick="sendMessage()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </div>
   </div>
@@ -790,212 +589,221 @@ footer p {
 
 <script>
 const CHAT_URL = 'https://n8n.aiagents.pp.ua/webhook/affacb8d-803e-4903-b27b-8f41ffc476a1/chat';
-let sessionId = 'session-' + Math.random().toString(36).substr(2, 9);
-let chatInitialized = false;
+let sessionId = 'sess-' + Math.random().toString(36).substr(2,9);
+let chatInit = false;
 
-function appendMessage(text, isUser) {
-  const body = document.getElementById('chatBody');
-  const msg = document.createElement('div');
-  msg.className = 'chat-msg ' + (isUser ? 'chat-msg-user' : 'chat-msg-bot');
-  msg.innerHTML = text;
-  body.appendChild(msg);
-  body.scrollTop = body.scrollHeight;
+const T = {
+  en: {
+    'nav-features':'Features','nav-pricing':'Pricing','nav-demo':'Demo','nav-cta':'Talk to AI',
+    'badge':'GDPR Compliant · Powered by Claude',
+    'h1':'Automate your business<br>with AI Agents',
+    'hero-sub':'Custom AI chatbots, workflow automation, and intelligent systems for businesses. Deployed in days, not months.',
+    'hero-cta1':'Talk to AI Agent','hero-cta2':'View Pricing',
+    'stat1':'Availability','stat2':'Response Time','stat3':'Languages',
+    'trust-label':'Built with',
+    'features-tag':'Capabilities','features-title':'Everything your business needs',
+    'features-sub':'From simple chatbots to complex multi-agent systems — built, deployed, and supported.',
+    'f1-name':'AI Chatbot','f1-desc':'Custom AI assistant for your website. Answers questions, collects leads, works 24/7 in any language.',
+    'f2-name':'Workflow Automation','f2-desc':'Automate repetitive tasks. Email workflows, CRM sync, notifications — all connected and running.',
+    'f3-name':'RAG Knowledge Base','f3-desc':'Your AI learns from your documents and website. Accurate answers every time, no hallucinations.',
+    'f4-name':'Multi-channel','f4-desc':'Website, Telegram, WhatsApp — one AI agent, all channels. Customers reach you wherever they are.',
+    'f5-name':'GDPR Compliant','f5-desc':'Hosted on German servers. All data stays in Germany. Full DSGVO compliance, no exceptions.',
+    'f6-name':'CRM Integration','f6-desc':'Connect to your existing stack. HubSpot, Salesforce, Pipedrive, Notion — all synchronized.',
+    'int-tag':'Integrations','int-title':'Works with the tools you already use',
+    'int-sub':'Connect your existing business tools in minutes. No migration, no friction.',
+    'i1':'Customer support & lead gen','i2':'Bot automation & notifications',
+    'i3':'CRM sync & lead pipeline','i4':'Email automation workflows',
+    'i5':'Knowledge base & task sync','i6':'Data logging & reporting',
+    'i7':'Team alerts & internal bots','i8':'Payment events & billing',
+    'pricing-tag':'Pricing','pricing-title':'Simple, transparent pricing',
+    'pricing-sub':'One-time setup fee. Predictable monthly support. No surprises.',
+    'popular':'Most Popular',
+    'p1-desc':'AI assistant for your website. Lead collection, 24/7 availability.',
+    'p1-setup':'one-time · + €60 / month',
+    'p1-f1':'Custom AI personality','p1-f2':'Lead collection','p1-f3':'DE / EN / RU','p1-f4':'Website embed',
+    'p2-desc':'Full workflow automation. CRM, email, integrations — all connected.',
+    'p2-setup':'one-time · + €100 / month',
+    'p2-f1':'Everything in Chatbot','p2-f2':'CRM integration','p2-f3':'Email automation','p2-f4':'Custom workflows',
+    'p3-desc':'Complete AI system. RAG, multi-agent, full business transformation.',
+    'p3-setup':'one-time · + €150 / month',
+    'p3-f1':'Everything in Automate','p3-f2':'RAG knowledge base','p3-f3':'Multi-agent system','p3-f4':'Priority support',
+    'p-cta':'Get Started',
+    'demo-tag':'Live Demo','demo-title':'Try to break it.<br>You won\'t.',
+    'demo-desc':'This AI agent is live right now. Test its security, response quality, and multilingual capabilities.',
+    'dp1':'Responds in German, English, Russian','dp2':'Protected against prompt injection','dp3':'Collects leads automatically',
+    'demo-cta':'Open Live Agent','demo-online':'Online · Powered by Claude',
+    'demo-m1':'Hi! I\'m the AgentFlow AI assistant. I can tell you about our services and pricing.',
+    'demo-m2':'What can you do for my online shop?',
+    'demo-m3':'For an online shop we automate customer support 24/7, qualify leads, and sync orders to your CRM. Our Automate package at €800 setup + €100/month is the best fit.',
+    'demo-ph':'Try it yourself...','chat-ph':'Type a message...',
+    'footer-mid':'AI Automation · Düsseldorf, Germany<br>GDPR / DSGVO Compliant','footer-copy':'© 2025 AgentFlow',
+    'chat-hi':'Hi! I\'m the AgentFlow AI assistant. How can I help you today?'
+  },
+  de: {
+    'nav-features':'Features','nav-pricing':'Preise','nav-demo':'Demo','nav-cta':'KI starten',
+    'badge':'DSGVO-konform · Powered by Claude',
+    'h1':'Automatisiere dein Business<br>mit KI-Agenten',
+    'hero-sub':'Maßgeschneiderte KI-Chatbots und Workflow-Automatisierung. In Tagen einsatzbereit, nicht in Monaten.',
+    'hero-cta1':'Mit KI sprechen','hero-cta2':'Preise ansehen',
+    'stat1':'Verfügbarkeit','stat2':'Antwortzeit','stat3':'Sprachen',
+    'trust-label':'Betrieben mit',
+    'features-tag':'Funktionen','features-title':'Alles was dein Business braucht',
+    'features-sub':'Von einfachen Chatbots bis zu komplexen Multi-Agenten-Systemen — gebaut, deployed, supported.',
+    'f1-name':'KI-Chatbot','f1-desc':'Individueller KI-Assistent für deine Website. Beantwortet Fragen, sammelt Leads, arbeitet 24/7.',
+    'f2-name':'Workflow-Automatisierung','f2-desc':'Automatisiere Routineaufgaben. E-Mail, CRM-Sync, Benachrichtigungen — alles verbunden.',
+    'f3-name':'RAG-Wissensbasis','f3-desc':'Dein KI-Agent lernt aus deinen Dokumenten. Präzise Antworten, keine Halluzinationen.',
+    'f4-name':'Multi-Channel','f4-desc':'Website, Telegram, WhatsApp — ein KI-Agent, alle Kanäle. Kunden erreichen dich überall.',
+    'f5-name':'DSGVO-konform','f5-desc':'Gehostet auf deutschen Servern. Alle Daten in Deutschland. Vollständige DSGVO-Compliance.',
+    'f6-name':'CRM-Integration','f6-desc':'Verbinde deinen bestehenden Stack. HubSpot, Salesforce, Pipedrive, Notion — alles synchronisiert.',
+    'int-tag':'Integrationen','int-title':'Funktioniert mit deinen bestehenden Tools',
+    'int-sub':'Verbinde deine Business-Tools in Minuten. Keine Migration, keine Reibung.',
+    'i1':'Kundensupport & Lead-Generierung','i2':'Bot-Automatisierung & Benachrichtigungen',
+    'i3':'CRM-Sync & Lead-Pipeline','i4':'E-Mail-Automatisierungs-Workflows',
+    'i5':'Wissensbasis & Aufgaben-Sync','i6':'Daten-Logging & Reporting',
+    'i7':'Team-Alerts & interne Bots','i8':'Zahlungsereignisse & Abrechnung',
+    'pricing-tag':'Preise','pricing-title':'Einfache, transparente Preise',
+    'pricing-sub':'Einmaliges Setup. Vorhersehbarer monatlicher Support. Keine Überraschungen.',
+    'popular':'Beliebteste',
+    'p1-desc':'KI-Assistent für deine Website. Lead-Erfassung, 24/7 Verfügbarkeit.',
+    'p1-setup':'einmalig · + €60 / Monat',
+    'p1-f1':'Individuelle KI-Persönlichkeit','p1-f2':'Lead-Erfassung','p1-f3':'DE / EN / RU','p1-f4':'Website-Einbettung',
+    'p2-desc':'Vollständige Workflow-Automatisierung. CRM, E-Mail, Integrationen — alles verbunden.',
+    'p2-setup':'einmalig · + €100 / Monat',
+    'p2-f1':'Alles aus Chatbot','p2-f2':'CRM-Integration','p2-f3':'E-Mail-Automatisierung','p2-f4':'Individuelle Workflows',
+    'p3-desc':'Komplettes KI-System. RAG, Multi-Agenten, vollständige Transformation.',
+    'p3-setup':'einmalig · + €150 / Monat',
+    'p3-f1':'Alles aus Automate','p3-f2':'RAG-Wissensbasis','p3-f3':'Multi-Agenten-System','p3-f4':'Priorisierter Support',
+    'p-cta':'Loslegen',
+    'demo-tag':'Live-Demo','demo-title':'Versuche ihn zu knacken.<br>Du wirst nicht.',
+    'demo-desc':'Dieser KI-Agent läuft live. Teste Sicherheit, Antwortqualität und Mehrsprachigkeit.',
+    'dp1':'Antwortet auf Deutsch, Englisch, Russisch','dp2':'Geschützt gegen Prompt-Injection','dp3':'Erfasst Leads automatisch',
+    'demo-cta':'Live-Agent öffnen','demo-online':'Online · Powered by Claude',
+    'demo-m1':'Hallo! Ich bin der AgentFlow KI-Assistent. Ich erzähle dir über unsere Dienste.',
+    'demo-m2':'Was könnt ihr für meinen Online-Shop tun?',
+    'demo-m3':'Für einen Online-Shop automatisieren wir Support 24/7, qualifizieren Leads und synchronisieren Bestellungen mit deinem CRM. Das Automate-Paket (€800 + €100/Monat) passt am besten.',
+    'demo-ph':'Teste es selbst...','chat-ph':'Nachricht schreiben...',
+    'footer-mid':'KI-Automatisierung · Düsseldorf<br>GDPR / DSGVO-konform','footer-copy':'© 2025 AgentFlow',
+    'chat-hi':'Hallo! Ich bin der AgentFlow KI-Assistent. Wie kann ich dir helfen?'
+  },
+  ru: {
+    'nav-features':'Функции','nav-pricing':'Цены','nav-demo':'Демо','nav-cta':'Написать AI',
+    'badge':'GDPR · Powered by Claude',
+    'h1':'Автоматизируй бизнес<br>с AI Агентами',
+    'hero-sub':'Кастомные AI чатботы и автоматизация процессов. Запуск за дни, а не месяцы.',
+    'hero-cta1':'Поговорить с AI','hero-cta2':'Посмотреть цены',
+    'stat1':'Доступность','stat2':'Время ответа','stat3':'Языка',
+    'trust-label':'Работает на',
+    'features-tag':'Возможности','features-title':'Всё что нужно твоему бизнесу',
+    'features-sub':'От простых чатботов до сложных мульти-агентных систем — строим, запускаем, поддерживаем.',
+    'f1-name':'AI Чатбот','f1-desc':'Кастомный AI ассистент для сайта. Отвечает на вопросы, собирает лиды, работает 24/7.',
+    'f2-name':'Автоматизация','f2-desc':'Автоматизируй рутину. Email, CRM синхронизация, уведомления — всё связано и работает.',
+    'f3-name':'RAG База знаний','f3-desc':'AI учится из твоих документов и сайта. Точные ответы всегда, без галлюцинаций.',
+    'f4-name':'Мульти-канал','f4-desc':'Сайт, Telegram, WhatsApp — один AI агент, все каналы. Клиенты найдут тебя где угодно.',
+    'f5-name':'GDPR','f5-desc':'Хостинг на немецких серверах. Все данные в Германии. Полное соответствие GDPR.',
+    'f6-name':'CRM Интеграция','f6-desc':'Подключи существующий стек. HubSpot, Salesforce, Pipedrive, Notion — всё синхронизировано.',
+    'int-tag':'Интеграции','int-title':'Работает с инструментами которые уже используешь',
+    'int-sub':'Подключи бизнес-инструменты за минуты. Никакой миграции, никаких сложностей.',
+    'i1':'Поддержка клиентов и лидогенерация','i2':'Автоматизация бота и уведомления',
+    'i3':'CRM синхронизация и лиды','i4':'Email автоматизация',
+    'i5':'База знаний и задачи','i6':'Логирование данных и отчёты',
+    'i7':'Алерты для команды и внутренние боты','i8':'Платёжные события и биллинг',
+    'pricing-tag':'Цены','pricing-title':'Простые, прозрачные цены',
+    'pricing-sub':'Единоразовый setup. Предсказуемый ежемесячный саппорт. Никаких сюрпризов.',
+    'popular':'Популярный',
+    'p1-desc':'AI ассистент для сайта. Сбор лидов, доступность 24/7.',
+    'p1-setup':'единоразово · + €60 / мес',
+    'p1-f1':'Кастомная личность AI','p1-f2':'Сбор лидов','p1-f3':'DE / EN / RU','p1-f4':'Виджет для сайта',
+    'p2-desc':'Полная автоматизация. CRM, email, интеграции — всё подключено.',
+    'p2-setup':'единоразово · + €100 / мес',
+    'p2-f1':'Всё из Chatbot','p2-f2':'CRM интеграция','p2-f3':'Email автоматизация','p2-f4':'Кастомные workflows',
+    'p3-desc':'Полная AI система. RAG, мульти-агент, полная трансформация бизнеса.',
+    'p3-setup':'единоразово · + €150 / мес',
+    'p3-f1':'Всё из Automate','p3-f2':'RAG база знаний','p3-f3':'Мульти-агент','p3-f4':'Приоритетный саппорт',
+    'p-cta':'Начать',
+    'demo-tag':'Live Demo','demo-title':'Попробуй сломать.<br>Не сможешь.',
+    'demo-desc':'Этот AI агент работает прямо сейчас. Проверь безопасность, качество и многоязычность.',
+    'dp1':'Отвечает на немецком, английском, русском','dp2':'Защищён от prompt injection','dp3':'Автоматически собирает лиды',
+    'demo-cta':'Открыть Live Agent','demo-online':'Онлайн · Powered by Claude',
+    'demo-m1':'Привет! Я AI ассистент AgentFlow. Расскажу о наших услугах.',
+    'demo-m2':'Что вы можете для онлайн-магазина?',
+    'demo-m3':'Для магазина — автоматизация поддержки 24/7, квалификация лидов и синхронизация заказов с CRM. Пакет Automate (€800 + €100/мес) — лучший вариант.',
+    'demo-ph':'Попробуй сам...','chat-ph':'Написать сообщение...',
+    'footer-mid':'AI Автоматизация · Дюссельдорф<br>GDPR / DSGVO',
+    'footer-copy':'© 2025 AgentFlow',
+    'chat-hi':'Привет! Я AI ассистент AgentFlow. Чем могу помочь?'
+  }
+};
+
+function setLang(l) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`[data-lang="${l}"]`).classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (T[l][k] !== undefined) el.textContent = T[l][k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.getAttribute('data-i18n-html');
+    if (T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.getAttribute('data-i18n-ph');
+    if (T[l][k] !== undefined) el.placeholder = T[l][k];
+  });
+  localStorage.setItem('af-lang', l);
+  document.documentElement.lang = l;
 }
 
+function appendMsg(text, isUser) {
+  const b = document.getElementById('chatBody');
+  const m = document.createElement('div');
+  m.className = 'msg ' + (isUser ? 'msg-user' : 'msg-bot');
+  m.textContent = text;
+  b.appendChild(m);
+  b.scrollTop = b.scrollHeight;
+}
 function showTyping() {
-  const body = document.getElementById('chatBody');
-  const typing = document.createElement('div');
-  typing.className = 'chat-msg chat-msg-bot chat-typing';
-  typing.id = 'typingIndicator';
-  typing.innerHTML = '<span></span><span></span><span></span>';
-  body.appendChild(typing);
-  body.scrollTop = body.scrollHeight;
+  const b = document.getElementById('chatBody');
+  const t = document.createElement('div');
+  t.className = 'typing-indicator'; t.id = 'typing';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  b.appendChild(t); b.scrollTop = b.scrollHeight;
 }
-
-function hideTyping() {
-  const t = document.getElementById('typingIndicator');
-  if (t) t.remove();
-}
+function hideTyping() { const t = document.getElementById('typing'); if(t) t.remove(); }
 
 async function sendMessage() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  document.getElementById('chatSend').disabled = true;
-
-  appendMessage(text, true);
-  showTyping();
-
+  const inp = document.getElementById('chatInput');
+  const txt = inp.value.trim(); if (!txt) return;
+  inp.value = ''; document.getElementById('chatSend').disabled = true;
+  appendMsg(txt, true); showTyping();
   try {
-    const res = await fetch(CHAT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chatInput: text, sessionId })
-    });
-    const data = await res.json();
-    hideTyping();
-    const reply = data.output || data.text || data.message || data.response || JSON.stringify(data);
-    appendMessage(reply, false);
-  } catch (e) {
-    hideTyping();
-    appendMessage('Connection error. Please try again.', false);
-  }
-
+    const r = await fetch(CHAT_URL, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({chatInput: txt, sessionId}) });
+    const d = await r.json(); hideTyping();
+    appendMsg(d.output || d.text || d.message || d.response || JSON.stringify(d), false);
+  } catch(e) { hideTyping(); appendMsg('Connection error. Please try again.', false); }
   document.getElementById('chatSend').disabled = false;
   document.getElementById('chatInput').focus();
 }
 
-const translations = {
-  en: {
-    'badge': '🇩🇪 Based in Germany',
-    'hero-tag': 'AI Automation · Available Now',
-    'hero-title': 'Automate your business with <span class="accent">AI Agents</span>',
-    'hero-desc': 'Custom AI chatbots, workflow automation, and intelligent systems for German businesses. GDPR-compliant. Deployed in days, not months.',
-    'hero-cta-1': 'Talk to AI Agent',
-    'hero-cta-2': 'View Services',
-    'demo-status': 'Online — ready to help',
-    'demo-msg-1': 'Hi! I\'m the AgentFlow AI assistant 👋 I can tell you about our services and how we can automate your business.',
-    'demo-msg-2': 'What can you do for my online shop?',
-    'demo-msg-3': 'For an online shop, we can automate customer support 24/7 and qualify leads automatically. Our <strong>Automate</strong> package (€800 setup + €100/month) is perfect for this. 🚀',
-    'demo-cta': 'Start your conversation →',
-    'stat-1': 'AI availability', 'stat-2': 'Response time', 'stat-3': 'Languages', 'stat-4': 'GDPR compliant',
-    'services-tag': 'What we offer', 'services-title': 'Simple, transparent pricing',
-    'srv-1-desc': 'AI assistant for your website. Answers customer questions, collects leads, works 24/7.',
-    'srv-setup': 'setup', 'srv-setup-2': 'setup', 'srv-setup-3': 'setup',
-    'srv-1-monthly': '+ €60 / month support',
-    'srv-1-f1': 'Custom AI personality', 'srv-1-f2': 'Lead collection', 'srv-1-f3': 'DE / EN / RU support', 'srv-1-f4': 'Chat widget for website',
-    'srv-2-desc': 'Business process automation. Email workflows, CRM integration, notifications, data sync.',
-    'srv-2-monthly': '+ €100 / month support',
-    'srv-2-f1': 'Everything in Chatbot', 'srv-2-f2': 'CRM integration', 'srv-2-f3': 'Email automation', 'srv-2-f4': 'Custom workflows',
-    'srv-3-desc': 'Full AI system. RAG knowledge base, intelligent agents, complete business transformation.',
-    'srv-3-monthly': '+ €150 / month support',
-    'srv-3-f1': 'Everything in Automate', 'srv-3-f2': 'RAG knowledge base', 'srv-3-f3': 'Multi-agent system', 'srv-3-f4': 'Priority support',
-    'how-tag': 'Process', 'how-title': 'From idea to live in days',
-    'step-1-title': 'Discovery Call', 'step-1-desc': 'We discuss your business needs and find the right automation strategy.',
-    'step-2-title': 'Design', 'step-2-desc': 'We design the AI agent and automation workflow tailored to your business.',
-    'step-3-title': 'Build & Test', 'step-3-desc': 'We build, test, and refine until everything works perfectly.',
-    'step-4-title': 'Deploy & Support', 'step-4-desc': 'We deploy on GDPR-compliant German servers and provide ongoing support.',
-    'test-tag': '🛡️ Live Demo · Security Tested',
-    'test-title': 'Try to break it.<br>You won\'t.',
-    'test-desc': 'This AI agent is live and running right now. Test its security, response quality, and multilingual capabilities. Try to manipulate it — it\'s designed to stay focused.',
-    'test-cta': 'Open Live Agent',
-    'test-note': 'Speaks German, English, Russian · Secured against prompt injection · GDPR compliant',
-    'footer-1': 'AI Automation for German businesses · Düsseldorf, Germany',
-    'modal-status': 'Online · Powered by Claude'
-  },
-  de: {
-    'badge': '🇩🇪 Aus Deutschland',
-    'hero-tag': 'KI-Automatisierung · Jetzt verfügbar',
-    'hero-title': 'Automatisiere dein Business mit <span class="accent">KI-Agenten</span>',
-    'hero-desc': 'Maßgeschneiderte KI-Chatbots, Workflow-Automatisierung und intelligente Systeme für deutsche Unternehmen. DSGVO-konform. In Tagen einsatzbereit, nicht in Monaten.',
-    'hero-cta-1': 'Mit KI-Agent sprechen', 'hero-cta-2': 'Dienstleistungen',
-    'demo-status': 'Online — bereit zu helfen',
-    'demo-msg-1': 'Hallo! Ich bin der AgentFlow KI-Assistent 👋 Ich kann dir über unsere Dienstleistungen erzählen und wie wir dein Business automatisieren können.',
-    'demo-msg-2': 'Was könnt ihr für meinen Online-Shop tun?',
-    'demo-msg-3': 'Für einen Online-Shop können wir den Kundensupport 24/7 automatisieren und Leads automatisch qualifizieren. Unser <strong>Automate</strong>-Paket (€800 Setup + €100/Monat) ist perfekt dafür. 🚀',
-    'demo-cta': 'Gespräch starten →',
-    'stat-1': 'KI-Verfügbarkeit', 'stat-2': 'Antwortzeit', 'stat-3': 'Sprachen', 'stat-4': 'DSGVO-konform',
-    'services-tag': 'Unsere Leistungen', 'services-title': 'Einfache, transparente Preise',
-    'srv-1-desc': 'KI-Assistent für deine Website. Beantwortet Kundenfragen, sammelt Leads, arbeitet 24/7.',
-    'srv-setup': 'Setup', 'srv-setup-2': 'Setup', 'srv-setup-3': 'Setup',
-    'srv-1-monthly': '+ €60 / Monat Support',
-    'srv-1-f1': 'Individuelle KI-Persönlichkeit', 'srv-1-f2': 'Lead-Erfassung', 'srv-1-f3': 'DE / EN / RU Unterstützung', 'srv-1-f4': 'Chat-Widget für Website',
-    'srv-2-desc': 'Geschäftsprozess-Automatisierung. E-Mail-Workflows, CRM-Integration, Benachrichtigungen.',
-    'srv-2-monthly': '+ €100 / Monat Support',
-    'srv-2-f1': 'Alles aus Chatbot', 'srv-2-f2': 'CRM-Integration', 'srv-2-f3': 'E-Mail-Automatisierung', 'srv-2-f4': 'Individuelle Workflows',
-    'srv-3-desc': 'Vollständiges KI-System. RAG-Wissensbasis, intelligente Agenten, vollständige Transformation.',
-    'srv-3-monthly': '+ €150 / Monat Support',
-    'srv-3-f1': 'Alles aus Automate', 'srv-3-f2': 'RAG-Wissensbasis', 'srv-3-f3': 'Multi-Agent-System', 'srv-3-f4': 'Priorisierter Support',
-    'how-tag': 'Ablauf', 'how-title': 'Von der Idee bis live in Tagen',
-    'step-1-title': 'Erstgespräch', 'step-1-desc': 'Wir besprechen deine Bedürfnisse und finden die richtige Automatisierungsstrategie.',
-    'step-2-title': 'Design', 'step-2-desc': 'Wir entwerfen den KI-Agenten und Workflow speziell für dein Business.',
-    'step-3-title': 'Build & Test', 'step-3-desc': 'Wir bauen, testen und verfeinern bis alles perfekt funktioniert.',
-    'step-4-title': 'Deploy & Support', 'step-4-desc': 'Wir deployen auf DSGVO-konformen deutschen Servern und bieten laufenden Support.',
-    'test-tag': '🛡️ Live-Demo · Sicherheit getestet',
-    'test-title': 'Versuche ihn zu knacken.<br>Du wirst nicht.',
-    'test-desc': 'Dieser KI-Agent läuft live in diesem Moment. Teste seine Sicherheit, Antwortqualität und mehrsprachigen Fähigkeiten. Versuche ihn zu manipulieren — er bleibt fokussiert.',
-    'test-cta': 'Live-Agent öffnen',
-    'test-note': 'Spricht Deutsch, Englisch, Russisch · Geschützt gegen Prompt Injection · DSGVO-konform',
-    'footer-1': 'KI-Automatisierung für deutsche Unternehmen · Düsseldorf, Deutschland',
-    'modal-status': 'Online · Powered by Claude'
-  },
-  ru: {
-    'badge': '🇩🇪 Из Германии',
-    'hero-tag': 'AI Автоматизация · Доступно сейчас',
-    'hero-title': 'Автоматизируй бизнес с <span class="accent">AI Агентами</span>',
-    'hero-desc': 'Кастомные AI чатботы, автоматизация процессов и интеллектуальные системы для немецкого бизнеса. GDPR-совместимо. Запуск за дни, а не месяцы.',
-    'hero-cta-1': 'Поговорить с AI', 'hero-cta-2': 'Услуги',
-    'demo-status': 'Онлайн — готов помочь',
-    'demo-msg-1': 'Привет! Я AI ассистент AgentFlow 👋 Расскажу о наших услугах и как мы можем автоматизировать твой бизнес.',
-    'demo-msg-2': 'Что вы можете сделать для онлайн магазина?',
-    'demo-msg-3': 'Для онлайн магазина мы можем автоматизировать поддержку 24/7 и квалифицировать лиды. Наш пакет <strong>Automate</strong> (€800 setup + €100/мес) идеально подходит. 🚀',
-    'demo-cta': 'Начать разговор →',
-    'stat-1': 'AI доступность', 'stat-2': 'Время ответа', 'stat-3': 'Языка', 'stat-4': 'GDPR совместимо',
-    'services-tag': 'Что предлагаем', 'services-title': 'Простые, прозрачные цены',
-    'srv-1-desc': 'AI ассистент для сайта. Отвечает на вопросы клиентов, собирает лиды, работает 24/7.',
-    'srv-setup': 'setup', 'srv-setup-2': 'setup', 'srv-setup-3': 'setup',
-    'srv-1-monthly': '+ €60 / месяц поддержка',
-    'srv-1-f1': 'Кастомная личность AI', 'srv-1-f2': 'Сбор лидов', 'srv-1-f3': 'DE / EN / RU поддержка', 'srv-1-f4': 'Чат виджет для сайта',
-    'srv-2-desc': 'Автоматизация бизнес процессов. Email workflows, CRM интеграция, уведомления.',
-    'srv-2-monthly': '+ €100 / месяц поддержка',
-    'srv-2-f1': 'Всё из Chatbot', 'srv-2-f2': 'CRM интеграция', 'srv-2-f3': 'Email автоматизация', 'srv-2-f4': 'Кастомные workflows',
-    'srv-3-desc': 'Полная AI система. RAG база знаний, интеллектуальные агенты, полная трансформация.',
-    'srv-3-monthly': '+ €150 / месяц поддержка',
-    'srv-3-f1': 'Всё из Automate', 'srv-3-f2': 'RAG база знаний', 'srv-3-f3': 'Мульти-агентная система', 'srv-3-f4': 'Приоритетная поддержка',
-    'how-tag': 'Процесс', 'how-title': 'От идеи до запуска за дни',
-    'step-1-title': 'Discovery Call', 'step-1-desc': 'Обсуждаем потребности и находим стратегию автоматизации.',
-    'step-2-title': 'Дизайн', 'step-2-desc': 'Проектируем AI агента и workflow специально под твой бизнес.',
-    'step-3-title': 'Build & Test', 'step-3-desc': 'Строим, тестируем и дорабатываем до идеального результата.',
-    'step-4-title': 'Deploy & Support', 'step-4-desc': 'Запускаем на GDPR-совместимых немецких серверах и поддерживаем.',
-    'test-tag': '🛡️ Live Demo · Безопасность проверена',
-    'test-title': 'Попробуй сломать.<br>Не сможешь.',
-    'test-desc': 'Этот AI агент работает прямо сейчас. Проверь его безопасность, качество ответов и многоязычность. Попробуй им манипулировать — он остаётся в фокусе.',
-    'test-cta': 'Открыть Live Agent',
-    'test-note': 'Говорит на немецком, английском, русском · Защита от prompt injection · GDPR совместимо',
-    'footer-1': 'AI Автоматизация для немецкого бизнеса · Дюссельдорф, Германия',
-    'modal-status': 'Онлайн · Powered by Claude'
-  }
-};
-
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[lang][key]) el.innerHTML = translations[lang][key];
-  });
-  localStorage.setItem('agentflow-lang', lang);
-  document.documentElement.lang = lang;
-}
-
 function openChat() {
-  const modal = document.getElementById("modal");
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
-  if (!chatInitialized) {
-    chatInitialized = true;
-    const lang = localStorage.getItem("agentflow-lang") || "en";
-    const greetings = {
-      en: "Hi! I'm the AgentFlow AI assistant 👋 I can tell you about our services and how we can automate your business. What would you like to know?",
-      de: "Hallo! Ich bin der AgentFlow KI-Assistent 👋 Was möchtest du über unsere Dienstleistungen wissen?",
-      ru: "Привет! Я AI ассистент AgentFlow 👋 Расскажу о наших услугах. Что хочешь узнать?"
-    };
-    setTimeout(() => appendMessage(greetings[lang] || greetings.en, false), 300);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (!chatInit) {
+    chatInit = true;
+    const l = localStorage.getItem('af-lang') || 'en';
+    setTimeout(() => appendMsg(T[l]['chat-hi'], false), 300);
   }
-  setTimeout(() => document.getElementById("chatInput").focus(), 400);
+  setTimeout(() => document.getElementById('chatInput').focus(), 350);
 }
+function closeChat() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeChat(); });
 
-function closeChat() {
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChat(); });
-
-const savedLang = localStorage.getItem('agentflow-lang') || 'en';
-setLang(savedLang);
+setLang(localStorage.getItem('af-lang') || 'en');
 </script>
-
 </body>
 </html>
