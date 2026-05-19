@@ -468,34 +468,54 @@ footer{border-top:1px solid var(--border);padding:40px 32px 40px;display:flex;al
 <!-- AI MODELS -->
 <section class="models-section">
   <div class="models-inner">
-    <div class="reveal"><div class="section-tag" data-i18n="models-tag">AI Engine</div></div>
+    <div class="reveal"><div class="section-tag" data-i18n="models-tag">Technology</div></div>
     <div class="reveal reveal-d1"><div class="section-title" data-i18n="models-title">Powered by the world's best AI</div></div>
-    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="models-sub">We integrate with all major providers. You choose the model that fits your use case and budget.</p></div>
-    <div class="models-grid reveal reveal-d1">
-      <div class="model-card">
+    <div class="reveal reveal-d2"><p class="section-sub" data-i18n="models-sub">From cloud APIs to fully self-hosted agents — we deploy the right technology for your business and data privacy requirements.</p></div>
+    <div class="models-grid reveal reveal-d1" style="grid-template-columns:repeat(3,1fr)">
+
+      <div class="model-card" style="border-color:rgba(99,102,241,0.3);background:linear-gradient(145deg,rgba(99,102,241,0.06) 0%,var(--bg2) 100%);position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div>
         <div class="model-logo" style="background:linear-gradient(135deg,#D97757,#C96442)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg></div>
         <div class="model-name">Claude</div>
-        <p class="model-desc" data-i18n="m1-desc">Best reasoning, safe, GDPR-friendly. Our default choice.</p>
+        <p class="model-desc" data-i18n="m1-desc">Best reasoning, GDPR-friendly, safest choice. Our default for all deployments.</p>
         <span class="model-badge badge-default" data-i18n="m-default">Default</span>
       </div>
+
       <div class="model-card">
         <div class="model-logo" style="background:linear-gradient(135deg,#10a37f,#0d8a6c)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg></div>
         <div class="model-name">GPT</div>
-        <p class="model-desc" data-i18n="m2-desc">OpenAI's models. Great for complex tasks and code generation.</p>
+        <p class="model-desc" data-i18n="m2-desc">OpenAI's models. Great for complex reasoning and code generation tasks.</p>
         <span class="model-badge badge-available" data-i18n="m-available">Available</span>
       </div>
+
       <div class="model-card">
         <div class="model-logo" style="background:linear-gradient(135deg,#4285F4,#34A853)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="12,2 22,20 2,20"/></svg></div>
         <div class="model-name">Gemini</div>
-        <p class="model-desc" data-i18n="m3-desc">Google's model. Strong at multilingual tasks and Google integrations.</p>
+        <p class="model-desc" data-i18n="m3-desc">Google's flagship model. Strong multilingual support and Google Workspace integration.</p>
         <span class="model-badge badge-available" data-i18n="m-available">Available</span>
       </div>
+
+      <div class="model-card" style="border-color:rgba(239,68,68,0.3)">
+        <div class="model-logo" style="background:linear-gradient(135deg,#EF4444,#B91C1C);font-size:22px">🦞</div>
+        <div class="model-name">OpenClaw</div>
+        <p class="model-desc" data-i18n="m4-desc">310k+ GitHub stars. Self-hosted autonomous agent — connects to WhatsApp, Telegram, Slack. Runs 24/7 on your server or ours.</p>
+        <span class="model-badge" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);color:#F87171" data-i18n="m-premium">Premium</span>
+      </div>
+
+      <div class="model-card" style="border-color:rgba(168,85,247,0.3)">
+        <div class="model-logo" style="background:linear-gradient(135deg,#A855F7,#7C3AED)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="model-name">Hermes</div>
+        <p class="model-desc" data-i18n="m5-desc">By Nous Research. Self-learning agent — gets smarter the longer it runs. Ideal for complex 24/7 business automation.</p>
+        <span class="model-badge" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);color:#C084FC" data-i18n="m-premium">Premium</span>
+      </div>
+
       <div class="model-card">
-        <div class="model-logo" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <div class="model-name" data-i18n="m4-name">Self-hosted</div>
-        <p class="model-desc" data-i18n="m4-desc">Open source models on your own server. Maximum privacy, zero API costs.</p>
+        <div class="model-logo" style="background:linear-gradient(135deg,#374151,#1F2937)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="model-name" data-i18n="m6-name">Local Models</div>
+        <p class="model-desc" data-i18n="m6-desc">Llama, Qwen, Mistral via Ollama on your hardware. Zero API costs, maximum privacy, data never leaves your server.</p>
         <span class="model-badge badge-available" data-i18n="m-available">Available</span>
       </div>
+
     </div>
   </div>
 </section>
@@ -634,9 +654,70 @@ footer{border-top:1px solid var(--border);padding:40px 32px 40px;display:flex;al
     <div class="reveal reveal-d1"><div class="section-title" data-i18n="pricing-title">Simple, transparent pricing</div></div>
     <div class="reveal reveal-d2"><p class="section-sub" data-i18n="pricing-sub">One-time setup. Predictable monthly support. No hidden fees, no lock-in.</p></div>
     <div class="pricing-grid">
-      <div class="pricing-card reveal"><div class="pricing-name">Chatbot</div><p class="pricing-desc" data-i18n="p1-desc">AI assistant for any channel. Answers questions, collects leads 24/7.</p><div class="pricing-price"><span class="price-amount">€400</span></div><div class="price-setup" data-i18n="p1-setup">one-time setup · + €60 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f1">Custom AI personality</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f2">Lead collection & qualification</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f3">Any language supported</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f4">Website chat widget</span></li></ul><button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
-      <div class="pricing-card featured reveal reveal-d1"><div class="pricing-pill" data-i18n="popular">Most Popular</div><div class="pricing-name">Automate</div><p class="pricing-desc" data-i18n="p2-desc">Full automation across all channels. CRM, email, WhatsApp, Telegram.</p><div class="pricing-price"><span class="price-amount">€800</span></div><div class="price-setup" data-i18n="p2-setup">one-time setup · + €100 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f1">Everything in Chatbot</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f2">WhatsApp + Telegram deploy</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f3">CRM & email integration</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f4">Custom n8n workflows</span></li></ul><button class="pricing-btn pricing-btn-accent" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
-      <div class="pricing-card reveal reveal-d2"><div class="pricing-name">Transform</div><p class="pricing-desc" data-i18n="p3-desc">Complete AI system. RAG knowledge base, multi-agent, full transformation.</p><div class="pricing-price"><span class="price-amount">€1,500</span></div><div class="price-setup" data-i18n="p3-setup">one-time setup · + €150 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f1">Everything in Automate</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f2">RAG knowledge base</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f3">Multi-agent system</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f4">Priority support</span></li></ul><button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
+      <div class="pricing-card reveal"><div class="pricing-name">Chatbot</div><p class="pricing-desc" data-i18n="p1-desc">AI assistant for any channel. Answers questions, collects leads 24/7.</p><div class="pricing-price"><span class="price-amount">€350</span></div><div class="price-setup" data-i18n="p1-setup">one-time setup · + €50 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f1">Custom AI personality</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f2">Lead collection & qualification</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f3">Any language supported</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p1-f4">Website chat widget</span></li></ul><button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
+      <div class="pricing-card featured reveal reveal-d1"><div class="pricing-pill" data-i18n="popular">Most Popular</div><div class="pricing-name">Automate</div><p class="pricing-desc" data-i18n="p2-desc">Full automation across all channels. CRM, email, WhatsApp, Telegram.</p><div class="pricing-price"><span class="price-amount">€650</span></div><div class="price-setup" data-i18n="p2-setup">one-time setup · + €80 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f1">Everything in Chatbot</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f2">WhatsApp + Telegram deploy</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f3">CRM & email integration</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p2-f4">Custom n8n workflows</span></li></ul><button class="pricing-btn pricing-btn-accent" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
+      <div class="pricing-card reveal reveal-d2"><div class="pricing-name">Transform</div><p class="pricing-desc" data-i18n="p3-desc">Complete AI system. RAG knowledge base, multi-agent, full transformation.</p><div class="pricing-price"><span class="price-amount">€1,200</span></div><div class="price-setup" data-i18n="p3-setup">one-time setup · + €120 / month</div><div class="pricing-divider"></div><ul class="pricing-features"><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f1">Everything in Automate</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f2">RAG knowledge base</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f3">Multi-agent system</span></li><li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p3-f4">Priority support</span></li></ul><button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta">Get Started</button></div>
+    </div>
+
+    <!-- Premium Agent Deployments -->
+    <div style="margin-top:48px;padding-top:48px;border-top:1px solid var(--border)">
+      <div class="section-tag" style="margin-bottom:12px" data-i18n="premium-tag">Premium Agent Deployments</div>
+      <div class="section-title" style="font-size:clamp(20px,3vw,32px);margin-bottom:8px" data-i18n="premium-title">OpenClaw & Hermes — Self-hosted AI Agents</div>
+      <p style="font-size:14px;color:var(--muted2);margin-bottom:32px;max-width:640px" data-i18n="premium-sub">For businesses that need maximum privacy, full control, and an AI agent that runs autonomously 24/7. We install, configure, and maintain the agent on your server or ours.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal" style="border-color:rgba(239,68,68,0.2)">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">🦞</span>
+            <div class="pricing-name" style="margin:0">OpenClaw</div>
+          </div>
+          <p class="pricing-desc" data-i18n="p4-desc">The most popular open-source AI agent (310k+ GitHub stars). Connects to all your messaging apps. Self-hosted, GDPR-perfect.</p>
+          <div class="pricing-price"><span class="price-amount">€600</span></div>
+          <div class="price-setup" data-i18n="p4-setup">setup · + €80 / month</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p4-f1">Full OpenClaw deployment</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p4-f2">WhatsApp, Telegram, Slack, Discord</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p4-f3">Custom skills & knowledge base</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p4-f4">Your server or ours (Hetzner)</span></li>
+          </ul>
+          <button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta">Get Started</button>
+        </div>
+
+        <div class="pricing-card reveal reveal-d1" style="border-color:rgba(168,85,247,0.3);background:linear-gradient(145deg,rgba(168,85,247,0.06) 0%,var(--bg) 100%);position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#A855F7,#C084FC)"></div>
+          <div class="pricing-pill" style="background:rgba(168,85,247,0.15);border-color:rgba(168,85,247,0.3);color:#C084FC" data-i18n="premium-badge">Most Advanced</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">⚡</span>
+            <div class="pricing-name" style="margin:0">Hermes</div>
+          </div>
+          <p class="pricing-desc" data-i18n="p5-desc">Self-learning autonomous agent by Nous Research. Gets smarter with every task. Ideal for 24/7 operations that evolve over time.</p>
+          <div class="pricing-price"><span class="price-amount">€900</span></div>
+          <div class="price-setup" data-i18n="p5-setup">setup · + €100 / month</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p5-f1">Full Hermes deployment</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p5-f2">Self-learning, improves over time</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p5-f3">All channels + local AI models</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p5-f4">Dedicated priority support</span></li>
+          </ul>
+          <button class="pricing-btn" style="background:linear-gradient(135deg,#A855F7,#7C3AED);color:#fff;border:none;margin-top:24px;width:100%;padding:11px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s" onclick="openModal()" data-i18n="p-cta">Get Started</button>
+        </div>
+
+        <div class="pricing-card reveal reveal-d2">
+          <div class="pricing-name" data-i18n="p6-name">Custom / Enterprise</div>
+          <p class="pricing-desc" data-i18n="p6-desc">Have specific requirements? Local GPU server, custom model, complex integrations — we'll build exactly what you need.</p>
+          <div class="pricing-price"><span class="price-amount" data-i18n="p6-price">Custom</span></div>
+          <div class="price-setup" data-i18n="p6-setup">based on scope</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p6-f1">Local GPU server setup</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p6-f2">Custom model fine-tuning</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p6-f3">Air-gapped / offline deployment</span></li>
+            <li><div class="check-icon"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2.5 2.5L8 3"/></svg></div><span data-i18n="p6-f4">Dedicated SLA & support</span></li>
+          </ul>
+          <button class="pricing-btn pricing-btn-default" onclick="openModal()" data-i18n="p-cta-talk">Let's Talk</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -854,13 +935,15 @@ const T = {
     'uc1-ind':'E-Commerce','uc1-title':'24/7 Customer Support','uc1-desc':'Answer order status, returns, and product questions instantly. Reduce support tickets by 60–80%.',
     'uc2-ind':'Professional Services','uc2-title':'Lead Qualification & Booking','uc2-desc':'The AI asks the right questions, qualifies prospects, and books discovery calls — you only spend time on serious clients.',
     'uc3-ind':'Real Estate & Automotive','uc3-title':'Instant Product & Property Info','uc3-desc':'Visitors get immediate answers about listings, prices, and availability. The agent collects requirements and notifies your team.',
-    'models-tag':'AI Engine','models-title':'Powered by the world\'s best AI',
-    'models-sub':'We integrate with all major providers. You choose the model that fits your use case and budget.',
-    'm1-desc':'Best reasoning, safe, GDPR-friendly. Our default choice.',
-    'm2-desc':'OpenAI\'s models. Great for complex tasks and code generation.',
-    'm3-desc':'Google\'s model. Strong at multilingual tasks and Google integrations.',
-    'm4-name':'Self-hosted','m4-desc':'Open source models on your own server. Maximum privacy, zero API costs.',
-    'm-default':'Default','m-available':'Available',
+    'models-tag':'Technology','models-title':'Powered by the world\'s best AI',
+    'models-sub':'From cloud APIs to fully self-hosted agents — we deploy the right technology for your business and data privacy requirements.',
+    'm1-desc':'Best reasoning, GDPR-friendly, safest choice. Our default for all deployments.',
+    'm2-desc':'OpenAI\'s models. Great for complex reasoning and code generation tasks.',
+    'm3-desc':'Google\'s flagship model. Strong multilingual support and Google Workspace integration.',
+    'm4-desc':'310k+ GitHub stars. Self-hosted autonomous agent — connects to WhatsApp, Telegram, Slack. Runs 24/7 on your server or ours.',
+    'm5-desc':'By Nous Research. Self-learning agent — gets smarter the longer it runs. Ideal for complex 24/7 business automation.',
+    'm6-name':'Local Models','m6-desc':'Llama, Qwen, Mistral via Ollama on your hardware. Zero API costs, maximum privacy, data never leaves your server.',
+    'm-default':'Default','m-available':'Available','m-premium':'Premium',
     'demo-tag':'Live Demo','demo-title':'Your agent, on every channel',
     'demo-sub':'Write a message below and see the AI respond — the same conversation appears on all channels. Use the arrows to switch between Website, WhatsApp, and Telegram.',
     'ch-online-status':'online','ch-url':'yourcompany.de',
@@ -873,15 +956,28 @@ const T = {
     'pricing-sub':'One-time setup. Predictable monthly support. No hidden fees, no lock-in.',
     'popular':'Most Popular',
     'p1-desc':'AI assistant for any channel. Answers questions, collects leads 24/7.',
-    'p1-setup':'one-time setup · + €60 / month',
+    'p1-setup':'one-time setup · + €50 / month',
     'p1-f1':'Custom AI personality','p1-f2':'Lead collection & qualification','p1-f3':'Any language supported','p1-f4':'Website chat widget',
     'p2-desc':'Full automation across all channels. CRM, email, WhatsApp, Telegram.',
-    'p2-setup':'one-time setup · + €100 / month',
+    'p2-setup':'one-time setup · + €80 / month',
     'p2-f1':'Everything in Chatbot','p2-f2':'WhatsApp + Telegram deploy','p2-f3':'CRM & email integration','p2-f4':'Custom n8n workflows',
     'p3-desc':'Complete AI system. RAG knowledge base, multi-agent, full transformation.',
-    'p3-setup':'one-time setup · + €150 / month',
+    'p3-setup':'one-time setup · + €120 / month',
     'p3-f1':'Everything in Automate','p3-f2':'RAG knowledge base','p3-f3':'Multi-agent system','p3-f4':'Priority support',
-    'p-cta':'Get Started',
+    'p-cta':'Get Started','p-cta-talk':'Let\'s Talk',
+    'premium-tag':'Premium Agent Deployments',
+    'premium-title':'OpenClaw & Hermes — Self-hosted AI Agents',
+    'premium-sub':'For businesses that need maximum privacy, full control, and an AI agent that runs autonomously 24/7.',
+    'premium-badge':'Most Advanced',
+    'p4-desc':'The most popular open-source AI agent (310k+ GitHub stars). Connects to all your messaging apps. Self-hosted, GDPR-perfect.',
+    'p4-setup':'setup · + €80 / month',
+    'p4-f1':'Full OpenClaw deployment','p4-f2':'WhatsApp, Telegram, Slack, Discord','p4-f3':'Custom skills & knowledge base','p4-f4':'Your server or ours (Hetzner)',
+    'p5-desc':'Self-learning autonomous agent by Nous Research. Gets smarter with every task. Ideal for 24/7 operations that evolve over time.',
+    'p5-setup':'setup · + €100 / month',
+    'p5-f1':'Full Hermes deployment','p5-f2':'Self-learning, improves over time','p5-f3':'All channels + local AI models','p5-f4':'Dedicated priority support',
+    'p6-name':'Custom / Enterprise','p6-price':'Custom','p6-setup':'based on scope',
+    'p6-desc':'Have specific requirements? Local GPU server, custom model, complex integrations — we\'ll build exactly what you need.',
+    'p6-f1':'Local GPU server setup','p6-f2':'Custom model fine-tuning','p6-f3':'Air-gapped / offline deployment','p6-f4':'Dedicated SLA & support',
     'footer-mid':'AI Automation · Düsseldorf, Germany<br>GDPR / DSGVO Compliant','footer-copy':'© 2026 AgentFlow',
     'modal-online':'Flow · Powered by Claude','chat-ph':'Type a message...'
   },
@@ -905,13 +1001,15 @@ const T = {
     'uc1-ind':'E-Commerce','uc1-title':'24/7 Kundensupport','uc1-desc':'Beantworte Fragen zu Bestellungen, Rückgaben und Produkten sofort. Reduziere Support-Tickets um 60–80%.',
     'uc2-ind':'Freiberufler & Agenturen','uc2-title':'Lead-Qualifizierung & Buchung','uc2-desc':'Die KI stellt die richtigen Fragen, qualifiziert Interessenten und bucht Erstgespräche — du sprichst nur mit ernsthaften Kunden.',
     'uc3-ind':'Immobilien & Automotive','uc3-title':'Sofortige Produkt-Infos','uc3-desc':'Besucher erhalten sofort Antworten zu Objekten, Preisen und Verfügbarkeit. Der Agent sammelt Anforderungen und benachrichtigt dein Team.',
-    'models-tag':'KI-Engine','models-title':'Powered by den besten KI-Modellen',
-    'models-sub':'Wir integrieren alle großen KI-Anbieter. Du wählst das Modell das zu deinem Anwendungsfall passt.',
-    'm1-desc':'Bestes Reasoning, sicher, DSGVO-freundlich. Unsere Standardwahl.',
+    'models-tag':'Technologie','models-title':'Powered by den besten KI-Modellen',
+    'models-sub':'Von Cloud-APIs bis zu vollständig selbst gehosteten Agenten — wir setzen die richtige Technologie für dein Business ein.',
+    'm1-desc':'Bestes Reasoning, DSGVO-freundlich, sicherste Wahl. Unser Standard für alle Deployments.',
     'm2-desc':'OpenAIs Modelle. Ideal für komplexe Aufgaben und Code-Generierung.',
-    'm3-desc':'Googles Modell. Stark bei mehrsprachigen Aufgaben und Google-Integrationen.',
-    'm4-name':'Self-hosted','m4-desc':'Open-Source-Modelle auf deinem Server. Maximale Privatsphäre, keine API-Kosten.',
-    'm-default':'Standard','m-available':'Verfügbar',
+    'm3-desc':'Googles Flaggschiff. Starke Mehrsprachigkeit und Google Workspace Integration.',
+    'm4-desc':'310k+ GitHub Stars. Self-hosted autonomer Agent — verbindet WhatsApp, Telegram, Slack. Läuft 24/7 auf deinem oder unserem Server.',
+    'm5-desc':'Von Nous Research. Selbstlernender Agent — wird mit der Zeit intelligenter. Ideal für komplexe 24/7-Automatisierung.',
+    'm6-name':'Lokale Modelle','m6-desc':'Llama, Qwen, Mistral via Ollama auf deiner Hardware. Keine API-Kosten, maximale Privatsphäre.',
+    'm-default':'Standard','m-available':'Verfügbar','m-premium':'Premium',
     'demo-tag':'Live-Demo','demo-title':'Dein Agent auf jedem Kanal',
     'demo-sub':'Schreib eine Nachricht und sieh wie die KI antwortet — dasselbe Gespräch erscheint auf allen Kanälen. Nutze die Pfeile um zwischen Website, WhatsApp und Telegram zu wechseln.',
     'ch-online-status':'online','ch-url':'deinunternehmen.de',
@@ -924,15 +1022,28 @@ const T = {
     'pricing-sub':'Einmaliges Setup. Vorhersehbarer monatlicher Support. Keine versteckten Kosten.',
     'popular':'Beliebteste',
     'p1-desc':'KI-Assistent für jeden Kanal. Beantwortet Fragen, sammelt Leads 24/7.',
-    'p1-setup':'einmaliges Setup · + €60 / Monat',
+    'p1-setup':'einmaliges Setup · + €50 / Monat',
     'p1-f1':'Individuelle KI-Persönlichkeit','p1-f2':'Lead-Erfassung & Qualifizierung','p1-f3':'Jede Sprache unterstützt','p1-f4':'Website-Chat-Widget',
     'p2-desc':'Vollständige Automatisierung. CRM, E-Mail, WhatsApp, Telegram.',
-    'p2-setup':'einmaliges Setup · + €100 / Monat',
+    'p2-setup':'einmaliges Setup · + €80 / Monat',
     'p2-f1':'Alles aus Chatbot','p2-f2':'WhatsApp + Telegram Deploy','p2-f3':'CRM & E-Mail-Integration','p2-f4':'Individuelle n8n Workflows',
     'p3-desc':'Komplettes KI-System. RAG-Wissensbasis, Multi-Agenten, vollständige Transformation.',
-    'p3-setup':'einmaliges Setup · + €150 / Monat',
+    'p3-setup':'einmaliges Setup · + €120 / Monat',
     'p3-f1':'Alles aus Automate','p3-f2':'RAG-Wissensbasis','p3-f3':'Multi-Agenten-System','p3-f4':'Priorisierter Support',
-    'p-cta':'Loslegen',
+    'p-cta':'Loslegen','p-cta-talk':'Gespräch starten',
+    'premium-tag':'Premium Agenten-Deployments',
+    'premium-title':'OpenClaw & Hermes — Self-hosted KI-Agenten',
+    'premium-sub':'Für Unternehmen, die maximale Privatsphäre, volle Kontrolle und einen 24/7 autonomen KI-Agenten brauchen.',
+    'premium-badge':'Fortschrittlichste',
+    'p4-desc':'Der beliebteste Open-Source KI-Agent (310k+ GitHub Stars). Verbindet alle Messaging-Apps. Self-hosted, DSGVO-perfekt.',
+    'p4-setup':'Setup · + €80 / Monat',
+    'p4-f1':'Vollständiges OpenClaw Deployment','p4-f2':'WhatsApp, Telegram, Slack, Discord','p4-f3':'Custom Skills & Wissensbasis','p4-f4':'Dein Server oder unserer (Hetzner)',
+    'p5-desc':'Selbstlernender autonomer Agent von Nous Research. Wird mit jeder Aufgabe intelligenter. Ideal für 24/7-Betrieb.',
+    'p5-setup':'Setup · + €100 / Monat',
+    'p5-f1':'Vollständiges Hermes Deployment','p5-f2':'Selbstlernend, verbessert sich kontinuierlich','p5-f3':'Alle Kanäle + lokale KI-Modelle','p5-f4':'Dedizierter Priority-Support',
+    'p6-name':'Custom / Enterprise','p6-price':'Individuell','p6-setup':'je nach Umfang',
+    'p6-desc':'Spezielle Anforderungen? Lokaler GPU-Server, Custom-Modell, komplexe Integrationen — wir bauen genau das, was du brauchst.',
+    'p6-f1':'Lokaler GPU-Server Setup','p6-f2':'Custom Model Fine-tuning','p6-f3':'Air-gapped / Offline Deployment','p6-f4':'Dediziertes SLA & Support',
     'footer-mid':'KI-Automatisierung · Düsseldorf, Deutschland<br>GDPR / DSGVO-konform','footer-copy':'© 2026 AgentFlow',
     'modal-online':'Flow · Powered by Claude','chat-ph':'Nachricht schreiben...'
   },
@@ -956,13 +1067,15 @@ const T = {
     'uc1-ind':'E-Commerce','uc1-title':'Поддержка клиентов 24/7','uc1-desc':'Отвечай на вопросы о заказах, возвратах и товарах мгновенно. Сократи количество обращений на 60–80%.',
     'uc2-ind':'Услуги и агентства','uc2-title':'Квалификация лидов и запись','uc2-desc':'AI задаёт правильные вопросы, квалифицирует клиентов и записывает на консультацию — ты общаешься только с серьёзными.',
     'uc3-ind':'Недвижимость и авто','uc3-title':'Мгновенная информация','uc3-desc':'Посетители сразу получают ответы об объектах, ценах и наличии. Агент собирает пожелания и уведомляет команду.',
-    'models-tag':'AI Движок','models-title':'Powered by лучшими AI моделями',
-    'models-sub':'Интегрируем все major AI провайдеры. Ты выбираешь модель под свой кейс и бюджет.',
-    'm1-desc':'Лучший reasoning, безопасный, GDPR. Наш выбор по умолчанию.',
+    'models-tag':'Технологии','models-title':'Powered by лучшими AI моделями',
+    'models-sub':'От облачных API до полностью self-hosted агентов — подбираем нужную технологию под твой бизнес.',
+    'm1-desc':'Лучший reasoning, GDPR, самый безопасный выбор. Наш стандарт для всех deployments.',
     'm2-desc':'Модели OpenAI. Отлично для сложных задач и генерации кода.',
-    'm3-desc':'Модель Google. Сильный в многоязычных задачах и интеграциях Google.',
-    'm4-name':'Self-hosted','m4-desc':'Open source модели на твоём сервере. Максимальная приватность, без API расходов.',
-    'm-default':'По умолчанию','m-available':'Доступно',
+    'm3-desc':'Флагман Google. Сильный в многоязычных задачах и интеграциях Google Workspace.',
+    'm4-desc':'310k+ звёзд на GitHub. Self-hosted автономный агент — WhatsApp, Telegram, Slack. Работает 24/7 на твоём или нашем сервере.',
+    'm5-desc':'От Nous Research. Самообучающийся агент — чем дольше работает, тем умнее. Идеален для сложной 24/7 автоматизации.',
+    'm6-name':'Локальные модели','m6-desc':'Llama, Qwen, Mistral через Ollama на твоём железе. Ноль API расходов, данные никуда не уходят.',
+    'm-default':'По умолчанию','m-available':'Доступно','m-premium':'Премиум',
     'demo-tag':'Live Demo','demo-title':'Твой агент на каждом канале',
     'demo-sub':'Напиши сообщение и посмотри как AI отвечает — одна беседа отображается на всех каналах. Используй стрелки для переключения между сайтом, WhatsApp и Telegram.',
     'ch-online-status':'онлайн','ch-url':'твойсайт.de',
@@ -975,15 +1088,28 @@ const T = {
     'pricing-sub':'Единоразовый setup. Предсказуемый ежемесячный саппорт. Никаких скрытых платежей.',
     'popular':'Популярный',
     'p1-desc':'AI ассистент для любого канала. Отвечает на вопросы, собирает лиды 24/7.',
-    'p1-setup':'единоразово · + €60 / мес',
+    'p1-setup':'единоразово · + €50 / мес',
     'p1-f1':'Кастомная личность AI','p1-f2':'Сбор и квалификация лидов','p1-f3':'Любой язык','p1-f4':'Чат виджет на сайте',
     'p2-desc':'Полная автоматизация по всем каналам. CRM, email, WhatsApp, Telegram.',
-    'p2-setup':'единоразово · + €100 / мес',
+    'p2-setup':'единоразово · + €80 / мес',
     'p2-f1':'Всё из Chatbot','p2-f2':'WhatsApp + Telegram','p2-f3':'CRM и email интеграция','p2-f4':'Кастомные n8n workflows',
     'p3-desc':'Полная AI система. RAG база знаний, мульти-агент, полная трансформация.',
-    'p3-setup':'единоразово · + €150 / мес',
+    'p3-setup':'единоразово · + €120 / мес',
     'p3-f1':'Всё из Automate','p3-f2':'RAG база знаний','p3-f3':'Мульти-агент','p3-f4':'Приоритетный саппорт',
-    'p-cta':'Начать',
+    'p-cta':'Начать','p-cta-talk':'Обсудить',
+    'premium-tag':'Premium Агенты',
+    'premium-title':'OpenClaw & Hermes — Self-hosted AI Агенты',
+    'premium-sub':'Для бизнеса которому нужна максимальная приватность, полный контроль и автономный AI агент 24/7.',
+    'premium-badge':'Самый продвинутый',
+    'p4-desc':'Самый популярный open-source AI агент (310k+ звёзд на GitHub). Подключается ко всем мессенджерам. Self-hosted, GDPR.',
+    'p4-setup':'setup · + €80 / мес',
+    'p4-f1':'Полный деплой OpenClaw','p4-f2':'WhatsApp, Telegram, Slack, Discord','p4-f3':'Кастомные навыки и база знаний','p4-f4':'Твой сервер или наш (Hetzner)',
+    'p5-desc':'Самообучающийся автономный агент от Nous Research. Умнеет с каждой задачей. Идеален для 24/7 операций.',
+    'p5-setup':'setup · + €100 / мес',
+    'p5-f1':'Полный деплой Hermes','p5-f2':'Самообучение, улучшается со временем','p5-f3':'Все каналы + локальные AI модели','p5-f4':'Приоритетная поддержка',
+    'p6-name':'Custom / Enterprise','p6-price':'Индивидуально','p6-setup':'по объёму работ',
+    'p6-desc':'Есть особые требования? Локальный GPU сервер, кастомная модель, сложные интеграции — сделаем то что нужно.',
+    'p6-f1':'Локальный GPU сервер','p6-f2':'Файн-тюнинг кастомной модели','p6-f3':'Air-gapped / оффлайн деплой','p6-f4':'Выделенный SLA и поддержка',
     'footer-mid':'AI Автоматизация · Дюссельдорф, Германия<br>GDPR / DSGVO',
     'footer-copy':'© 2026 AgentFlow',
     'modal-online':'Онлайн · Powered by Claude','chat-ph':'Написать сообщение...'
