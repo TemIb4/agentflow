@@ -285,20 +285,100 @@ footer{border-top:1px solid var(--border);padding:40px 32px 40px;display:flex;al
 /* RESPONSIVE */
 @media(max-width:900px){
   .features-grid{grid-template-columns:1fr 1fr}
-  .pricing-grid,.usecases-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+  .pricing-grid,.usecases-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
   .integrations-grid,.models-grid{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
   .carousel-prev{left:-20px}.carousel-next{right:-20px}
   .carousel-wrap{max-width:calc(100% - 100px)}
   .device-laptop{width:100%}
 }
+
 @media(max-width:600px){
+  /* NAV */
   nav{padding:0 16px}
-  .features-grid{grid-template-columns:1fr}
-  footer{flex-direction:column;text-align:center;padding-bottom:80px}
-  .footer-right{text-align:center}
-  .modal-box{width:100%;border-radius:16px 16px 0 0;max-height:90vh}
+  .lang-switcher{display:none}
+  .btn-nav{padding:6px 14px;font-size:12px}
+
+  /* HERO */
+  .hero{padding:90px 20px 60px}
+  .h1-wrap{min-height:auto;margin-bottom:16px}
+  h1{font-size:36px;letter-spacing:-1px}
+  .hero-sub{font-size:15px;margin-bottom:28px}
+  .hero-ctas{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;max-width:320px;justify-content:center}
+  .hero-stats{flex-direction:column;margin-top:40px;border-radius:12px}
+  .hero-stat{border-right:none;border-bottom:1px solid var(--border);padding:16px 20px;min-width:100%}
+  .hero-stat:last-child{border-bottom:none}
+  .stat-val{font-size:28px}
+
+  /* PLATFORMS */
+  .platforms-bar{padding:20px 16px;gap:6px}
+  .platforms-label{display:none}
+  .platform-tag{font-size:11px;padding:5px 10px}
+
+  /* SECTIONS */
+  .features-section,.models-section,.integrations-section,.pricing-section,.demo-section,.usecases-section{padding:64px 20px}
+  .features-inner,.models-inner,.integrations-inner,.pricing-inner,.demo-inner,.usecases-inner{max-width:100%}
+  .section-title{font-size:24px}
+  .section-sub{font-size:14px;margin-bottom:32px}
+
+  /* FEATURES */
+  .features-grid{grid-template-columns:1fr;gap:1px}
+  .feature-card{padding:22px}
+
+  /* USE CASES */
+  .usecases-grid{grid-template-columns:1fr;max-width:100%}
+
+  /* MODELS */
+  .models-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .model-card{padding:16px}
+  .model-logo{width:40px;height:40px}
+
+  /* CAROUSEL */
+  .carousel-wrap{max-width:calc(100% - 80px)}
+  .carousel-slide{padding:24px 16px 20px}
+  .carousel-prev{left:-16px}.carousel-next{right:-16px}
+  .carousel-dots{margin-top:16px}
+  .carousel-input-wrap{margin:16px 0 0;border-radius:10px}
+  .carousel-input-wrap input{font-size:14px}
+
+  /* IPHONE */
+  .device-iphone{width:220px;height:440px;border-radius:38px;border-width:7px}
+  .iphone-notch{width:86px;height:22px}
+  .tg-header,.wa-header{padding:24px 12px 8px}
+  .tg-avatar,.wa-avatar{width:28px;height:28px}
+  .tg-name,.wa-name{font-size:12px}
+
+  /* LAPTOP */
+  .device-laptop{width:100%}
+  .laptop-lid{height:300px;border-radius:10px 10px 0 0}
+  .laptop-chat-widget{width:160px;right:8px;bottom:8px}
+  .lcw-msgs{min-height:80px;max-height:80px}
+  .lcw-bot,.lcw-user{font-size:10px}
+
+  /* INTEGRATIONS */
+  .integrations-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .integration-card{padding:14px;gap:10px}
+  .int-icon{width:32px;height:32px;border-radius:8px}
+  .int-name{font-size:12px}
+  .int-desc{font-size:10px}
+
+  /* PRICING */
+  .pricing-grid{grid-template-columns:1fr;max-width:100%}
+  .pricing-card{padding:22px}
+  .price-amount{font-size:36px}
+
+  /* FOOTER */
+  footer{flex-direction:column;text-align:center;padding:32px 20px 88px;gap:12px}
+  .footer-right,.footer-center{text-align:center}
+  .footer-logo{justify-content:center}
+
+  /* MODAL */
+  .modal-box{width:100%;border-radius:16px 16px 0 0;max-height:90vh;height:90vh}
   .modal-overlay{padding:0;align-items:flex-end}
+
+  /* FAB */
+  .fab{bottom:20px;right:20px;width:48px;height:48px;border-radius:12px}
 }
 </style>
 </head>
@@ -674,7 +754,7 @@ async function carouselSend() {
   try {
     const r = await fetch(CHAT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-AF-Token': 'af_x9k2m7p4q3r8' },
       body: JSON.stringify({ chatInput: txt, sessionId: SESSION })
     });
     const d = await r.json();
@@ -731,7 +811,7 @@ async function modalSend() {
   inp.value = ''; document.getElementById('chatSend').disabled = true;
   appendModalMsg(txt, true); showModalTyping();
   try {
-    const r = await fetch(CHAT_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ chatInput: txt, sessionId: modalSession }) });
+    const r = await fetch(CHAT_URL, { method:'POST', headers:{'Content-Type':'application/json','X-AF-Token':'af_x9k2m7p4q3r8'}, body: JSON.stringify({ chatInput: txt, sessionId: modalSession }) });
     const d = await r.json(); hideModalTyping();
     appendModalMsg(d.output || d.text || d.message || d.response || JSON.stringify(d), false);
   } catch(e) { hideModalTyping(); appendModalMsg('Connection error. Please try again.', false); }
