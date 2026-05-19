@@ -572,7 +572,7 @@ footer{border-top:1px solid var(--border);padding:40px 32px 40px;display:flex;al
                     <div class="laptop-chat-widget">
                       <div class="lcw-header">
                         <div class="lcw-dot"></div>
-                        <div class="lcw-name">AgentFlow AI</div>
+                        <div class="lcw-name">Flow — AgentFlow AI</div>
                       </div>
                       <div class="lcw-msgs" id="msgs-web"></div>
                       <div class="lcw-footer">
@@ -657,7 +657,7 @@ footer{border-top:1px solid var(--border);padding:40px 32px 40px;display:flex;al
     <div class="modal-header">
       <div class="modal-header-left">
         <div class="modal-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-        <div><div class="modal-name">AgentFlow AI</div><div class="modal-status"><div class="modal-status-dot"></div><span data-i18n="modal-online">Online · Powered by Claude</span></div></div>
+        <div><div class="modal-name">Flow — AgentFlow AI</div><div class="modal-status"><div class="modal-status-dot"></div><span data-i18n="modal-online">Flow · Powered by Claude</span></div></div>
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
@@ -681,9 +681,9 @@ let modalSession = 'modal-' + Math.random().toString(36).substr(2,9);
 
 // Greeting per lang
 const GREETINGS = {
-  en: "Hi! I'm the AgentFlow AI assistant 👋\n\nI help businesses automate sales, support, and lead generation.\n\nTo find the right solution for you, could you tell me:\n• What type of business do you run?\n• What would you like to automate first?\n• Any specific wishes or requirements?",
-  de: "Hallo! Ich bin der AgentFlow KI-Assistent 👋\n\nIch helfe Unternehmen dabei, Vertrieb, Support und Lead-Generierung zu automatisieren.\n\nUm die richtige Lösung zu finden:\n• Was für ein Business betreibst du?\n• Was möchtest du als erstes automatisieren?\n• Gibt es besondere Wünsche oder Anforderungen?",
-  ru: "Привет! Я AI ассистент AgentFlow 👋\n\nПомогаю бизнесу автоматизировать продажи, поддержку и лидогенерацию.\n\nЧтобы подобрать решение:\n• Какой у тебя бизнес?\n• Что хочешь автоматизировать в первую очередь?\n• Есть особые пожелания или требования?"
+  en: "Hi! I'm Flow, AgentFlow's AI assistant 👋\n\nI help businesses automate sales, support, and lead generation.\n\nTo find the right solution for you, could you tell me:\n• What type of business do you run?\n• What would you like to automate first?\n• Any specific wishes or requirements?",
+  de: "Hallo! Ich bin Flow, der KI-Assistent von AgentFlow 👋\n\nIch helfe Unternehmen dabei, Vertrieb, Support und Lead-Generierung zu automatisieren.\n\nUm die richtige Lösung zu finden:\n• Was für ein Business betreibst du?\n• Was möchtest du als erstes automatisieren?\n• Gibt es besondere Wünsche oder Anforderungen?",
+  ru: "Привет! Я Flow, AI ассистент AgentFlow 👋\n\nПомогаю бизнесу автоматизировать продажи, поддержку и лидогенерацию.\n\nЧтобы подобрать решение:\n• Какой у тебя бизнес?\n• Что хочешь автоматизировать в первую очередь?\n• Есть особые пожелания или требования?"
 };
 
 function getLang(){ return localStorage.getItem('af-lang') || 'en'; }
@@ -883,7 +883,7 @@ const T = {
     'p3-f1':'Everything in Automate','p3-f2':'RAG knowledge base','p3-f3':'Multi-agent system','p3-f4':'Priority support',
     'p-cta':'Get Started',
     'footer-mid':'AI Automation · Düsseldorf, Germany<br>GDPR / DSGVO Compliant','footer-copy':'© 2026 AgentFlow',
-    'modal-online':'Online · Powered by Claude','chat-ph':'Type a message...'
+    'modal-online':'Flow · Powered by Claude','chat-ph':'Type a message...'
   },
   de: {
     'nav-features':'Features','nav-demo':'Demo','nav-pricing':'Preise','nav-cta':'KI starten',
@@ -934,7 +934,7 @@ const T = {
     'p3-f1':'Alles aus Automate','p3-f2':'RAG-Wissensbasis','p3-f3':'Multi-Agenten-System','p3-f4':'Priorisierter Support',
     'p-cta':'Loslegen',
     'footer-mid':'KI-Automatisierung · Düsseldorf, Deutschland<br>GDPR / DSGVO-konform','footer-copy':'© 2026 AgentFlow',
-    'modal-online':'Online · Powered by Claude','chat-ph':'Nachricht schreiben...'
+    'modal-online':'Flow · Powered by Claude','chat-ph':'Nachricht schreiben...'
   },
   ru: {
     'nav-features':'Функции','nav-demo':'Демо','nav-pricing':'Цены','nav-cta':'Написать AI',
